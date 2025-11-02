@@ -1,0 +1,2005 @@
+{
+  "contractName": "Modifiers",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "playersByName",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "enum Enums.PlayerPosition",
+          "name": "position",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "dateOfBirth",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "walletAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "teamName",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "registrationTimestamp",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isFreeAgent",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "contractExpires",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "teamsByName",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "foundationYear",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "walletAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "registrationTimestamp",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "users",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "walletAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "enum Enums.UserType",
+          "name": "userType",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "passwordHash",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "entityName",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "registrationTimestamp",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"playersByName\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"enum Enums.PlayerPosition\",\"name\":\"position\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"dateOfBirth\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"walletAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"teamName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"registrationTimestamp\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isFreeAgent\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"contractExpires\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"teamsByName\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"foundationYear\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"walletAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"registrationTimestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"users\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"walletAddress\",\"type\":\"address\"},{\"internalType\":\"enum Enums.UserType\",\"name\":\"userType\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"passwordHash\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"entityName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"registrationTimestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Conditions.sol\":\"Modifiers\"},\"debug\":{\"revertStrings\":\"strip\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/Conditions.sol\":{\"keccak256\":\"0x8bb44eca858caa811346c3624caa8218f4877201653de4c8c3a221d9c35ec1a1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a17e9dcd23ceb719fa24461768e73865a9620b858f047c4b06c60922dc85d4db\",\"dweb:/ipfs/QmPHMVJM6tm7vY1ZjCNaP9v9YR2uXkokhxdwUCzYgiYcDv\"]},\"project:/contracts/Storage.sol\":{\"keccak256\":\"0x9063861c3ee95d2f6ff205b0f7e4673789b12238a4b0013b47a0c1b1dc155008\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a35d6d557ddeb97006cf891661c778b2e252bd9c18666bdc6f25d51d4bf630e9\",\"dweb:/ipfs/Qme9gbthLN2evFy7wXKeZ1WPo5bX99RMVopN1N5AkjJWGt\"]},\"project:/contracts/Types.sol\":{\"keccak256\":\"0x4dae8a97ee79e1ab1f21db403916a1a0f7477c1e02bad3855b4a536118bb4eea\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://64dd757b0f85942d0ce3f331af3883d76bc29e85b073e9cb6ea995ce12f2bfd0\",\"dweb:/ipfs/QmTM9895qv5VXMGPc6iaAdnNcfqc411tTW37UbWriwZTSj\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.21;\r\n\r\nimport \"./Storage.sol\";\r\n\r\nabstract contract Modifiers is BaseStorage {\r\n    modifier onlyTeamOwner(address _teamWalletAddress) {\r\n        require(\r\n            users[msg.sender].walletAddress == _teamWalletAddress,\r\n            \"Only the team owner can call this function.\"\r\n        );\r\n        require(\r\n            users[msg.sender].userType == Enums.UserType.Team,\r\n            \"Only team accounts can call this function.\"\r\n        );\r\n        _;\r\n    }\r\n\r\n    modifier onlyPlayer(address _playerWalletAddress) {\r\n        require(\r\n            users[msg.sender].walletAddress == _playerWalletAddress,\r\n            \"Only the player can call this function.\"\r\n        );\r\n        require(\r\n            users[msg.sender].userType == Enums.UserType.Player,\r\n            \"Only player accounts can call this function.\"\r\n        );\r\n        _;\r\n    }\r\n\r\n    modifier validAddress(address _address) {\r\n        require(_address != address(0), \"Invalid address.\");\r\n        _;\r\n    }\r\n\r\n    modifier userNotExists(address _address) {\r\n        require(\r\n            users[_address].walletAddress == address(0),\r\n            \"Wallet address already registered.\"\r\n        );\r\n        _;\r\n    }\r\n\r\n    modifier onlyTeam() {\r\n        require(\r\n            users[msg.sender].userType == Enums.UserType.Team,\r\n            \"Only teams can call this function.\"\r\n        );\r\n        _;\r\n    }\r\n\r\n    modifier onlyPlayerAccount() {\r\n        require(\r\n            users[msg.sender].userType == Enums.UserType.Player,\r\n            \"Only players can call this function.\"\r\n        );\r\n        _;\r\n    }\r\n}",
+  "sourcePath": "D:\\Egyetem\\Szakdolgozat_FCM_DAPP\\Blockchain_Backend\\contracts\\Conditions.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Conditions.sol",
+    "exportedSymbols": {
+      "BaseStorage": [
+        380
+      ],
+      "Enums": [
+        391
+      ],
+      "Modifiers": [
+        134
+      ],
+      "Structs": [
+        444
+      ]
+    },
+    "id": 135,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".21"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:24:0"
+      },
+      {
+        "absolutePath": "project:/contracts/Storage.sol",
+        "file": "./Storage.sol",
+        "id": 2,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 135,
+        "sourceUnit": 381,
+        "src": "61:23:0",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 3,
+              "name": "BaseStorage",
+              "nameLocations": [
+                "119:11:0"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 380,
+              "src": "119:11:0"
+            },
+            "id": 4,
+            "nodeType": "InheritanceSpecifier",
+            "src": "119:11:0"
+          }
+        ],
+        "canonicalName": "Modifiers",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 134,
+        "linearizedBaseContracts": [
+          134,
+          380
+        ],
+        "name": "Modifiers",
+        "nameLocation": "106:9:0",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 33,
+              "nodeType": "Block",
+              "src": "189:329:0",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 15,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 9,
+                              "name": "users",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 357,
+                              "src": "222:5:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_User_$405_storage_$",
+                                "typeString": "mapping(address => struct Structs.User storage ref)"
+                              }
+                            },
+                            "id": 12,
+                            "indexExpression": {
+                              "expression": {
+                                "id": 10,
+                                "name": "msg",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4294967281,
+                                "src": "228:3:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_magic_message",
+                                  "typeString": "msg"
+                                }
+                              },
+                              "id": 11,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberLocation": "232:6:0",
+                              "memberName": "sender",
+                              "nodeType": "MemberAccess",
+                              "src": "228:10:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "222:17:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_User_$405_storage",
+                              "typeString": "struct Structs.User storage ref"
+                            }
+                          },
+                          "id": 13,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "240:13:0",
+                          "memberName": "walletAddress",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 393,
+                          "src": "222:31:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "id": 14,
+                          "name": "_teamWalletAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 6,
+                          "src": "257:18:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "222:53:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f6e6c7920746865207465616d206f776e65722063616e2063616c6c20746869732066756e6374696f6e2e",
+                        "id": 16,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "290:45:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_c722458c616e2b1b81ad6ee76aea08565aee262500fa9958ae0798f693cf301e",
+                          "typeString": "literal_string \"Only the team owner can call this function.\""
+                        },
+                        "value": "Only the team owner can call this function."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_c722458c616e2b1b81ad6ee76aea08565aee262500fa9958ae0798f693cf301e",
+                          "typeString": "literal_string \"Only the team owner can call this function.\""
+                        }
+                      ],
+                      "id": 8,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "200:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 17,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "200:146:0",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 18,
+                  "nodeType": "ExpressionStatement",
+                  "src": "200:146:0"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_UserType_$385",
+                          "typeString": "enum Enums.UserType"
+                        },
+                        "id": 28,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 20,
+                              "name": "users",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 357,
+                              "src": "379:5:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_User_$405_storage_$",
+                                "typeString": "mapping(address => struct Structs.User storage ref)"
+                              }
+                            },
+                            "id": 23,
+                            "indexExpression": {
+                              "expression": {
+                                "id": 21,
+                                "name": "msg",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4294967281,
+                                "src": "385:3:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_magic_message",
+                                  "typeString": "msg"
+                                }
+                              },
+                              "id": 22,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberLocation": "389:6:0",
+                              "memberName": "sender",
+                              "nodeType": "MemberAccess",
+                              "src": "385:10:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "379:17:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_User_$405_storage",
+                              "typeString": "struct Structs.User storage ref"
+                            }
+                          },
+                          "id": 24,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "397:8:0",
+                          "memberName": "userType",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 396,
+                          "src": "379:26:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_UserType_$385",
+                            "typeString": "enum Enums.UserType"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "expression": {
+                            "expression": {
+                              "id": 25,
+                              "name": "Enums",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 391,
+                              "src": "409:5:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_Enums_$391_$",
+                                "typeString": "type(library Enums)"
+                              }
+                            },
+                            "id": 26,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "415:8:0",
+                            "memberName": "UserType",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 385,
+                            "src": "409:14:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_UserType_$385_$",
+                              "typeString": "type(enum Enums.UserType)"
+                            }
+                          },
+                          "id": 27,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "424:4:0",
+                          "memberName": "Team",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 384,
+                          "src": "409:19:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_UserType_$385",
+                            "typeString": "enum Enums.UserType"
+                          }
+                        },
+                        "src": "379:49:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f6e6c79207465616d206163636f756e74732063616e2063616c6c20746869732066756e6374696f6e2e",
+                        "id": 29,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "443:44:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_6c788dcb259631f4e79ef1ca89134180e767ca59beb3dadf66b3ea9e544c3db7",
+                          "typeString": "literal_string \"Only team accounts can call this function.\""
+                        },
+                        "value": "Only team accounts can call this function."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_6c788dcb259631f4e79ef1ca89134180e767ca59beb3dadf66b3ea9e544c3db7",
+                          "typeString": "literal_string \"Only team accounts can call this function.\""
+                        }
+                      ],
+                      "id": 19,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "357:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 30,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "357:141:0",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 31,
+                  "nodeType": "ExpressionStatement",
+                  "src": "357:141:0"
+                },
+                {
+                  "id": 32,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "509:1:0"
+                }
+              ]
+            },
+            "id": 34,
+            "name": "onlyTeamOwner",
+            "nameLocation": "147:13:0",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 7,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6,
+                  "mutability": "mutable",
+                  "name": "_teamWalletAddress",
+                  "nameLocation": "169:18:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 34,
+                  "src": "161:26:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "161:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "160:28:0"
+            },
+            "src": "138:380:0",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 63,
+              "nodeType": "Block",
+              "src": "576:331:0",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 45,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 39,
+                              "name": "users",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 357,
+                              "src": "609:5:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_User_$405_storage_$",
+                                "typeString": "mapping(address => struct Structs.User storage ref)"
+                              }
+                            },
+                            "id": 42,
+                            "indexExpression": {
+                              "expression": {
+                                "id": 40,
+                                "name": "msg",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4294967281,
+                                "src": "615:3:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_magic_message",
+                                  "typeString": "msg"
+                                }
+                              },
+                              "id": 41,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberLocation": "619:6:0",
+                              "memberName": "sender",
+                              "nodeType": "MemberAccess",
+                              "src": "615:10:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "609:17:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_User_$405_storage",
+                              "typeString": "struct Structs.User storage ref"
+                            }
+                          },
+                          "id": 43,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "627:13:0",
+                          "memberName": "walletAddress",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 393,
+                          "src": "609:31:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "id": 44,
+                          "name": "_playerWalletAddress",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 36,
+                          "src": "644:20:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "609:55:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f6e6c792074686520706c617965722063616e2063616c6c20746869732066756e6374696f6e2e",
+                        "id": 46,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "679:41:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_f2e060ecc825afe2c0551e0ecc2cb8d8b68f2f17d9d3d091b23cfa7037ff7a76",
+                          "typeString": "literal_string \"Only the player can call this function.\""
+                        },
+                        "value": "Only the player can call this function."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_f2e060ecc825afe2c0551e0ecc2cb8d8b68f2f17d9d3d091b23cfa7037ff7a76",
+                          "typeString": "literal_string \"Only the player can call this function.\""
+                        }
+                      ],
+                      "id": 38,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "587:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 47,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "587:144:0",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 48,
+                  "nodeType": "ExpressionStatement",
+                  "src": "587:144:0"
+                },
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_UserType_$385",
+                          "typeString": "enum Enums.UserType"
+                        },
+                        "id": 58,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 50,
+                              "name": "users",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 357,
+                              "src": "764:5:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_User_$405_storage_$",
+                                "typeString": "mapping(address => struct Structs.User storage ref)"
+                              }
+                            },
+                            "id": 53,
+                            "indexExpression": {
+                              "expression": {
+                                "id": 51,
+                                "name": "msg",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4294967281,
+                                "src": "770:3:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_magic_message",
+                                  "typeString": "msg"
+                                }
+                              },
+                              "id": 52,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberLocation": "774:6:0",
+                              "memberName": "sender",
+                              "nodeType": "MemberAccess",
+                              "src": "770:10:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "764:17:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_User_$405_storage",
+                              "typeString": "struct Structs.User storage ref"
+                            }
+                          },
+                          "id": 54,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "782:8:0",
+                          "memberName": "userType",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 396,
+                          "src": "764:26:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_UserType_$385",
+                            "typeString": "enum Enums.UserType"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "expression": {
+                            "expression": {
+                              "id": 55,
+                              "name": "Enums",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 391,
+                              "src": "794:5:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_Enums_$391_$",
+                                "typeString": "type(library Enums)"
+                              }
+                            },
+                            "id": 56,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "800:8:0",
+                            "memberName": "UserType",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 385,
+                            "src": "794:14:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_UserType_$385_$",
+                              "typeString": "type(enum Enums.UserType)"
+                            }
+                          },
+                          "id": 57,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "809:6:0",
+                          "memberName": "Player",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 383,
+                          "src": "794:21:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_UserType_$385",
+                            "typeString": "enum Enums.UserType"
+                          }
+                        },
+                        "src": "764:51:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f6e6c7920706c61796572206163636f756e74732063616e2063616c6c20746869732066756e6374696f6e2e",
+                        "id": 59,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "830:46:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_6712c474c826fd1c9c0ce5eb3a1636d6a9d3dc3880434ef6ad930f5f1310f9b7",
+                          "typeString": "literal_string \"Only player accounts can call this function.\""
+                        },
+                        "value": "Only player accounts can call this function."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_6712c474c826fd1c9c0ce5eb3a1636d6a9d3dc3880434ef6ad930f5f1310f9b7",
+                          "typeString": "literal_string \"Only player accounts can call this function.\""
+                        }
+                      ],
+                      "id": 49,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "742:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 60,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "742:145:0",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 61,
+                  "nodeType": "ExpressionStatement",
+                  "src": "742:145:0"
+                },
+                {
+                  "id": 62,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "898:1:0"
+                }
+              ]
+            },
+            "id": 64,
+            "name": "onlyPlayer",
+            "nameLocation": "535:10:0",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 37,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 36,
+                  "mutability": "mutable",
+                  "name": "_playerWalletAddress",
+                  "nameLocation": "554:20:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 64,
+                  "src": "546:28:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 35,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "546:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "545:30:0"
+            },
+            "src": "526:381:0",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 79,
+              "nodeType": "Block",
+              "src": "955:82:0",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 74,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "id": 69,
+                          "name": "_address",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 66,
+                          "src": "974:8:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "!=",
+                        "rightExpression": {
+                          "arguments": [
+                            {
+                              "hexValue": "30",
+                              "id": 72,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "994:1:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 71,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "986:7:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 70,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "986:7:0",
+                              "typeDescriptions": {}
+                            }
+                          },
+                          "id": 73,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "986:10:0",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "974:22:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "496e76616c696420616464726573732e",
+                        "id": 75,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "998:18:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_59acb5750c30236105ee23a5a3223a770d00887da62c81b37662e3711045ad34",
+                          "typeString": "literal_string \"Invalid address.\""
+                        },
+                        "value": "Invalid address."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_59acb5750c30236105ee23a5a3223a770d00887da62c81b37662e3711045ad34",
+                          "typeString": "literal_string \"Invalid address.\""
+                        }
+                      ],
+                      "id": 68,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "966:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 76,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "966:51:0",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 77,
+                  "nodeType": "ExpressionStatement",
+                  "src": "966:51:0"
+                },
+                {
+                  "id": 78,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "1028:1:0"
+                }
+              ]
+            },
+            "id": 80,
+            "name": "validAddress",
+            "nameLocation": "924:12:0",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 67,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 66,
+                  "mutability": "mutable",
+                  "name": "_address",
+                  "nameLocation": "945:8:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 80,
+                  "src": "937:16:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 65,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "937:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "936:18:0"
+            },
+            "src": "915:122:0",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 98,
+              "nodeType": "Block",
+              "src": "1086:158:0",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 93,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 85,
+                              "name": "users",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 357,
+                              "src": "1119:5:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_User_$405_storage_$",
+                                "typeString": "mapping(address => struct Structs.User storage ref)"
+                              }
+                            },
+                            "id": 87,
+                            "indexExpression": {
+                              "id": 86,
+                              "name": "_address",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 82,
+                              "src": "1125:8:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1119:15:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_User_$405_storage",
+                              "typeString": "struct Structs.User storage ref"
+                            }
+                          },
+                          "id": 88,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1135:13:0",
+                          "memberName": "walletAddress",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 393,
+                          "src": "1119:29:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "arguments": [
+                            {
+                              "hexValue": "30",
+                              "id": 91,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1160:1:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 90,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "1152:7:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 89,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "1152:7:0",
+                              "typeDescriptions": {}
+                            }
+                          },
+                          "id": 92,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1152:10:0",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "1119:43:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "57616c6c6574206164647265737320616c726561647920726567697374657265642e",
+                        "id": 94,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1177:36:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_653748ba85c0ee40e6a8ea1d39c23f62145e525ad3c256af27017ea9825810b5",
+                          "typeString": "literal_string \"Wallet address already registered.\""
+                        },
+                        "value": "Wallet address already registered."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_653748ba85c0ee40e6a8ea1d39c23f62145e525ad3c256af27017ea9825810b5",
+                          "typeString": "literal_string \"Wallet address already registered.\""
+                        }
+                      ],
+                      "id": 84,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1097:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 95,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1097:127:0",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 96,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1097:127:0"
+                },
+                {
+                  "id": 97,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "1235:1:0"
+                }
+              ]
+            },
+            "id": 99,
+            "name": "userNotExists",
+            "nameLocation": "1054:13:0",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 83,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 82,
+                  "mutability": "mutable",
+                  "name": "_address",
+                  "nameLocation": "1076:8:0",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 99,
+                  "src": "1068:16:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 81,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1068:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1067:18:0"
+            },
+            "src": "1045:199:0",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 115,
+              "nodeType": "Block",
+              "src": "1272:164:0",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_UserType_$385",
+                          "typeString": "enum Enums.UserType"
+                        },
+                        "id": 110,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 102,
+                              "name": "users",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 357,
+                              "src": "1305:5:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_User_$405_storage_$",
+                                "typeString": "mapping(address => struct Structs.User storage ref)"
+                              }
+                            },
+                            "id": 105,
+                            "indexExpression": {
+                              "expression": {
+                                "id": 103,
+                                "name": "msg",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4294967281,
+                                "src": "1311:3:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_magic_message",
+                                  "typeString": "msg"
+                                }
+                              },
+                              "id": 104,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberLocation": "1315:6:0",
+                              "memberName": "sender",
+                              "nodeType": "MemberAccess",
+                              "src": "1311:10:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1305:17:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_User_$405_storage",
+                              "typeString": "struct Structs.User storage ref"
+                            }
+                          },
+                          "id": 106,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1323:8:0",
+                          "memberName": "userType",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 396,
+                          "src": "1305:26:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_UserType_$385",
+                            "typeString": "enum Enums.UserType"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "expression": {
+                            "expression": {
+                              "id": 107,
+                              "name": "Enums",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 391,
+                              "src": "1335:5:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_Enums_$391_$",
+                                "typeString": "type(library Enums)"
+                              }
+                            },
+                            "id": 108,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "1341:8:0",
+                            "memberName": "UserType",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 385,
+                            "src": "1335:14:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_UserType_$385_$",
+                              "typeString": "type(enum Enums.UserType)"
+                            }
+                          },
+                          "id": 109,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "1350:4:0",
+                          "memberName": "Team",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 384,
+                          "src": "1335:19:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_UserType_$385",
+                            "typeString": "enum Enums.UserType"
+                          }
+                        },
+                        "src": "1305:49:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f6e6c79207465616d732063616e2063616c6c20746869732066756e6374696f6e2e",
+                        "id": 111,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1369:36:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_c156a73ab0f226d3e2f0bf14758ef2e6b5472d8aeccb1d014a40bffaa10ef1fc",
+                          "typeString": "literal_string \"Only teams can call this function.\""
+                        },
+                        "value": "Only teams can call this function."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_c156a73ab0f226d3e2f0bf14758ef2e6b5472d8aeccb1d014a40bffaa10ef1fc",
+                          "typeString": "literal_string \"Only teams can call this function.\""
+                        }
+                      ],
+                      "id": 101,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1283:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 112,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1283:133:0",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 113,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1283:133:0"
+                },
+                {
+                  "id": 114,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "1427:1:0"
+                }
+              ]
+            },
+            "id": 116,
+            "name": "onlyTeam",
+            "nameLocation": "1261:8:0",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 100,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1269:2:0"
+            },
+            "src": "1252:184:0",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 132,
+              "nodeType": "Block",
+              "src": "1473:168:0",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_enum$_UserType_$385",
+                          "typeString": "enum Enums.UserType"
+                        },
+                        "id": 127,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "baseExpression": {
+                              "id": 119,
+                              "name": "users",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 357,
+                              "src": "1506:5:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_User_$405_storage_$",
+                                "typeString": "mapping(address => struct Structs.User storage ref)"
+                              }
+                            },
+                            "id": 122,
+                            "indexExpression": {
+                              "expression": {
+                                "id": 120,
+                                "name": "msg",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 4294967281,
+                                "src": "1512:3:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_magic_message",
+                                  "typeString": "msg"
+                                }
+                              },
+                              "id": 121,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberLocation": "1516:6:0",
+                              "memberName": "sender",
+                              "nodeType": "MemberAccess",
+                              "src": "1512:10:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1506:17:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_User_$405_storage",
+                              "typeString": "struct Structs.User storage ref"
+                            }
+                          },
+                          "id": 123,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "1524:8:0",
+                          "memberName": "userType",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 396,
+                          "src": "1506:26:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_UserType_$385",
+                            "typeString": "enum Enums.UserType"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "expression": {
+                            "expression": {
+                              "id": 124,
+                              "name": "Enums",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 391,
+                              "src": "1536:5:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_Enums_$391_$",
+                                "typeString": "type(library Enums)"
+                              }
+                            },
+                            "id": 125,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberLocation": "1542:8:0",
+                            "memberName": "UserType",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 385,
+                            "src": "1536:14:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_UserType_$385_$",
+                              "typeString": "type(enum Enums.UserType)"
+                            }
+                          },
+                          "id": 126,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberLocation": "1551:6:0",
+                          "memberName": "Player",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 383,
+                          "src": "1536:21:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_UserType_$385",
+                            "typeString": "enum Enums.UserType"
+                          }
+                        },
+                        "src": "1506:51:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "4f6e6c7920706c61796572732063616e2063616c6c20746869732066756e6374696f6e2e",
+                        "id": 128,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1572:38:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_5d397c8469d579bc9d2ad168531ea7a5006b9b02723f425650e4af453a483aa7",
+                          "typeString": "literal_string \"Only players can call this function.\""
+                        },
+                        "value": "Only players can call this function."
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_5d397c8469d579bc9d2ad168531ea7a5006b9b02723f425650e4af453a483aa7",
+                          "typeString": "literal_string \"Only players can call this function.\""
+                        }
+                      ],
+                      "id": 118,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1484:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 129,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1484:137:0",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 130,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1484:137:0"
+                },
+                {
+                  "id": 131,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "1632:1:0"
+                }
+              ]
+            },
+            "id": 133,
+            "name": "onlyPlayerAccount",
+            "nameLocation": "1453:17:0",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 117,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1470:2:0"
+            },
+            "src": "1444:197:0",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 135,
+        "src": "88:1556:0",
+        "usedErrors": [],
+        "usedEvents": []
+      }
+    ],
+    "src": "33:1611:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.21+commit.d9974bed.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2025-11-02T18:52:57.487Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

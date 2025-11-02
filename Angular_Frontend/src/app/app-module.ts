@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
-
+import { SessionService } from './services/blockchain/services/blockchain.service';
 @NgModule({
   declarations: [
     App
@@ -13,7 +13,7 @@ import { App } from './app';
     AppRoutingModule
   ],
   providers: [
-    provideBrowserGlobalErrorListeners()
+   SessionService
   ],
   bootstrap: [App]
 })

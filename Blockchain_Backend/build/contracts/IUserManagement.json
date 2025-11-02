@@ -1,0 +1,916 @@
+{
+  "contractName": "IUserManagement",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "count",
+          "type": "uint256"
+        }
+      ],
+      "name": "ContractsRefreshed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "playerName",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "walletAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "teamName",
+          "type": "string"
+        }
+      ],
+      "name": "PlayerRegistered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "teamName",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "walletAddress",
+          "type": "address"
+        }
+      ],
+      "name": "TeamRegistered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "walletAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum Enums.UserType",
+          "name": "userType",
+          "type": "uint8"
+        }
+      ],
+      "name": "UserRegistered",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_teamName",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_foundationYear",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_email",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_passwordHash",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_walletAddress",
+          "type": "address"
+        }
+      ],
+      "name": "registerTeam",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_playerName",
+          "type": "string"
+        },
+        {
+          "internalType": "enum Enums.PlayerPosition",
+          "name": "_position",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_dateOfBirth",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_email",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_passwordHash",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_walletAddress",
+          "type": "address"
+        }
+      ],
+      "name": "registerPlayer",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"count\",\"type\":\"uint256\"}],\"name\":\"ContractsRefreshed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"playerName\",\"type\":\"string\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"walletAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"teamName\",\"type\":\"string\"}],\"name\":\"PlayerRegistered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"teamName\",\"type\":\"string\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"walletAddress\",\"type\":\"address\"}],\"name\":\"TeamRegistered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"walletAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"enum Enums.UserType\",\"name\":\"userType\",\"type\":\"uint8\"}],\"name\":\"UserRegistered\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_playerName\",\"type\":\"string\"},{\"internalType\":\"enum Enums.PlayerPosition\",\"name\":\"_position\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"_dateOfBirth\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_passwordHash\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_walletAddress\",\"type\":\"address\"}],\"name\":\"registerPlayer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_teamName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_foundationYear\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_passwordHash\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"_walletAddress\",\"type\":\"address\"}],\"name\":\"registerTeam\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Interfaces/IUserManagement.sol\":\"IUserManagement\"},\"debug\":{\"revertStrings\":\"strip\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/Interfaces/IUserManagement.sol\":{\"keccak256\":\"0xc84f631d118ee704a7bb1ca58f07dfc195ddce7347920e91c6258c945b322230\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://47af04f5fed7339bc331b36e30df8e2e88b44f661452289d6d0660fe98be8065\",\"dweb:/ipfs/QmUpHRiNeEicVQXPnrqKo9FUNRqRxgV4dmQUSRjyRFmiUD\"]},\"project:/contracts/Types.sol\":{\"keccak256\":\"0x4dae8a97ee79e1ab1f21db403916a1a0f7477c1e02bad3855b4a536118bb4eea\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://64dd757b0f85942d0ce3f331af3883d76bc29e85b073e9cb6ea995ce12f2bfd0\",\"dweb:/ipfs/QmTM9895qv5VXMGPc6iaAdnNcfqc411tTW37UbWriwZTSj\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.21;\r\n\r\nimport \"../Types.sol\";\r\n\r\ninterface IUserManagement {\r\n    event UserRegistered(\r\n        address indexed walletAddress,\r\n        Enums.UserType userType\r\n    );\r\n    event TeamRegistered(string teamName, address indexed walletAddress);\r\n    event PlayerRegistered(\r\n        string playerName,\r\n        address indexed walletAddress,\r\n        string teamName\r\n    );\r\n    event ContractsRefreshed(uint256 count);\r\n\r\n    function registerTeam(\r\n        string memory _teamName,\r\n        uint256 _foundationYear,\r\n        string memory _email,\r\n        string memory _passwordHash,\r\n        address _walletAddress\r\n    ) external;\r\n\r\n    function registerPlayer(\r\n        string memory _playerName,\r\n        Enums.PlayerPosition _position,\r\n        uint256 _dateOfBirth,\r\n        string memory _email,\r\n        string memory _passwordHash,\r\n        address _walletAddress\r\n    ) external;\r\n}",
+  "sourcePath": "D:\\Egyetem\\Szakdolgozat_FCM_DAPP\\Blockchain_Backend\\contracts\\Interfaces\\IUserManagement.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Interfaces/IUserManagement.sol",
+    "exportedSymbols": {
+      "Enums": [
+        391
+      ],
+      "IUserManagement": [
+        198
+      ],
+      "Structs": [
+        444
+      ]
+    },
+    "id": 199,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 142,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".21"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:24:2"
+      },
+      {
+        "absolutePath": "project:/contracts/Types.sol",
+        "file": "../Types.sol",
+        "id": 143,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 199,
+        "sourceUnit": 445,
+        "src": "61:22:2",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IUserManagement",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 198,
+        "linearizedBaseContracts": [
+          198
+        ],
+        "name": "IUserManagement",
+        "nameLocation": "97:15:2",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "eventSelector": "8e18574f8a7333e6a87112742a55853a643e2f0550f4e1a3a2c3f1bb2994441d",
+            "id": 150,
+            "name": "UserRegistered",
+            "nameLocation": "126:14:2",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 149,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 145,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "walletAddress",
+                  "nameLocation": "167:13:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 150,
+                  "src": "151:29:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 144,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "151:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 148,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "userType",
+                  "nameLocation": "206:8:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 150,
+                  "src": "191:23:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_UserType_$385",
+                    "typeString": "enum Enums.UserType"
+                  },
+                  "typeName": {
+                    "id": 147,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 146,
+                      "name": "Enums.UserType",
+                      "nameLocations": [
+                        "191:5:2",
+                        "197:8:2"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 385,
+                      "src": "191:14:2"
+                    },
+                    "referencedDeclaration": 385,
+                    "src": "191:14:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_UserType_$385",
+                      "typeString": "enum Enums.UserType"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "140:81:2"
+            },
+            "src": "120:102:2"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "dee35e59d52579d265f7717d034e930ac94f6d679e1980b4b6d194883ec840b9",
+            "id": 156,
+            "name": "TeamRegistered",
+            "nameLocation": "234:14:2",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 155,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 152,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "teamName",
+                  "nameLocation": "256:8:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 156,
+                  "src": "249:15:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 151,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "249:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 154,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "walletAddress",
+                  "nameLocation": "282:13:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 156,
+                  "src": "266:29:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 153,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "266:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "248:48:2"
+            },
+            "src": "228:69:2"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "8d4dc872525846f38a50a89fce7f45b434a685619aa2dff18b6ddfa6d21d6fcc",
+            "id": 164,
+            "name": "PlayerRegistered",
+            "nameLocation": "309:16:2",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 163,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 158,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "playerName",
+                  "nameLocation": "343:10:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 164,
+                  "src": "336:17:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 157,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "336:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 160,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "walletAddress",
+                  "nameLocation": "380:13:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 164,
+                  "src": "364:29:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 159,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "364:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 162,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "teamName",
+                  "nameLocation": "411:8:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 164,
+                  "src": "404:15:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 161,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "404:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "325:101:2"
+            },
+            "src": "303:124:2"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "519ba466dfc31cb9966ce0607d3831c05720aea5a4b4b50bda675aff0ac0b503",
+            "id": 168,
+            "name": "ContractsRefreshed",
+            "nameLocation": "439:18:2",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 167,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 166,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "count",
+                  "nameLocation": "466:5:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 168,
+                  "src": "458:13:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 165,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "458:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "457:15:2"
+            },
+            "src": "433:40:2"
+          },
+          {
+            "functionSelector": "df2eb16a",
+            "id": 181,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "registerTeam",
+            "nameLocation": "490:12:2",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 179,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 170,
+                  "mutability": "mutable",
+                  "name": "_teamName",
+                  "nameLocation": "527:9:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 181,
+                  "src": "513:23:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 169,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "513:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 172,
+                  "mutability": "mutable",
+                  "name": "_foundationYear",
+                  "nameLocation": "555:15:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 181,
+                  "src": "547:23:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 171,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "547:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 174,
+                  "mutability": "mutable",
+                  "name": "_email",
+                  "nameLocation": "595:6:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 181,
+                  "src": "581:20:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 173,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "581:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 176,
+                  "mutability": "mutable",
+                  "name": "_passwordHash",
+                  "nameLocation": "626:13:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 181,
+                  "src": "612:27:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 175,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "612:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 178,
+                  "mutability": "mutable",
+                  "name": "_walletAddress",
+                  "nameLocation": "658:14:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 181,
+                  "src": "650:22:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 177,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "650:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "502:177:2"
+            },
+            "returnParameters": {
+              "id": 180,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "688:0:2"
+            },
+            "scope": 198,
+            "src": "481:208:2",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "c104d94c",
+            "id": 197,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "registerPlayer",
+            "nameLocation": "706:14:2",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 195,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 183,
+                  "mutability": "mutable",
+                  "name": "_playerName",
+                  "nameLocation": "745:11:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 197,
+                  "src": "731:25:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 182,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "731:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 186,
+                  "mutability": "mutable",
+                  "name": "_position",
+                  "nameLocation": "788:9:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 197,
+                  "src": "767:30:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_PlayerPosition_$390",
+                    "typeString": "enum Enums.PlayerPosition"
+                  },
+                  "typeName": {
+                    "id": 185,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 184,
+                      "name": "Enums.PlayerPosition",
+                      "nameLocations": [
+                        "767:5:2",
+                        "773:14:2"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 390,
+                      "src": "767:20:2"
+                    },
+                    "referencedDeclaration": 390,
+                    "src": "767:20:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_PlayerPosition_$390",
+                      "typeString": "enum Enums.PlayerPosition"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 188,
+                  "mutability": "mutable",
+                  "name": "_dateOfBirth",
+                  "nameLocation": "816:12:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 197,
+                  "src": "808:20:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 187,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "808:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 190,
+                  "mutability": "mutable",
+                  "name": "_email",
+                  "nameLocation": "853:6:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 197,
+                  "src": "839:20:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 189,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "839:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 192,
+                  "mutability": "mutable",
+                  "name": "_passwordHash",
+                  "nameLocation": "884:13:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 197,
+                  "src": "870:27:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 191,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "870:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 194,
+                  "mutability": "mutable",
+                  "name": "_walletAddress",
+                  "nameLocation": "916:14:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 197,
+                  "src": "908:22:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 193,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "908:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "720:217:2"
+            },
+            "returnParameters": {
+              "id": 196,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "946:0:2"
+            },
+            "scope": 198,
+            "src": "697:250:2",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 199,
+        "src": "87:863:2",
+        "usedErrors": [],
+        "usedEvents": [
+          150,
+          156,
+          164,
+          168
+        ]
+      }
+    ],
+    "src": "33:917:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.21+commit.d9974bed.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2025-11-02T18:52:57.489Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

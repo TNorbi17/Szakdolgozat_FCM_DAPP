@@ -1,0 +1,1800 @@
+{
+  "contractName": "TeamLibrary",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Libraries.sol\":\"TeamLibrary\"},\"debug\":{\"revertStrings\":\"strip\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/Libraries.sol\":{\"keccak256\":\"0x73d8718fab93b9d4108fd95ff9351b94215002c1b9ca0de1fa9e20f0190bd3b0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4d741915cd209ab6c19706af8b29ab7dd89c0791b333c4351f6de3b1e4f45608\",\"dweb:/ipfs/QmPaheVgkerjxbnWqoUqsBbfXLaTNvy3s2mS4U3miaKfGr\"]},\"project:/contracts/Types.sol\":{\"keccak256\":\"0x4dae8a97ee79e1ab1f21db403916a1a0f7477c1e02bad3855b4a536118bb4eea\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://64dd757b0f85942d0ce3f331af3883d76bc29e85b073e9cb6ea995ce12f2bfd0\",\"dweb:/ipfs/QmTM9895qv5VXMGPc6iaAdnNcfqc411tTW37UbWriwZTSj\"]}},\"version\":1}",
+  "bytecode": "0x608060405234601d57600e6021565b603f602d823930815050603f90f35b6027565b60405190565b600080fdfe6080604052600080fdfea2646970667358221220a40ec8807b0bb66e0ea3ace4d1a018e9c6ece632002d96e26a1df66ec16a34f864736f6c63430008150033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220a40ec8807b0bb66e0ea3ace4d1a018e9c6ece632002d96e26a1df66ec16a34f864736f6c63430008150033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "86:939:3:-:0;;;;;;;;:::i;:::-;;;;;;;;;;;;;;:::i;:::-;;;;:::o;:::-;;;",
+  "deployedSourceMap": "86:939:3:-:0;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.21;\r\n\r\nimport \"./Types.sol\";\r\n\r\nlibrary TeamLibrary {\r\n    function removePlayerFromTeam(\r\n        Structs.Team storage _team,\r\n        address _playerAddress\r\n    ) internal {\r\n        for (uint i = 0; i < _team.players.length; i++) {\r\n            if (_team.players[i] == _playerAddress) {\r\n                _team.players[i] = _team.players[_team.players.length - 1];\r\n                _team.players.pop();\r\n                break;\r\n            }\r\n        }\r\n    }\r\n\r\n    function addPlayerToTeam(\r\n        Structs.Team storage _team,\r\n        address _playerAddress\r\n    ) internal {\r\n        _team.players.push(_playerAddress);\r\n    }\r\n\r\n    function hasPlayer(\r\n        Structs.Team storage _team,\r\n        address _playerAddress\r\n    ) internal view returns (bool) {\r\n        for (uint i = 0; i < _team.players.length; i++) {\r\n            if (_team.players[i] == _playerAddress) {\r\n                return true;\r\n            }\r\n        }\r\n        return false;\r\n    }\r\n}\r\n\r\nlibrary PlayerLibrary {\r\n    string constant FREE_AGENT = unicode\"szabadúszó\";\r\n\r\n    event PlayerReleased(\r\n        address indexed playerAddress,\r\n        string playerName,\r\n        address indexed oldTeamAddress,\r\n        string oldTeamName\r\n    );\r\n\r\n    \r\n\r\n    function makePlayerFreeAgent(Structs.Player storage _player) internal {\r\n        _player.teamName = FREE_AGENT;\r\n        _player.isFreeAgent = true;\r\n        _player.contractExpires = 0;\r\n    }\r\n\r\n   \r\n}",
+  "sourcePath": "D:\\Egyetem\\Szakdolgozat_FCM_DAPP\\Blockchain_Backend\\contracts\\Libraries.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Libraries.sol",
+    "exportedSymbols": {
+      "Enums": [
+        391
+      ],
+      "PlayerLibrary": [
+        349
+      ],
+      "Structs": [
+        444
+      ],
+      "TeamLibrary": [
+        310
+      ]
+    },
+    "id": 350,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 200,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".21"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:24:3"
+      },
+      {
+        "absolutePath": "project:/contracts/Types.sol",
+        "file": "./Types.sol",
+        "id": 201,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 350,
+        "sourceUnit": 445,
+        "src": "61:21:3",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "TeamLibrary",
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 310,
+        "linearizedBaseContracts": [
+          310
+        ],
+        "name": "TeamLibrary",
+        "nameLocation": "94:11:3",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 254,
+              "nodeType": "Block",
+              "src": "229:287:3",
+              "statements": [
+                {
+                  "body": {
+                    "id": 252,
+                    "nodeType": "Block",
+                    "src": "288:221:3",
+                    "statements": [
+                      {
+                        "condition": {
+                          "commonType": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          "id": 226,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "baseExpression": {
+                              "expression": {
+                                "id": 221,
+                                "name": "_team",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 204,
+                                "src": "307:5:3",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_struct$_Team_$421_storage_ptr",
+                                  "typeString": "struct Structs.Team storage pointer"
+                                }
+                              },
+                              "id": 222,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberLocation": "313:7:3",
+                              "memberName": "players",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": 420,
+                              "src": "307:13:3",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                                "typeString": "address[] storage ref"
+                              }
+                            },
+                            "id": 224,
+                            "indexExpression": {
+                              "id": 223,
+                              "name": "i",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 210,
+                              "src": "321:1:3",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "307:16:3",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "==",
+                          "rightExpression": {
+                            "id": 225,
+                            "name": "_playerAddress",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 206,
+                            "src": "327:14:3",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "307:34:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 251,
+                        "nodeType": "IfStatement",
+                        "src": "303:195:3",
+                        "trueBody": {
+                          "id": 250,
+                          "nodeType": "Block",
+                          "src": "343:155:3",
+                          "statements": [
+                            {
+                              "expression": {
+                                "id": 240,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "leftHandSide": {
+                                  "baseExpression": {
+                                    "expression": {
+                                      "id": 227,
+                                      "name": "_team",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 204,
+                                      "src": "362:5:3",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_Team_$421_storage_ptr",
+                                        "typeString": "struct Structs.Team storage pointer"
+                                      }
+                                    },
+                                    "id": 230,
+                                    "isConstant": false,
+                                    "isLValue": true,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "memberLocation": "368:7:3",
+                                    "memberName": "players",
+                                    "nodeType": "MemberAccess",
+                                    "referencedDeclaration": 420,
+                                    "src": "362:13:3",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                                      "typeString": "address[] storage ref"
+                                    }
+                                  },
+                                  "id": 231,
+                                  "indexExpression": {
+                                    "id": 229,
+                                    "name": "i",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 210,
+                                    "src": "376:1:3",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    }
+                                  },
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": true,
+                                  "nodeType": "IndexAccess",
+                                  "src": "362:16:3",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_address",
+                                    "typeString": "address"
+                                  }
+                                },
+                                "nodeType": "Assignment",
+                                "operator": "=",
+                                "rightHandSide": {
+                                  "baseExpression": {
+                                    "expression": {
+                                      "id": 232,
+                                      "name": "_team",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 204,
+                                      "src": "381:5:3",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_Team_$421_storage_ptr",
+                                        "typeString": "struct Structs.Team storage pointer"
+                                      }
+                                    },
+                                    "id": 233,
+                                    "isConstant": false,
+                                    "isLValue": true,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "memberLocation": "387:7:3",
+                                    "memberName": "players",
+                                    "nodeType": "MemberAccess",
+                                    "referencedDeclaration": 420,
+                                    "src": "381:13:3",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                                      "typeString": "address[] storage ref"
+                                    }
+                                  },
+                                  "id": 239,
+                                  "indexExpression": {
+                                    "commonType": {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    },
+                                    "id": 238,
+                                    "isConstant": false,
+                                    "isLValue": false,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "leftExpression": {
+                                      "expression": {
+                                        "expression": {
+                                          "id": 234,
+                                          "name": "_team",
+                                          "nodeType": "Identifier",
+                                          "overloadedDeclarations": [],
+                                          "referencedDeclaration": 204,
+                                          "src": "395:5:3",
+                                          "typeDescriptions": {
+                                            "typeIdentifier": "t_struct$_Team_$421_storage_ptr",
+                                            "typeString": "struct Structs.Team storage pointer"
+                                          }
+                                        },
+                                        "id": 235,
+                                        "isConstant": false,
+                                        "isLValue": true,
+                                        "isPure": false,
+                                        "lValueRequested": false,
+                                        "memberLocation": "401:7:3",
+                                        "memberName": "players",
+                                        "nodeType": "MemberAccess",
+                                        "referencedDeclaration": 420,
+                                        "src": "395:13:3",
+                                        "typeDescriptions": {
+                                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                                          "typeString": "address[] storage ref"
+                                        }
+                                      },
+                                      "id": 236,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "memberLocation": "409:6:3",
+                                      "memberName": "length",
+                                      "nodeType": "MemberAccess",
+                                      "src": "395:20:3",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                      }
+                                    },
+                                    "nodeType": "BinaryOperation",
+                                    "operator": "-",
+                                    "rightExpression": {
+                                      "hexValue": "31",
+                                      "id": 237,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "kind": "number",
+                                      "lValueRequested": false,
+                                      "nodeType": "Literal",
+                                      "src": "418:1:3",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_rational_1_by_1",
+                                        "typeString": "int_const 1"
+                                      },
+                                      "value": "1"
+                                    },
+                                    "src": "395:24:3",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    }
+                                  },
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "nodeType": "IndexAccess",
+                                  "src": "381:39:3",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_address",
+                                    "typeString": "address"
+                                  }
+                                },
+                                "src": "362:58:3",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                }
+                              },
+                              "id": 241,
+                              "nodeType": "ExpressionStatement",
+                              "src": "362:58:3"
+                            },
+                            {
+                              "expression": {
+                                "arguments": [],
+                                "expression": {
+                                  "argumentTypes": [],
+                                  "expression": {
+                                    "expression": {
+                                      "id": 242,
+                                      "name": "_team",
+                                      "nodeType": "Identifier",
+                                      "overloadedDeclarations": [],
+                                      "referencedDeclaration": 204,
+                                      "src": "439:5:3",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_struct$_Team_$421_storage_ptr",
+                                        "typeString": "struct Structs.Team storage pointer"
+                                      }
+                                    },
+                                    "id": 245,
+                                    "isConstant": false,
+                                    "isLValue": true,
+                                    "isPure": false,
+                                    "lValueRequested": false,
+                                    "memberLocation": "445:7:3",
+                                    "memberName": "players",
+                                    "nodeType": "MemberAccess",
+                                    "referencedDeclaration": 420,
+                                    "src": "439:13:3",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                                      "typeString": "address[] storage ref"
+                                    }
+                                  },
+                                  "id": 246,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "memberLocation": "453:3:3",
+                                  "memberName": "pop",
+                                  "nodeType": "MemberAccess",
+                                  "src": "439:17:3",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_function_arraypop_nonpayable$_t_array$_t_address_$dyn_storage_ptr_$returns$__$attached_to$_t_array$_t_address_$dyn_storage_ptr_$",
+                                    "typeString": "function (address[] storage pointer)"
+                                  }
+                                },
+                                "id": 247,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "kind": "functionCall",
+                                "lValueRequested": false,
+                                "nameLocations": [],
+                                "names": [],
+                                "nodeType": "FunctionCall",
+                                "src": "439:19:3",
+                                "tryCall": false,
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_tuple$__$",
+                                  "typeString": "tuple()"
+                                }
+                              },
+                              "id": 248,
+                              "nodeType": "ExpressionStatement",
+                              "src": "439:19:3"
+                            },
+                            {
+                              "id": 249,
+                              "nodeType": "Break",
+                              "src": "477:5:3"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 217,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 213,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 210,
+                      "src": "257:1:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "expression": {
+                        "expression": {
+                          "id": 214,
+                          "name": "_team",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 204,
+                          "src": "261:5:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Team_$421_storage_ptr",
+                            "typeString": "struct Structs.Team storage pointer"
+                          }
+                        },
+                        "id": 215,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "267:7:3",
+                        "memberName": "players",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 420,
+                        "src": "261:13:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 216,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "275:6:3",
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "src": "261:20:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "257:24:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 253,
+                  "initializationExpression": {
+                    "assignments": [
+                      210
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 210,
+                        "mutability": "mutable",
+                        "name": "i",
+                        "nameLocation": "250:1:3",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 253,
+                        "src": "245:6:3",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "typeName": {
+                          "id": 209,
+                          "name": "uint",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "245:4:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 212,
+                    "initialValue": {
+                      "hexValue": "30",
+                      "id": 211,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "254:1:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "245:10:3"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "id": 219,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "283:3:3",
+                      "subExpression": {
+                        "id": 218,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 210,
+                        "src": "283:1:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 220,
+                    "nodeType": "ExpressionStatement",
+                    "src": "283:3:3"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "240:269:3"
+                }
+              ]
+            },
+            "id": 255,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removePlayerFromTeam",
+            "nameLocation": "122:20:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 207,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 204,
+                  "mutability": "mutable",
+                  "name": "_team",
+                  "nameLocation": "174:5:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 255,
+                  "src": "153:26:3",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Team_$421_storage_ptr",
+                    "typeString": "struct Structs.Team"
+                  },
+                  "typeName": {
+                    "id": 203,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 202,
+                      "name": "Structs.Team",
+                      "nameLocations": [
+                        "153:7:3",
+                        "161:4:3"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 421,
+                      "src": "153:12:3"
+                    },
+                    "referencedDeclaration": 421,
+                    "src": "153:12:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Team_$421_storage_ptr",
+                      "typeString": "struct Structs.Team"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 206,
+                  "mutability": "mutable",
+                  "name": "_playerAddress",
+                  "nameLocation": "198:14:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 255,
+                  "src": "190:22:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 205,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "190:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "142:77:3"
+            },
+            "returnParameters": {
+              "id": 208,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "229:0:3"
+            },
+            "scope": 310,
+            "src": "113:403:3",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 271,
+              "nodeType": "Block",
+              "src": "635:53:3",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 268,
+                        "name": "_playerAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 260,
+                        "src": "665:14:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "expression": {
+                        "expression": {
+                          "id": 263,
+                          "name": "_team",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 258,
+                          "src": "646:5:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Team_$421_storage_ptr",
+                            "typeString": "struct Structs.Team storage pointer"
+                          }
+                        },
+                        "id": 266,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "652:7:3",
+                        "memberName": "players",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 420,
+                        "src": "646:13:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 267,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "660:4:3",
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "src": "646:18:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_address_$dyn_storage_ptr_$_t_address_$returns$__$attached_to$_t_array$_t_address_$dyn_storage_ptr_$",
+                        "typeString": "function (address[] storage pointer,address)"
+                      }
+                    },
+                    "id": 269,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "646:34:3",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 270,
+                  "nodeType": "ExpressionStatement",
+                  "src": "646:34:3"
+                }
+              ]
+            },
+            "id": 272,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addPlayerToTeam",
+            "nameLocation": "533:15:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 261,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 258,
+                  "mutability": "mutable",
+                  "name": "_team",
+                  "nameLocation": "580:5:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 272,
+                  "src": "559:26:3",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Team_$421_storage_ptr",
+                    "typeString": "struct Structs.Team"
+                  },
+                  "typeName": {
+                    "id": 257,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 256,
+                      "name": "Structs.Team",
+                      "nameLocations": [
+                        "559:7:3",
+                        "567:4:3"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 421,
+                      "src": "559:12:3"
+                    },
+                    "referencedDeclaration": 421,
+                    "src": "559:12:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Team_$421_storage_ptr",
+                      "typeString": "struct Structs.Team"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 260,
+                  "mutability": "mutable",
+                  "name": "_playerAddress",
+                  "nameLocation": "604:14:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 272,
+                  "src": "596:22:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 259,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "596:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "548:77:3"
+            },
+            "returnParameters": {
+              "id": 262,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "635:0:3"
+            },
+            "scope": 310,
+            "src": "524:164:3",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 308,
+              "nodeType": "Block",
+              "src": "821:201:3",
+              "statements": [
+                {
+                  "body": {
+                    "id": 304,
+                    "nodeType": "Block",
+                    "src": "880:112:3",
+                    "statements": [
+                      {
+                        "condition": {
+                          "commonType": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          "id": 299,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "baseExpression": {
+                              "expression": {
+                                "id": 294,
+                                "name": "_team",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 275,
+                                "src": "899:5:3",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_struct$_Team_$421_storage_ptr",
+                                  "typeString": "struct Structs.Team storage pointer"
+                                }
+                              },
+                              "id": 295,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberLocation": "905:7:3",
+                              "memberName": "players",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": 420,
+                              "src": "899:13:3",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                                "typeString": "address[] storage ref"
+                              }
+                            },
+                            "id": 297,
+                            "indexExpression": {
+                              "id": 296,
+                              "name": "i",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 283,
+                              "src": "913:1:3",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "899:16:3",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "==",
+                          "rightExpression": {
+                            "id": 298,
+                            "name": "_playerAddress",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 277,
+                            "src": "919:14:3",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          },
+                          "src": "899:34:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 303,
+                        "nodeType": "IfStatement",
+                        "src": "895:86:3",
+                        "trueBody": {
+                          "id": 302,
+                          "nodeType": "Block",
+                          "src": "935:46:3",
+                          "statements": [
+                            {
+                              "expression": {
+                                "hexValue": "74727565",
+                                "id": 300,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "bool",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "961:4:3",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                "value": "true"
+                              },
+                              "functionReturnParameters": 281,
+                              "id": 301,
+                              "nodeType": "Return",
+                              "src": "954:11:3"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 290,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 286,
+                      "name": "i",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 283,
+                      "src": "849:1:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<",
+                    "rightExpression": {
+                      "expression": {
+                        "expression": {
+                          "id": 287,
+                          "name": "_team",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 275,
+                          "src": "853:5:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Team_$421_storage_ptr",
+                            "typeString": "struct Structs.Team storage pointer"
+                          }
+                        },
+                        "id": 288,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberLocation": "859:7:3",
+                        "memberName": "players",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 420,
+                        "src": "853:13:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_address_$dyn_storage",
+                          "typeString": "address[] storage ref"
+                        }
+                      },
+                      "id": 289,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "867:6:3",
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "src": "853:20:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "849:24:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 305,
+                  "initializationExpression": {
+                    "assignments": [
+                      283
+                    ],
+                    "declarations": [
+                      {
+                        "constant": false,
+                        "id": 283,
+                        "mutability": "mutable",
+                        "name": "i",
+                        "nameLocation": "842:1:3",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 305,
+                        "src": "837:6:3",
+                        "stateVariable": false,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "typeName": {
+                          "id": 282,
+                          "name": "uint",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "837:4:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "visibility": "internal"
+                      }
+                    ],
+                    "id": 285,
+                    "initialValue": {
+                      "hexValue": "30",
+                      "id": 284,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "846:1:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "nodeType": "VariableDeclarationStatement",
+                    "src": "837:10:3"
+                  },
+                  "loopExpression": {
+                    "expression": {
+                      "id": 292,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "UnaryOperation",
+                      "operator": "++",
+                      "prefix": false,
+                      "src": "875:3:3",
+                      "subExpression": {
+                        "id": 291,
+                        "name": "i",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 283,
+                        "src": "875:1:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 293,
+                    "nodeType": "ExpressionStatement",
+                    "src": "875:3:3"
+                  },
+                  "nodeType": "ForStatement",
+                  "src": "832:160:3"
+                },
+                {
+                  "expression": {
+                    "hexValue": "66616c7365",
+                    "id": 306,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "bool",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "1009:5:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    },
+                    "value": "false"
+                  },
+                  "functionReturnParameters": 281,
+                  "id": 307,
+                  "nodeType": "Return",
+                  "src": "1002:12:3"
+                }
+              ]
+            },
+            "id": 309,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "hasPlayer",
+            "nameLocation": "705:9:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 278,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 275,
+                  "mutability": "mutable",
+                  "name": "_team",
+                  "nameLocation": "746:5:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 309,
+                  "src": "725:26:3",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Team_$421_storage_ptr",
+                    "typeString": "struct Structs.Team"
+                  },
+                  "typeName": {
+                    "id": 274,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 273,
+                      "name": "Structs.Team",
+                      "nameLocations": [
+                        "725:7:3",
+                        "733:4:3"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 421,
+                      "src": "725:12:3"
+                    },
+                    "referencedDeclaration": 421,
+                    "src": "725:12:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Team_$421_storage_ptr",
+                      "typeString": "struct Structs.Team"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 277,
+                  "mutability": "mutable",
+                  "name": "_playerAddress",
+                  "nameLocation": "770:14:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 309,
+                  "src": "762:22:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 276,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "762:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "714:77:3"
+            },
+            "returnParameters": {
+              "id": 281,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 280,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 309,
+                  "src": "815:4:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 279,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "815:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "814:6:3"
+            },
+            "scope": 310,
+            "src": "696:326:3",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 350,
+        "src": "86:939:3",
+        "usedErrors": [],
+        "usedEvents": []
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "PlayerLibrary",
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 349,
+        "linearizedBaseContracts": [
+          349
+        ],
+        "name": "PlayerLibrary",
+        "nameLocation": "1037:13:3",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 313,
+            "mutability": "constant",
+            "name": "FREE_AGENT",
+            "nameLocation": "1074:10:3",
+            "nodeType": "VariableDeclaration",
+            "scope": 349,
+            "src": "1058:50:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_memory_ptr",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 311,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "1058:6:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "hexValue": "737a61626164c3ba737ac3b3",
+              "id": 312,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "unicodeString",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "1087:21:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_5f9672a99ed7d24732cd6d17fc1bcc9038d35f978660a034c0eb882a39f98159",
+                "typeString": "literal_string hex\"737a61626164c3ba737ac3b3\""
+              },
+              "value": "szabadúszó"
+            },
+            "visibility": "internal"
+          },
+          {
+            "anonymous": false,
+            "eventSelector": "84519fee1a4056bb7a3bc2ddd3e49a1a06453b84324cae3ec877e0402f24855c",
+            "id": 323,
+            "name": "PlayerReleased",
+            "nameLocation": "1123:14:3",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 322,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 315,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "playerAddress",
+                  "nameLocation": "1164:13:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 323,
+                  "src": "1148:29:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 314,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1148:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 317,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "playerName",
+                  "nameLocation": "1195:10:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 323,
+                  "src": "1188:17:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 316,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1188:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 319,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "oldTeamAddress",
+                  "nameLocation": "1232:14:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 323,
+                  "src": "1216:30:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 318,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1216:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 321,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "oldTeamName",
+                  "nameLocation": "1264:11:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 323,
+                  "src": "1257:18:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 320,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1257:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1137:145:3"
+            },
+            "src": "1117:166:3"
+          },
+          {
+            "body": {
+              "id": 347,
+              "nodeType": "Block",
+              "src": "1369:123:3",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 333,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 329,
+                        "name": "_player",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 326,
+                        "src": "1380:7:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Player_$443_storage_ptr",
+                          "typeString": "struct Structs.Player storage pointer"
+                        }
+                      },
+                      "id": 331,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "1388:8:3",
+                      "memberName": "teamName",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 436,
+                      "src": "1380:16:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 332,
+                      "name": "FREE_AGENT",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 313,
+                      "src": "1399:10:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "1380:29:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 334,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1380:29:3"
+                },
+                {
+                  "expression": {
+                    "id": 339,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 335,
+                        "name": "_player",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 326,
+                        "src": "1420:7:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Player_$443_storage_ptr",
+                          "typeString": "struct Structs.Player storage pointer"
+                        }
+                      },
+                      "id": 337,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "1428:11:3",
+                      "memberName": "isFreeAgent",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 440,
+                      "src": "1420:19:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "74727565",
+                      "id": 338,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1442:4:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "true"
+                    },
+                    "src": "1420:26:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 340,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1420:26:3"
+                },
+                {
+                  "expression": {
+                    "id": 345,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "expression": {
+                        "id": 341,
+                        "name": "_player",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 326,
+                        "src": "1457:7:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Player_$443_storage_ptr",
+                          "typeString": "struct Structs.Player storage pointer"
+                        }
+                      },
+                      "id": 343,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberLocation": "1465:15:3",
+                      "memberName": "contractExpires",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 442,
+                      "src": "1457:23:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "30",
+                      "id": 344,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1483:1:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "1457:27:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 346,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1457:27:3"
+                }
+              ]
+            },
+            "id": 348,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "makePlayerFreeAgent",
+            "nameLocation": "1308:19:3",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 327,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 326,
+                  "mutability": "mutable",
+                  "name": "_player",
+                  "nameLocation": "1351:7:3",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 348,
+                  "src": "1328:30:3",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Player_$443_storage_ptr",
+                    "typeString": "struct Structs.Player"
+                  },
+                  "typeName": {
+                    "id": 325,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 324,
+                      "name": "Structs.Player",
+                      "nameLocations": [
+                        "1328:7:3",
+                        "1336:6:3"
+                      ],
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 443,
+                      "src": "1328:14:3"
+                    },
+                    "referencedDeclaration": 443,
+                    "src": "1328:14:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Player_$443_storage_ptr",
+                      "typeString": "struct Structs.Player"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1327:32:3"
+            },
+            "returnParameters": {
+              "id": 328,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1369:0:3"
+            },
+            "scope": 349,
+            "src": "1299:193:3",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 350,
+        "src": "1029:473:3",
+        "usedErrors": [],
+        "usedEvents": [
+          323
+        ]
+      }
+    ],
+    "src": "33:1469:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.21+commit.d9974bed.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2025-11-02T18:52:57.491Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

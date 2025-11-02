@@ -1,0 +1,600 @@
+{
+  "contractName": "BaseStorage",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "playersByName",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "enum Enums.PlayerPosition",
+          "name": "position",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "dateOfBirth",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "walletAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "teamName",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "registrationTimestamp",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isFreeAgent",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "contractExpires",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "teamsByName",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "foundationYear",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "walletAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "registrationTimestamp",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "users",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "walletAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "enum Enums.UserType",
+          "name": "userType",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "passwordHash",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "entityName",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "registrationTimestamp",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"playersByName\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"enum Enums.PlayerPosition\",\"name\":\"position\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"dateOfBirth\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"walletAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"teamName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"registrationTimestamp\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isFreeAgent\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"contractExpires\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"teamsByName\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"foundationYear\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"walletAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"registrationTimestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"users\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"walletAddress\",\"type\":\"address\"},{\"internalType\":\"enum Enums.UserType\",\"name\":\"userType\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"passwordHash\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"entityName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"registrationTimestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Storage.sol\":\"BaseStorage\"},\"debug\":{\"revertStrings\":\"strip\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[],\"viaIR\":true},\"sources\":{\"project:/contracts/Storage.sol\":{\"keccak256\":\"0x9063861c3ee95d2f6ff205b0f7e4673789b12238a4b0013b47a0c1b1dc155008\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a35d6d557ddeb97006cf891661c778b2e252bd9c18666bdc6f25d51d4bf630e9\",\"dweb:/ipfs/Qme9gbthLN2evFy7wXKeZ1WPo5bX99RMVopN1N5AkjJWGt\"]},\"project:/contracts/Types.sol\":{\"keccak256\":\"0x4dae8a97ee79e1ab1f21db403916a1a0f7477c1e02bad3855b4a536118bb4eea\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://64dd757b0f85942d0ce3f331af3883d76bc29e85b073e9cb6ea995ce12f2bfd0\",\"dweb:/ipfs/QmTM9895qv5VXMGPc6iaAdnNcfqc411tTW37UbWriwZTSj\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.21;\r\n\r\nimport \"./Types.sol\";\r\n\r\nabstract contract BaseStorage {\r\n    //User management\r\n    mapping(address => Structs.User) public users;\r\n    mapping(string => Structs.Team) public teamsByName;\r\n    mapping(string => Structs.Player) public playersByName;\r\n    address[] internal allPlayerWalletAddresses;\r\n\r\n    // ID counters\r\n    uint256 internal nextTeamId = 1;\r\n    uint256 internal nextPlayerId = 1;\r\n\r\n    // Constants\r\n    string constant FREE_AGENT = unicode\"szabadúszó\";\r\n}",
+  "sourcePath": "D:\\Egyetem\\Szakdolgozat_FCM_DAPP\\Blockchain_Backend\\contracts\\Storage.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Storage.sol",
+    "exportedSymbols": {
+      "BaseStorage": [
+        380
+      ],
+      "Enums": [
+        391
+      ],
+      "Structs": [
+        444
+      ]
+    },
+    "id": 381,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 351,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".21"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:24:4"
+      },
+      {
+        "absolutePath": "project:/contracts/Types.sol",
+        "file": "./Types.sol",
+        "id": 352,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 381,
+        "sourceUnit": 445,
+        "src": "61:21:4",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [],
+        "canonicalName": "BaseStorage",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 380,
+        "linearizedBaseContracts": [
+          380
+        ],
+        "name": "BaseStorage",
+        "nameLocation": "104:11:4",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "a87430ba",
+            "id": 357,
+            "mutability": "mutable",
+            "name": "users",
+            "nameLocation": "186:5:4",
+            "nodeType": "VariableDeclaration",
+            "scope": 380,
+            "src": "146:45:4",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_struct$_User_$405_storage_$",
+              "typeString": "mapping(address => struct Structs.User)"
+            },
+            "typeName": {
+              "id": 356,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 353,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "154:7:4",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "146:32:4",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_struct$_User_$405_storage_$",
+                "typeString": "mapping(address => struct Structs.User)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 355,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 354,
+                  "name": "Structs.User",
+                  "nameLocations": [
+                    "165:7:4",
+                    "173:4:4"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 405,
+                  "src": "165:12:4"
+                },
+                "referencedDeclaration": 405,
+                "src": "165:12:4",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_User_$405_storage_ptr",
+                  "typeString": "struct Structs.User"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "14f87b45",
+            "id": 362,
+            "mutability": "mutable",
+            "name": "teamsByName",
+            "nameLocation": "237:11:4",
+            "nodeType": "VariableDeclaration",
+            "scope": 380,
+            "src": "198:50:4",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_struct$_Team_$421_storage_$",
+              "typeString": "mapping(string => struct Structs.Team)"
+            },
+            "typeName": {
+              "id": 361,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 358,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "206:6:4",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "198:31:4",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_struct$_Team_$421_storage_$",
+                "typeString": "mapping(string => struct Structs.Team)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 360,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 359,
+                  "name": "Structs.Team",
+                  "nameLocations": [
+                    "216:7:4",
+                    "224:4:4"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 421,
+                  "src": "216:12:4"
+                },
+                "referencedDeclaration": 421,
+                "src": "216:12:4",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Team_$421_storage_ptr",
+                  "typeString": "struct Structs.Team"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "57ebd14c",
+            "id": 367,
+            "mutability": "mutable",
+            "name": "playersByName",
+            "nameLocation": "296:13:4",
+            "nodeType": "VariableDeclaration",
+            "scope": 380,
+            "src": "255:54:4",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_struct$_Player_$443_storage_$",
+              "typeString": "mapping(string => struct Structs.Player)"
+            },
+            "typeName": {
+              "id": 366,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 363,
+                "name": "string",
+                "nodeType": "ElementaryTypeName",
+                "src": "263:6:4",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "255:33:4",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_struct$_Player_$443_storage_$",
+                "typeString": "mapping(string => struct Structs.Player)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 365,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 364,
+                  "name": "Structs.Player",
+                  "nameLocations": [
+                    "273:7:4",
+                    "281:6:4"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 443,
+                  "src": "273:14:4"
+                },
+                "referencedDeclaration": 443,
+                "src": "273:14:4",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Player_$443_storage_ptr",
+                  "typeString": "struct Structs.Player"
+                }
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 370,
+            "mutability": "mutable",
+            "name": "allPlayerWalletAddresses",
+            "nameLocation": "335:24:4",
+            "nodeType": "VariableDeclaration",
+            "scope": 380,
+            "src": "316:43:4",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_address_$dyn_storage",
+              "typeString": "address[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 368,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "316:7:4",
+                "stateMutability": "nonpayable",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "id": 369,
+              "nodeType": "ArrayTypeName",
+              "src": "316:9:4",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                "typeString": "address[]"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 373,
+            "mutability": "mutable",
+            "name": "nextTeamId",
+            "nameLocation": "405:10:4",
+            "nodeType": "VariableDeclaration",
+            "scope": 380,
+            "src": "388:31:4",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 371,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "388:7:4",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "hexValue": "31",
+              "id": 372,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "418:1:4",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_1_by_1",
+                "typeString": "int_const 1"
+              },
+              "value": "1"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 376,
+            "mutability": "mutable",
+            "name": "nextPlayerId",
+            "nameLocation": "443:12:4",
+            "nodeType": "VariableDeclaration",
+            "scope": 380,
+            "src": "426:33:4",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 374,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "426:7:4",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "hexValue": "31",
+              "id": 375,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "458:1:4",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_1_by_1",
+                "typeString": "int_const 1"
+              },
+              "value": "1"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": true,
+            "id": 379,
+            "mutability": "constant",
+            "name": "FREE_AGENT",
+            "nameLocation": "502:10:4",
+            "nodeType": "VariableDeclaration",
+            "scope": 380,
+            "src": "486:50:4",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_memory_ptr",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 377,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "486:6:4",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "hexValue": "737a61626164c3ba737ac3b3",
+              "id": 378,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "unicodeString",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "515:21:4",
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_5f9672a99ed7d24732cd6d17fc1bcc9038d35f978660a034c0eb882a39f98159",
+                "typeString": "literal_string hex\"737a61626164c3ba737ac3b3\""
+              },
+              "value": "szabadúszó"
+            },
+            "visibility": "internal"
+          }
+        ],
+        "scope": 381,
+        "src": "86:454:4",
+        "usedErrors": [],
+        "usedEvents": []
+      }
+    ],
+    "src": "33:507:4"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.21+commit.d9974bed.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2025-11-02T18:52:57.492Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
