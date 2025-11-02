@@ -33,7 +33,7 @@ const routes: Routes = [
     path: 'player-search',
     component: PlayerSearchComponent,
     canActivate: [authGuard],
-    data: { userType: UserType.Team } // Csak csapatoknak
+    data: { userType: UserType.Team }
   },
   {
     path: 'app-faq',
@@ -43,19 +43,19 @@ const routes: Routes = [
     path: 'player-notifications',
     component: PlayerTransferoffersComponent,
     canActivate: [authGuard],
-    data: { userType: UserType.Player } // Csak játékosoknak
+    data: { userType: UserType.Player } 
   },
   {
     path: 'tranz',
     component: PlayerDashboardComponent,
     canActivate: [authGuard],
-    data: { userType: UserType.Player } // Csak játékosoknak
+    data: { userType: UserType.Player }
   },
   {
     path: 'tranzcsap',
     component: TeamTranzactionsComponent,
     canActivate: [authGuard],
-    data: { userType: UserType.Team } // Csak játékosoknak
+    data: { userType: UserType.Team } 
   },
   { path: '**', redirectTo: '' }
 ];

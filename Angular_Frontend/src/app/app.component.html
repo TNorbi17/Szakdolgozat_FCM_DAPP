@@ -1,0 +1,56 @@
+<nav>
+   <button class="menu-toggle" (click)="toggleMenu()" *ngIf="windowWidth < 768">
+      <span *ngIf="isMenuOpen">&#10005;</span>
+      <span *ngIf="!isMenuOpen">&#9776;</span> 
+    </button>
+  <div class="nav-left" [class.open]="isMenuOpen">
+    <a routerLink="/home" routerLinkActive="active-link" (click)="closeMenu()">Kezdőlap</a>
+    <a routerLink="/app-faq" routerLinkActive="active-link" (click)="closeMenu()">FAQ</a>
+    
+    <ng-container *ngIf="currentUser">
+      <a routerLink="/profile" routerLinkActive="active-link" (click)="closeMenu()">Profil</a>
+      
+      
+      <ng-container *ngIf="currentUser.userType === userTypeEnum.Team">
+        <ng-container >
+        <a routerLink="/tranzcsap" routerLinkActive="active-link" (click)="closeMenu()">Tranzakciók</a>
+      </ng-container>
+        <a routerLink="/team-dashboard" routerLinkActive="active-link" (click)="closeMenu()">Csapatom</a>
+        <a routerLink="/player-search" routerLinkActive="active-link" (click)="closeMenu()" >Játékos keresés</a>
+      </ng-container>
+      
+      <ng-container *ngIf="currentUser.userType === userTypeEnum.Player">
+        <a routerLink="/player-notifications" routerLinkActive="active-link" (click)="closeMenu()">Ajánlatok</a>
+        <ng-container >
+        <a routerLink="/tranz" routerLinkActive="active-link" (click)="closeMenu()">Tranzakciók</a>
+      </ng-container>
+      </ng-container>
+    </ng-container>
+    
+        
+     
+  </div>
+
+
+  <div class="nav-logo">
+    <a routerLink="/"><img src="./assets/fottballball.jpg" alt="Logo"></a>
+  </div>
+
+  <div class="nav-right" [class.open]="isMenuOpen">
+    <ng-container *ngIf="!currentUser">
+      <a routerLink="/login" routerLinkActive="active-link" class="cta-button" (click)="closeMenu()">Bejelentkezés</a>
+      <a routerLink="/register" class="cta-button" (click)="closeMenu()">Regisztráció</a>
+    </ng-container>
+
+    <ng-container *ngIf="currentUser">
+      <a (click)="logout()" class="logout-link" (click)="closeMenu()">Kijelentkezés</a>
+    </ng-container>
+  </div>
+</nav>
+
+    <div class="page-wrapper">
+        <div class="container">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+<app-footer></app-footer>
