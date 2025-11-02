@@ -4,9 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { SessionService } from './services/blockchain/services/blockchain.service';
+import { Footer } from './components/footer/footer';
 @NgModule({
   declarations: [
-    App
+    App,
+    Footer
   ],
   imports: [
     BrowserModule,
