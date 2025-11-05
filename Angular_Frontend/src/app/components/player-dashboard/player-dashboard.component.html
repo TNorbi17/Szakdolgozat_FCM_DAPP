@@ -1,1 +1,53 @@
-<p>player-dashboard.component works!</p>
+<div class="player-dashboard-container">
+
+  <h2>{{ currentUser?.name }} játékos profil</h2>
+
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+  
+  <div *ngIf="bonuses.length > 0">
+    <h3>Kapott bónuszok</h3>
+    <div class="bonuses-list">
+      <div *ngFor="let bonus of bonuses" class="bonus-card">
+        <div class="card-header">
+          <strong>{{ bonus.teamName }}</strong>
+          <span class="amount">{{ formatEth(bonus.amount) }} ETH</span>
+        </div>
+        <div class="card-body">
+          <p><strong>Megjegyzés:</strong> {{ bonus.message }}</p>
+          <p><strong>Dátum:</strong> {{ formatDate(bonus.timestamp) }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="bonuses.length === 0 && !errorMessage">
+    <p>Még nincsenek kapott bónuszok.</p>
+  </div>
+
+
+  <div *ngIf="penalties.length > 0">
+    <h3>Kapott büntetések</h3>
+    <div class="penalties-list">
+      <div *ngFor="let penalty of penalties" class="penalty-card" [ngClass]="{'paid': penalty.paid}">
+        <div class="card-header">
+          <strong>{{ penalty.teamName }}</strong>
+          <span class="amount">{{ formatEth(penalty.amount) }} ETH</span>
+          <span class="status">{{ penalty.paid ? 'Fizetve' : 'Fizetendő' }}</span>
+        </div>
+        <div class="card-body">
+          <p><strong>Megjegyzés:</strong> {{ penalty.message }}</p>
+          <p><strong>Dátum:</strong> {{ formatDate(penalty.timestamp) }}</p>
+          <button *ngIf="!penalty.paid" (click)="payPenalty(penalty.penaltyId, formatEth(penalty.amount))">Fizetés</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="penalties.length === 0 && !errorMessage">
+    <p>Még nincsenek kapott büntetések.</p>
+  </div>
+
+</div>
+
+<div *ngIf="!currentUser">
+  <p>Nincs bejelentkezett felhasználó. Kérjük, jelentkezzen be.</p>
+</div>
