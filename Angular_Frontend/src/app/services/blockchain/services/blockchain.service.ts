@@ -6,7 +6,10 @@ import {
   PlayerDetails,
   TransferOffer,
   UserType,
-  Penalty,Bonus
+  Bonus,
+  Penalty,
+  Transaction,
+  
 } from '../models';
 import { Web3InitService } from './web3-init.service';
 import { ContractLoaderService } from './contract-loader.service';
@@ -18,6 +21,8 @@ import { PlayerService } from './player.service';
 import { PenaltyService } from './penalty.service';
 import { TeamService } from './team.service';
 import { BonusService } from './bonus.service';
+import { TransactionService } from './transaction.service';
+import {  WeeklyPaymentService } from './daily-payment.service';
 
 
 @Injectable({
@@ -42,6 +47,8 @@ export class BlockchainService {
     private hashpwd: PwdhashService,
     private penaltyService: PenaltyService,
     private bonusService: BonusService,
+     private transactionService: TransactionService,
+     private weeklyPaymentService: WeeklyPaymentService
   ) {
     this.contractReadyPromise = new Promise((resolve, reject) => {
       this.resolveContractReady = resolve;
@@ -378,6 +385,17 @@ async getPlayerTransferOffers(
     );
   }
 
+  //tranzakció megjelenítés
+  async getTeamTransactions(teamName: string): Promise<Transaction[]> {
+      if (!this.contract) throw new Error('Contract not loaded');
+
+      const players = await this.getTeamPlayersDetails(teamName);
+
+      return this.transactionService.getTeamTransactions(
+        this.contract,
+        players
+      );
+    }
   
 }
 

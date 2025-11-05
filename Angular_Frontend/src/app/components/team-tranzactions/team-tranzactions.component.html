@@ -1,1 +1,373 @@
-<p>team-tranzactions.component works!</p>
+<div class="team-transactions-container">
+  <h2>{{ currentUser?.name }} tranzakciói</h2>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <span class="icon"></span>
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" class="success-message">
+    <span class="icon">✓</span>
+    {{ successMessage }}
+  </div>
+
+
+  <div class="totals-summary main-summary">
+    <div class="summary-header">
+      <h3>Teljes összesítés</h3>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-item expense">
+        <span class="summary-label">Összes kifizetés</span>
+        <span class="summary-value">{{ totalBonusEth }} ETH</span>
+      </div>
+      <div class="summary-item income">
+        <span class="summary-label">Összes bevétel</span>
+        <span class="summary-value">{{ totalPenaltyEth }} ETH</span>
+      </div>
+      <div class="summary-item balance">
+        <span class="summary-label">Egyenleg</span>
+        <span class="summary-value">{{ totalEth }} ETH</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="filters">
+    <div class="filter-group">
+      <label>
+        <span class="filter-icon"></span>
+        Szűrés típusra
+      </label>
+      <select
+        [(ngModel)]="filterType"
+        (ngModelChange)="applyFilter()"
+        class="filter-select"
+      >
+        <option value="all">Összes tranzakció</option>
+        <option value="bonus">Bónuszok</option>
+        <option value="penalty">Büntetések</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>
+        <span class="filter-icon"></span>
+        Szűrés játékos névre
+      </label>
+      <select
+        [(ngModel)]="selectedPlayerName"
+        (ngModelChange)="applyFilter()"
+        class="filter-select"
+      >
+        <option value="all">Összes játékos</option>
+        <option *ngFor="let name of uniquePlayerNames" [value]="name">
+          {{ name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+ 
+  <div
+    class="totals-summary filtered-summary"
+    *ngIf="filterType !== 'all' || selectedPlayerName !== 'all'"
+  >
+    <div class="summary-header">
+      <h3>Szűrt összesítés</h3>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-item expense">
+        <span class="summary-label">Szűrt bónuszok</span>
+        <span class="summary-value">{{ filteredTotalBonusEth }} ETH</span>
+      </div>
+      <div class="summary-item income">
+        <span class="summary-label">Szűrt büntetések</span>
+        <span class="summary-value">{{ filteredTotalPenaltyEth }} ETH</span>
+      </div>
+      <div class="summary-item balance">
+        <span class="summary-label">Szűrt egyenleg</span>
+        <span class="summary-value">{{ filteredTotalEth }} ETH</span>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="filteredTransactions.length > 0" class="transactions-section">
+    <div class="section-header">
+      <h3>Tranzakciók</h3>
+      <span class="transaction-count"
+        >{{ filteredTransactions.length }} db</span
+      >
+    </div>
+
+    <div class="transactions-list">
+      <div
+        *ngFor="let tx of filteredTransactions"
+        class="transaction-card"
+        [ngClass]="{
+          bonus: tx.type === 'bonus',
+          penalty: tx.type === 'penalty'
+        }"
+      >
+        <div class="card-header">
+          <div class="player-info">
+            <strong>{{ tx.playerName }}</strong>
+            <span class="type">{{
+              tx.type === 'bonus' ? 'Bónusz' : 'Büntetés'
+            }}</span>
+          </div>
+          <span class="amount">{{ formatEth(tx.amount) }} ETH</span>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <span class="info-icon"></span>
+            <div class="info-content">
+              <span class="info-label">Megjegyzés:</span>
+              <span class="info-value">{{ tx.message }}</span>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="info-icon"></span>
+            <div class="info-content">
+              <span class="info-label">Dátum:</span>
+              <span class="info-value">{{ formatDate(tx.timestamp) }}</span>
+            </div>
+          </div>
+          <div class="info-row" *ngIf="tx.type === 'penalty'">
+            <span class="info-icon"></span>
+            <div class="info-content">
+              <span class="info-label">Státusz:</span>
+              <span
+                class="status-badge"
+                [ngClass]="{ paid: tx.paid, unpaid: !tx.paid }"
+              >
+                {{ tx.paid ? ' Fizetve' : ' Fizetendő' }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+<div class="offers-section">
+  <div class="section-main-header">
+    <h2>Átigazolási Ajánlatok</h2>
+  </div>
+
+
+  <div class="direction-toggle">
+    <button
+      class="direction-button"
+      [class.active]="offerDirection === 'incoming'"
+      (click)="switchOfferDirection('incoming')"
+      [disabled]="isLoadingOffers"
+    >
+      <span class="direction-icon">levelicon</span>
+      <span class="direction-label">Beérkező</span>
+      <span class="direction-count">
+        {{ pendingTeamOffers.length + acceptedTeamOffers.length + rejectedTeamOffers.length }}
+      </span>
+    </button>
+
+    <button
+      class="direction-button"
+      [class.active]="offerDirection === 'outgoing'"
+      (click)="switchOfferDirection('outgoing')"
+      [disabled]="isLoadingOffers"
+    >
+      <span class="direction-icon">levelicon</span>
+      <span class="direction-label">Kimenő</span>
+      <span class="direction-count">
+        {{ pendingOutgoingOffers.length + acceptedOutgoingOffers.length + rejectedOutgoingOffers.length }}
+      </span>
+    </button>
+  </div>
+
+
+  <div class="tab-navigation">
+    <button
+      class="tab-button"
+      [class.active]="activeOfferTab === 'pending'"
+      (click)="switchOfferTab('pending')"
+      [disabled]="isLoadingOffers"
+    >
+      <span class="tab-icon">homokoraicon</span>
+      <span class="tab-label">Függőben</span>
+      <span class="tab-count pending-count">{{ totalPendingOffers }}</span>
+    </button>
+
+    <button
+      class="tab-button"
+      [class.active]="activeOfferTab === 'accepted'"
+      (click)="switchOfferTab('accepted')"
+      [disabled]="isLoadingOffers"
+    >
+      <span class="tab-icon">pipaicon</span>
+      <span class="tab-label">Elfogadva</span>
+      <span class="tab-count accepted-count">{{ totalAcceptedOffers }}</span>
+    </button>
+
+    <button
+      class="tab-button"
+      [class.active]="activeOfferTab === 'rejected'"
+      (click)="switchOfferTab('rejected')"
+      [disabled]="isLoadingOffers"
+    >
+      <span class="tab-icon">xicon</span>
+      <span class="tab-label">Elutasítva</span>
+      <span class="tab-count rejected-count">{{ totalRejectedOffers }}</span>
+    </button>
+  </div>
+
+
+  <div class="loading-indicator" *ngIf="isLoadingOffers">
+    <div class="spinner"></div>
+    <p>Ajánlatok betöltése...</p>
+  </div>
+
+
+<div class="tab-content" *ngIf="!isLoadingOffers">
+
+  <div *ngIf="activeOffers.length > 0" class="offers-list">
+    <div
+      *ngFor="let offer of activeOffers"
+      class="transaction-card offer"
+      [ngClass]="{
+        'pending-offer': activeOfferTab === 'pending',
+        'accepted-offer': activeOfferTab === 'accepted',
+        'rejected-offer': activeOfferTab === 'rejected',
+        'outgoing-card': offerDirection === 'outgoing'
+      }"
+    >
+      <div class="card-header">
+        <div class="player-info">
+          <strong>{{ offer.playerName }}</strong>
+          <span
+            class="type"
+            [ngClass]="{
+              pending: activeOfferTab === 'pending',
+              accepted: activeOfferTab === 'accepted',
+              rejected: activeOfferTab === 'rejected'
+            }"
+          >
+            {{ activeTabIcon }} {{ activeTabLabel }}
+          </span>
+        </div>
+        <div class="amount">{{ formatEth(offer.transferFee) }} ETH</div>
+      </div>
+
+     
+      <div class="card-body">
+        <div class="info-row">
+          <span class="info-icon">icon</span>
+          <div class="info-content">
+            <ng-container *ngIf="offerDirection === 'incoming'; else outgoing">
+               <span class="info-label">
+                Ajánlatot tevő csapat:
+               </span>
+        {{  offer.teamName }}
+      </ng-container>
+      <ng-template #outgoing>
+
+        <span class="info-label">
+                Ajánlatot tettél neki: 
+               </span>
+        {{  getTargetTeamName(offer)  }}
+      </ng-template>
+          </div>
+        </div>
+
+        <div class="info-row">
+          
+          <div class="info-content">
+            <span class="info-label">Játékos</span>
+            <span class="info-value">{{ offer.playerName }}</span>
+          </div>
+        </div>
+
+        <div class="info-row">
+          
+          <div class="info-content">
+            <span class="info-label">
+              {{
+                activeOfferTab === 'rejected'
+                  ? 'Tervezett szerződés hossza'
+                  : 'Szerződés hossza'
+              }}
+            </span>
+            <span class="info-value">{{
+              offer.contractExpires | date : 'yyyy-MM-dd'
+            }}</span>
+          </div>
+        </div>
+
+        <div class="info-row">
+          
+          <div class="info-content">
+            <span class="info-label">
+              {{
+                activeOfferTab === 'pending'
+                  ? 'Ajánlat időpontja'
+                  : activeOfferTab === 'accepted'
+                  ? 'Elfogadás időpontja'
+                  : 'Elutasítás időpontja'
+              }}
+            </span>
+            <span class="info-value">{{
+              offer.timestamp | date : 'yyyy-MM-dd HH:mm'
+            }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div
+        class="card-footer"
+        *ngIf="activeOfferTab === 'pending' && offerDirection === 'incoming'"
+      >
+        <button
+          (click)="acceptOffer(offer)"
+          [disabled]="isProcessingOffer"
+          class="btn btn-accept"
+        >
+          <span class="btn-icon">✓</span> Elfogad
+        </button>
+
+        <button
+          (click)="rejectOffer(offer)"
+          [disabled]="isProcessingOffer"
+          class="btn btn-reject"
+        >
+          <span class="btn-icon">✗</span> Elutasít
+        </button>
+      </div>
+
+     
+      <div class="card-info" *ngIf="offerDirection === 'outgoing' && activeOfferTab === 'pending'">
+        <span class="info-badge">
+           Várakozás a döntésre...
+        </span>
+      </div>
+    </div>
+  </div>
+
+
+    <div *ngIf="activeOffers.length === 0" class="empty-state">
+      <div class="empty-icon">
+        {{ activeTabIcon }}
+      </div>
+      <p class="empty-title">
+        Nincs {{ offerDirection === 'incoming' ? 'beérkező' : 'kimenő' }} {{ activeTabLabel.toLowerCase() }} ajánlat
+      </p>
+      <p class="empty-subtitle" *ngIf="activeOfferTab === 'pending'">
+        {{ offerDirection === 'incoming' 
+          ? 'A beérkező ajánlatok itt fognak megjelenni' 
+          : 'Az általad tett ajánlatok itt fognak megjelenni' }}
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
