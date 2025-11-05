@@ -1,1 +1,111 @@
-<p>register.component works!</p>
+<h2>Regisztráció</h2>
+
+<form [formGroup]="registrationForm" id="registrationForm" (ngSubmit)="onSubmit()">
+  <div class="toggle">
+    <input type="radio" id="player" value="player" formControlName="userType"/>
+    <label for="player">Játékos</label>
+    <input type="radio" id="team" value="team" formControlName="userType" />
+    <label for="team">Csapat</label>
+  </div>
+
+  <div class="form-group">
+    <label for="walletAddress">MetaMask cím:</label>
+
+    <input type="text" id="walletAddress" formControlName="walletAddress" readonly placeholder="Automatikus frissül"/>
+
+    <div *ngIf=" registrationForm.get('walletAddress')?.invalid && registrationForm.get('walletAddress')?.touched " class="error-message" >
+      A MetaMask‑cím kötelező. Kérjük, győződjön meg róla, hogy csatlakozott a MetaMask‑hoz.
+    </div>
+
+  </div>
+
+  <div class="form-row" *ngIf="userType === 'team'">
+    <div class="form-group">
+      <label for="teamName">Csapatnév:</label>
+      <input type="text" id="teamName" formControlName="teamName" placeholder="Adja meg a csapat nevét!"/>
+      <div *ngIf="registrationForm.get('teamName')?.invalid && registrationForm.get('teamName')?.touched " class="error-message">
+        A csapatnév kötelező.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="foundationYear">Alapítás éve:</label>
+      <input type="number" id="foundationYear" formControlName="foundationYear" placeholder="pl. 1995"/>
+      <div *ngIf="registrationForm.get('foundationYear')?.invalid && registrationForm.get('foundationYear')?.touched " class="error-message">
+        Kérjük, adjon meg egy érvényes alapítási évet (pl. 1990).
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row" *ngIf="userType === 'player'">
+    <div class="form-group">
+      <label for="playerName">Játékos neve:</label>
+      <input type="text" id="playerName" formControlName="playerName" placeholder="Adja meg a játékos nevét!"/>
+      <div *ngIf="registrationForm.get('playerName')?.invalid && registrationForm.get('playerName')?.touched" class="error-message">
+        A játékos neve kötelező.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="position">Poszt:</label>
+      <select id="position" formControlName="position">
+        <option [value]="null" disabled>Válasszon posztot!</option>
+        <option value="0">Kapus</option>
+        <option value="1">Védő</option>
+        <option value="2">Középpályás</option>
+        <option value="3">Támadó</option>
+      </select>
+      <div *ngIf=" registrationForm.get('position')?.invalid && registrationForm.get('position')?.touched " class="error-message" >
+        A poszt kiválasztása kötelező.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group" *ngIf="userType === 'player'">
+    <label for="dateOfBirth" >Születési dátum:</label>
+    <mat-form-field appearance="fill">
+      
+      <input matInput id="dateOfBirth" formControlName="dateOfBirth" [matDatepicker]="picker" placeholder="Válassz dátumot" />
+      <mat-hint>hónap/nap/év</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker">
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div *ngIf=" registrationForm.get('dateOfBirth')?.invalid && registrationForm.get('dateOfBirth')?.touched " class="error-message" >
+      A születési dátum kötelező.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">E‑mail:</label>
+    <input type="email" id="email" formControlName="email" placeholder="Adja meg a email címét!" />
+    <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched" class="error-message" >
+      Kérjük, adjon meg egy érvényes e‑mail címet.
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="password">Jelszó:</label>
+      <input type="password" id="password" formControlName="password" placeholder="Adja meg a jelszavát!"/>
+      <div *ngIf=" registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched " class="error-message">
+        A jelszónak legalább 6 karakter hosszúnak kell lennie.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Jelszó megerősítése:</label>
+      <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Adja meg a jelszavát mégegyszer!"/>
+      <div *ngIf=" registrationForm.errors?.['mismatch'] && registrationForm.get('confirmPassword')?.touched " class="error-message">
+        A jelszavak nem egyeznek.
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="registrationForm.invalid">
+    Regisztráció
+  </button>
+
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+</form>

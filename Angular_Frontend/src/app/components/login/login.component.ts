@@ -69,7 +69,7 @@ private accountChangeSubscription?: () => void;
 
       window.ethereum.on('accountsChanged', handleAccountsChanged);
       
-      // Cleanup funkció mentése
+
       this.accountChangeSubscription = () => {
         window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
       };
@@ -77,7 +77,7 @@ private accountChangeSubscription?: () => void;
   }
 
   ngOnDestroy(): void {
-    // Leiratkozás az eseményről
+
     if (this.accountChangeSubscription) {
       this.accountChangeSubscription();
     }
@@ -119,15 +119,15 @@ private accountChangeSubscription?: () => void;
           const teamData = await this.blockchainService.getTeamByName(
             entityName
           );
-          sessionUser.foundationYear = Number(teamData[2]); // Biztonságosabb Number()-be tenni
+          sessionUser.foundationYear = Number(teamData[2]);
         } else if (userTypeNumber === this.userTypeEnum.Player) {
-          // VÁLTOZÁS: Hozzáférés a tulajdonságokhoz név alapján
+
           const playerData = await this.blockchainService.getPlayerByName(
             entityName
           );
           sessionUser.position = playerData.position;
           sessionUser.teamName = playerData.teamName;
-          sessionUser.dateOfBirth = playerData.dateOfBirth; // Az új mező elmentése a session-be
+          sessionUser.dateOfBirth = playerData.dateOfBirth;
         }
 
         this.authService.login(sessionUser);
