@@ -1,6 +1,8 @@
 import {
   PlayerDetails,
   TransferOffer,
+  Bonus,
+  Penalty,
   OfferStatus
 } from '../models';
 
@@ -29,6 +31,7 @@ export class DataMapper {
     }
     return playersData.map((player) => this.mapPlayer(player));
   }
+
   static mapTransferOffer(offerData: any): TransferOffer {
     return {
       offerId: Number(offerData[0]),
@@ -55,5 +58,46 @@ export class DataMapper {
 
   static dateToTimestamp(date: Date): number {
     return Math.floor(date.getTime() / 1000);
+  }
+
+  static mapBonus(bonusData: any): Bonus {
+    return {
+      bonusId: Number(bonusData[0]),
+      teamWalletAddress: bonusData[1],
+      teamName: bonusData[2],
+      playerWalletAddress: bonusData[3],
+      amount: bonusData[4].toString(),
+      message: bonusData[5],
+      timestamp: Number(bonusData[6]),
+    };
+  }
+
+  static mapBonuses(bonusesData: any[]): Bonus[] {
+    if (!Array.isArray(bonusesData)) {
+      console.error('Expected array but received:', bonusesData);
+      return [];
+    }
+    return bonusesData.map((bonus) => this.mapBonus(bonus));
+  }
+
+  static mapPenalty(penaltyData: any): Penalty {
+    return {
+      penaltyId: Number(penaltyData[0]),
+      teamWalletAddress: penaltyData[1],
+      teamName: penaltyData[2],
+      playerWalletAddress: penaltyData[3],
+      amount: penaltyData[4].toString(),
+      message: penaltyData[5],
+      timestamp: Number(penaltyData[6]),
+      paid: penaltyData[7],
+    };
+  }
+
+  static mapPenalties(penaltiesData: any[]): Penalty[] {
+    if (!Array.isArray(penaltiesData)) {
+      console.error('Expected array but received:', penaltiesData);
+      return [];
+    }
+    return penaltiesData.map((penalty) => this.mapPenalty(penalty));
   }
 }

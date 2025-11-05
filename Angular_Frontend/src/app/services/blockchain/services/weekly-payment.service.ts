@@ -49,7 +49,7 @@ export class WeeklyPaymentService {
         value: valueWei,
       });
     } catch (error: any) {
-      console.error('❌ executeWeeklyPayment hiba:', error);
+      
 
       let errorMessage = 'Ismeretlen hiba történt';
 
