@@ -2,7 +2,6 @@
 pragma solidity ^0.8.21;
 
 library Enums {
-
     enum UserType {
         Player,
         Team
@@ -68,6 +67,35 @@ library Structs {
         address deciderAddress;
         address currentTeamWalletAddress;
     }
- 
 
+    struct Bonus {
+        uint256 bonusId;
+        address teamWalletAddress;
+        string teamName;
+        address playerWalletAddress;
+        uint256 amount;
+        string message;
+        uint256 timestamp;
+    }
+
+    struct Penalty {
+        uint256 penaltyId;
+        address teamWalletAddress;
+        string teamName;
+        address playerWalletAddress;
+        uint256 amount;
+        string message;
+        uint256 timestamp;
+        bool paid;
+    }
+
+    struct WeeklyPayment {
+        uint256 id;
+        address teamAddress;
+        address playerAddress;
+        uint256 amountWei;
+        uint256 lastPaymentTimestamp;
+        uint256 lastPaidAmount;
+        bool active;
+    }
 }

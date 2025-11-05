@@ -4,7 +4,6 @@ pragma solidity ^0.8.21;
 import "./Storage.sol";
 import "./Interfaces/IQueryManagement.sol";
 
-
 contract QueryManagement is BaseStorage, IQueryManagement {
     function getUserByAddress(address _walletAddress)
         external
@@ -193,7 +192,8 @@ contract QueryManagement is BaseStorage, IQueryManagement {
         }
         return playerDetails;
     }
-function getPlayerTransferOffers(address _playerWalletAddress)
+
+    function getPlayerTransferOffers(address _playerWalletAddress)
         external
         view
         override
@@ -227,7 +227,6 @@ function getPlayerTransferOffers(address _playerWalletAddress)
         "Address is not a team."
     );
     
- 
     Structs.TransferOffer[] storage offersForTeam = teamOffers[_teamWalletAddress];
     
     Structs.TransferOffer[] memory freshOffers = new Structs.TransferOffer[](
@@ -263,6 +262,7 @@ function getTeamOutgoingOffers(address _teamWalletAddress)
 
         return outgoingOffers;
     }
+
     function getPlayerBonuses(address _playerWalletAddress)
         external
         view
@@ -280,5 +280,4 @@ function getTeamOutgoingOffers(address _teamWalletAddress)
     {
         return playerPenalties[_playerWalletAddress];
     }
-    
 }

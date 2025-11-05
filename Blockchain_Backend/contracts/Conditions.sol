@@ -3,7 +3,7 @@ pragma solidity ^0.8.21;
 
 import "./Storage.sol";
 
-abstract contract Modifiers is BaseStorage {
+abstract contract Conditions is BaseStorage {
     modifier onlyTeamOwner(address _teamWalletAddress) {
         require(
             users[msg.sender].walletAddress == _teamWalletAddress,

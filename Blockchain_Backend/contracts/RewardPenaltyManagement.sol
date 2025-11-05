@@ -2,13 +2,13 @@
 pragma solidity ^0.8.21;
 
 import "./Storage.sol";
-import "./Modifiers.sol";
+import "./Conditions.sol";
 import "./Interfaces/IRewardPenaltyManagement.sol";
 import "./Libraries.sol";
 
 contract RewardPenaltyManagement is
     BaseStorage,
-    Modifiers,
+    Conditions,
     IRewardPenaltyManagement
 {
     using TeamLibrary for Structs.Team;

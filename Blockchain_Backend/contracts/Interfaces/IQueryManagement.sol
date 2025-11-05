@@ -48,7 +48,15 @@ interface IQueryManagement {
 
     function getFreeAgents() external view returns (Structs.Player[] memory);
 
-    
+    function getPlayerTransferOffers(address _playerWalletAddress)
+        external
+        view
+        returns (Structs.TransferOffer[] memory);
+
+    function getTeamTransferOffers(address _teamWalletAddress)
+        external
+        view
+        returns (Structs.TransferOffer[] memory);
 
     function getTeamPlayersAddresses(string memory _teamName)
         external
@@ -60,6 +68,17 @@ interface IQueryManagement {
         view
         returns (Structs.Player[] memory);
 
-   
-    
+    function getPlayerBonuses(address _playerWalletAddress)
+        external
+        view
+        returns (Structs.Bonus[] memory);
+
+    function getPlayerPenalties(address _playerWalletAddress)
+        external
+        view
+        returns (Structs.Penalty[] memory);
+    function getTeamOutgoingOffers(address _teamWalletAddress)
+        external
+        view
+        returns (Structs.TransferOffer[] memory);
 }
