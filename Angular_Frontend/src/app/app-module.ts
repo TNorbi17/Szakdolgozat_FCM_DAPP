@@ -1,7 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing-module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { AppComponent } from './app.component';
 import { SessionService } from './services/blockchain/services/blockchain.service';
 import { FooterComponent } from './components/footer/footer.component';
@@ -31,8 +38,13 @@ import { HomeComponent } from './components/home/home.component';
     TeamTranzactionsComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,FormsModule,ReactiveFormsModule
+    BrowserModule,MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatIconModule,
+    MatButtonModule,
+    AppRoutingModule,FormsModule,ReactiveFormsModule,MatDialogModule
   ],
   providers: [
    SessionService

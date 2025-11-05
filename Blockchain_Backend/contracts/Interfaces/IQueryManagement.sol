@@ -43,4 +43,23 @@ interface IQueryManagement {
             bool,
             uint256
         );
+
+    function getAllPlayers() external view returns (Structs.Player[] memory);
+
+    function getFreeAgents() external view returns (Structs.Player[] memory);
+
+    
+
+    function getTeamPlayersAddresses(string memory _teamName)
+        external
+        view
+        returns (address[] memory);
+
+    function getTeamPlayersDetails(string memory _teamName)
+        external
+        view
+        returns (Structs.Player[] memory);
+
+   
+    
 }

@@ -7,10 +7,8 @@ import "./Interfaces/IUserManagement.sol";
 import "./Libraries.sol";
 
 contract UserManagement is BaseStorage, Modifiers, IUserManagement {
-
     using PlayerLibrary for Structs.Player;
     using TeamLibrary for Structs.Team;
-    
     function registerTeam(
         string memory _teamName,
         uint256 _foundationYear,
@@ -96,5 +94,26 @@ contract UserManagement is BaseStorage, Modifiers, IUserManagement {
         emit UserRegistered(_walletAddress, Enums.UserType.Player);
         emit PlayerRegistered(_playerName, _walletAddress, FREE_AGENT);
     }  
+
+ function refreshExpiredContracts() external {
+        uint256 updatedCount = 0;
+
+        for (uint256 i = 0; i < allPlayerWalletAddresses.length; i++) {
+            address playerWallet = allPlayerWalletAddresses[i];
+            Structs.User storage user = users[playerWallet];
+
+            if (user.userType != Enums.UserType.Player) continue;
+
+            Structs.Player storage player = playersByName[user.entityName];
+
+            bool updated = player.updateContractStatus(teamsByName);
+            if (updated) {
+                updatedCount++;
+            }
+        }
+
+        require(updatedCount > 0, "No expired contracts found.");
+        emit ContractsRefreshed(updatedCount);
+    }
      
 }

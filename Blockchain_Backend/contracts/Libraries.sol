@@ -47,7 +47,41 @@ library PlayerLibrary {
         string oldTeamName
     );
 
-    
+    function updateContractStatus(
+        Structs.Player storage _player,
+        mapping(string => Structs.Team) storage teamsByName
+    ) internal returns (bool) {
+        if (
+            !_player.isFreeAgent &&
+            _player.contractExpires > 0 &&
+            block.timestamp >= _player.contractExpires
+        ) {
+            Structs.Team storage oldTeam = teamsByName[_player.teamName];
+            string memory oldTeamName = _player.teamName;
+            address oldTeamAddress = oldTeam.walletAddress;
+
+            if (bytes(oldTeam.name).length != 0) {
+                TeamLibrary.removePlayerFromTeam(
+                    oldTeam,
+                    _player.walletAddress
+                );
+            }
+
+            _player.teamName = FREE_AGENT;
+            _player.isFreeAgent = true;
+            _player.contractExpires = 0;
+
+            emit PlayerReleased(
+                _player.walletAddress,
+                _player.name,
+                oldTeamAddress,
+                oldTeamName
+            );
+
+            return true;
+        }
+        return false;
+    }
 
     function makePlayerFreeAgent(Structs.Player storage _player) internal {
         _player.teamName = FREE_AGENT;
@@ -55,5 +89,13 @@ library PlayerLibrary {
         _player.contractExpires = 0;
     }
 
-   
+    function signPlayerToTeam(
+        Structs.Player storage _player,
+        string memory _teamName,
+        uint256 _contractExpires
+    ) internal {
+        _player.teamName = _teamName;
+        _player.isFreeAgent = false;
+        _player.contractExpires = _contractExpires;
+    }
 }

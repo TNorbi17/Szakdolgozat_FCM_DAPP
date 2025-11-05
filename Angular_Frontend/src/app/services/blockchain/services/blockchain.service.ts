@@ -200,6 +200,15 @@ export class BlockchainService {
     return this.teamService.getUserType(this.contract, walletAddress);
   }
 
+  //profil szerződés frissítés
+  async refreshExpiredContracts(): Promise<any> {
+    await this.getContractReadyPromise();
+    if (!this.contract || !this.account) {
+      throw new Error('Contract or account not loaded');
+    }
+    return this.playerService.refreshExpiredContracts(this.contract, this.account);
+  }
+
 
   
 }

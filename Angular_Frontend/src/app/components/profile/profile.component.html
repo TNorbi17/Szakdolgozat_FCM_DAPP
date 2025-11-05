@@ -1,1 +1,80 @@
-<p>profile.component works!</p>
+<h2>Profilom</h2>
+<div *ngIf="isLoading" class="loading-overlay">
+  <p>Feldolgozás a blokkláncon, kérjük várjon...</p>
+</div>
+<div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+<div *ngIf="currentUser && userDetails">
+  <div class="profile-container">
+    <div class="col left">
+      <p><strong>MetaMask Cím:</strong> <span>{{ userDetails.walletAddress }}</span></p>
+      <p><strong>E-mail:</strong> <span>{{ userDetails.email }}</span></p>
+      <p>
+        <strong>Regisztráció dátuma:</strong>
+        <span>{{ userDetails.registrationTimestamp | date: 'yyyy. MM. dd. HH:mm' }}</span>
+      </p>
+    </div>
+
+    <div class="col right">
+      <div *ngIf="userDetails.userType === userTypeEnum.Team">
+        <h3>Csapat adatok:</h3>
+        <p><strong>Csapatnév:</strong> <span>{{ userDetails.name }}</span></p>
+        <p><strong>Alapítás éve:</strong> <span>{{ userDetails.foundationYear }}</span></p>
+      </div>
+      <div *ngIf="userDetails.userType === userTypeEnum.Player">
+        <h3>Játékos adatok:</h3>
+        <p><strong>Játékos neve:</strong> <span>{{ userDetails.name }}</span></p>
+
+        <p *ngIf="userDetails.position !== undefined">
+          <strong>Poszt:</strong> <span>{{ getPlayerPositionText(userDetails.position) }}</span>
+        </p>
+
+        <p *ngIf="userDetails.dateOfBirth">
+          <strong>Születési dátum:</strong>
+          <span>{{ userDetails.dateOfBirth | date: 'yyyy. MM. dd.' }}</span>
+        </p>
+
+        <p><strong>Csapat:</strong> <span>{{ userDetails.teamName }}</span></p>
+        <p
+          *ngIf="userDetails.contractExpires && userDetails.contractExpires.getTime() > 0"
+          class="contract-expiry"
+        >
+          <strong>Szerződés lejárata:</strong>
+          <span>
+            {{ userDetails.contractExpires | date: 'yyyy.MM.dd.' }}
+            <span *ngIf="userDetails.contractExpires < today" class="expired-label">
+              (Lejárt)
+            </span>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="contract-status-section" *ngIf="userDetails.userType === userTypeEnum.Player">
+    <div class="update-status-action">
+      <p *ngIf="!isLoading && (!userDetails.isFreeAgent || (userDetails.contractExpires && userDetails.contractExpires < today))" class="info-text">
+        Ha a szerződésed lejár, automatiksan értesítünk téged. Ekkor egy tranzakciót kapsz aminek az elfogadásával szabadúszóvá válhatsz!
+      </p>
+    </div>
+
+    <div class="release-contract-action" *ngIf="userDetails.userType === userTypeEnum.Player && !userDetails.isFreeAgent">
+        <hr> 
+        <h4>Szerződés felbontása</h4>
+        <div class="form-group">
+          <label for="releaseFee">Felmondási díj (ETH):</label>
+          <input type="number" id="releaseFee" placeholder="pl. 0.1" [(ngModel)]="releaseFee">
+        </div>
+        <button class="release-button" (click)="releasePlayer()" [disabled]="isLoading || !releaseFee || releaseFee <= 0">
+          Szerződés felbontása
+        </button>
+        <p class="info-text">
+          A szerződés felbontásával szabadúszóvá válsz. Ez a művelet a megadott díjat a jelenlegi csapatodnak utalja.
+        </p>
+      </div>
+</div>
+
+<div *ngIf="!currentUser">
+  <p>Nincs bejelentkezett felhasználó. Kérjük, jelentkezzen be.</p>
+</div>
