@@ -27,7 +27,15 @@ export interface UserSession {
     isTemporary: boolean;
   };
 }
-
+export interface TeamDetails {
+  id: number;
+  name: string;
+  foundationYear: number;
+  walletAddress: string;
+  email: string;
+  registrationTimestamp: Date;
+  players: string[];
+}
 export interface TransferOffer {
   offerId: number;
   teamWalletAddress: string;
@@ -41,3 +49,27 @@ export interface TransferOffer {
   deciderAddress: string;
   currentTeamWalletAddress: string;
 }
+
+export interface Bonus {
+  bonusId: number;
+  teamWalletAddress: string;
+  teamName: string;
+  playerWalletAddress: string;
+  amount: string;
+  message: string;
+  timestamp: number;
+}
+
+export interface Penalty {
+  penaltyId: number;
+  teamWalletAddress: string;
+  teamName: string;
+  playerWalletAddress: string;
+  amount: string;
+  message: string;
+  timestamp: number;
+  paid: boolean;
+}
+export type Transaction =
+  | (Bonus & { type: 'bonus'; playerName: string })
+  | (Penalty & { type: 'penalty'; playerName: string });

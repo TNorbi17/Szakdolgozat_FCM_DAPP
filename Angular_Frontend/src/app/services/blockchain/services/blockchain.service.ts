@@ -6,6 +6,7 @@ import {
   PlayerDetails,
   TransferOffer,
   UserType,
+  Penalty,Bonus
 } from '../models';
 import { Web3InitService } from './web3-init.service';
 import { ContractLoaderService } from './contract-loader.service';
@@ -14,7 +15,9 @@ import { TransferService } from './transfer.service';
 import { SessionService } from './session.service';
 import { RegistrationService } from './registration.service';
 import { PlayerService } from './player.service';
+import { PenaltyService } from './penalty.service';
 import { TeamService } from './team.service';
+import { BonusService } from './bonus.service';
 
 
 @Injectable({
@@ -37,6 +40,8 @@ export class BlockchainService {
     private teamService: TeamService,
     private transferService: TransferService,
     private hashpwd: PwdhashService,
+    private penaltyService: PenaltyService,
+    private bonusService: BonusService,
   ) {
     this.contractReadyPromise = new Promise((resolve, reject) => {
       this.resolveContractReady = resolve;
@@ -299,6 +304,79 @@ async getPlayerTransferOffers(
     teamWalletAddress
   );
 }
+
+
+//Büntetések
+  async createPenalty(
+    playerWalletAddress: string,
+    amountInEth: string | number,
+    message: string
+  ): Promise<any> {
+    if (!this.contract || !this.account || !this.web3) {
+      throw new Error('Contract, account or web3 not loaded');
+    }
+    return this.penaltyService.createPenalty(
+      this.contract,
+      this.account,
+      this.web3,
+      playerWalletAddress,
+      amountInEth,
+      message
+    );
+  }
+
+  async getPlayerPenalties(
+    playerWalletAddress: string
+  ): Promise<Penalty[]> {
+    if (!this.contract) throw new Error('Contract not loaded');
+    return this.penaltyService.getPlayerPenalties(
+      this.contract,
+      playerWalletAddress
+    );
+  }
+
+  async payPenalty(
+    penaltyId: number,
+    amountInEth: string | number
+  ): Promise<any> {
+    if (!this.contract || !this.account || !this.web3) {
+      throw new Error('Contract, account or web3 not loaded');
+    }
+    return this.penaltyService.payPenalty(
+      this.contract,
+      this.account,
+      this.web3,
+      penaltyId,
+      amountInEth
+    );
+  }
+
+  //Bónuzok
+  async giveBonus(
+    playerWalletAddress: string,
+    amountInEth: string | number,
+    message: string
+  ): Promise<any> {
+    if (!this.contract || !this.account || !this.web3) {
+      throw new Error('Contract, account or web3 not loaded');
+    }
+    return this.bonusService.giveBonus(
+      this.contract,
+      this.account,
+      this.web3,
+      playerWalletAddress,
+      amountInEth,
+      message
+    );
+  }
+
+  async getPlayerBonuses(playerWalletAddress: string): Promise<Bonus[]> {
+    if (!this.contract) throw new Error('Contract not loaded');
+    return this.bonusService.getPlayerBonuses(
+      this.contract,
+      playerWalletAddress
+    );
+  }
 
   
 }

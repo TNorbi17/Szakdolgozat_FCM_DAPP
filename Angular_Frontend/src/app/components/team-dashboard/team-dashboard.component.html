@@ -1,1 +1,230 @@
-<p>team-dashboard.component works!</p>
+<div class="team-dashboard-container">
+  <h2>{{ currentUser?.name }} csapata</h2>
+
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="teamPlayers.length > 0">
+    <h3>Játékosaim</h3>
+    <div class="players-list">
+      <div
+        *ngFor="let player of teamPlayers"
+        class="player-card"
+        [class.expanded]="isPlayerExpanded(player.walletAddress)"
+        (click)="togglePlayerDetails(player.walletAddress)"
+      >
+        <div class="player-card-header">
+          <strong>{{ player.name }}</strong>
+          <span
+            class="player-status"
+            [ngClass]="{
+              free: player.isFreeAgent,
+              signed: !player.isFreeAgent
+            }"
+          >
+            {{ player.isFreeAgent ? 'Szabadúszó' : 'Igazolt' }}
+          </span>
+        </div>
+
+        <div class="player-card-body">
+          <p>
+            <strong>Poszt:</strong>
+            <span>{{ getPlayerPositionText(player.position) }}</span>
+          </p>
+          <p>
+            <strong>Életkor:</strong>
+            <span>{{ calculateAge(player.dateOfBirth) }} év</span>
+          </p>
+          <p>
+            <strong>E-mail:</strong>
+            <span>{{ player.email }}</span>
+          </p>
+          <p>
+            <strong>Wallet:</strong>
+            <span class="wallet-address">{{ player.walletAddress }}</span>
+          </p>
+
+          <p
+            *ngIf="
+              player.contractExpires &&
+              player.contractExpires.getTime() > 0
+            "
+          >
+            <strong>Szerződés lejárata:</strong>
+            <span>
+              {{ player.contractExpires | date : 'yyyy.MM.dd.' }}
+              <span
+                *ngIf="player.contractExpires < today"
+                class="expired-label"
+                >(Lejárt)</span
+              >
+            </span>
+          </p>
+        </div>
+
+        <div
+          class="player-actions"
+          *ngIf="isPlayerExpanded(player.walletAddress)"
+          (click)="$event.stopPropagation()"
+        >
+          
+          <div class="action-section bonus-section">
+            <h4>Bónusz adása</h4>
+            <div class="input-group">
+              <input
+                type="number"
+                [(ngModel)]="bonusAmounts[player.walletAddress]"
+                placeholder="Összeg (ETH)"
+                min="0.001"
+                step="0.001"
+              />
+              <input
+                type="text"
+                [(ngModel)]="bonusMessages[player.walletAddress]"
+                placeholder="Megjegyzés"
+              />
+              <button
+                class="btn btn-success"
+                (click)="giveBonusToPlayer(player.walletAddress)"
+              >
+                Bónusz küldése
+              </button>
+            </div>
+          </div>
+
+          <!-- Büntetés form -->
+          <div class="action-section penalty-section">
+            <h4>Büntetés létrehozása</h4>
+            <div class="input-group">
+              <input
+                type="number"
+                [(ngModel)]="penaltyAmounts[player.walletAddress]"
+                placeholder="Összeg (ETH)"
+                min="0.001"
+                step="0.001"
+              />
+              <input
+                type="text"
+                [(ngModel)]="penaltyMessages[player.walletAddress]"
+                placeholder="Megjegyzés"
+              />
+              <button
+                class="btn btn-warning"
+                (click)="createPenaltyForPlayer(player.walletAddress)"
+              >
+                Büntetés létrehozása
+              </button>
+            </div>
+          </div>
+
+          
+          <div class="action-section daily-payment-section">
+            <h4>📅 Napi fizetés beállítása</h4>
+            <div class="input-group">
+              <input
+                type="number"
+                [(ngModel)]="dailyAmounts[player.walletAddress]"
+                placeholder="Napi ETH összeg"
+                step="0.01"
+                min="0"
+              />
+              <button
+                class="btn btn-primary"
+                (click)="setDailyPayment(player.walletAddress)"
+              >
+                Beállítás
+              </button>
+            </div>
+
+            <div
+              class="daily-status"
+              *ngIf="dailyPaymentStates[player.walletAddress]"
+            >
+              <p
+                *ngIf="
+                  dailyPaymentStates[player.walletAddress]?.amountEth
+                "
+              >
+                <strong>Beállított napi összeg:</strong>
+                {{ dailyPaymentStates[player.walletAddress].amountEth }}
+                ETH
+              </p>
+
+              <p
+                *ngIf="
+                  dailyPaymentStates[player.walletAddress]
+                    ?.lastPaymentTimestamp
+                "
+              >
+                <strong>Utolsó fizetés:</strong>
+                {{
+                  dailyPaymentStates[player.walletAddress]
+                    .lastPaymentTimestamp | date : 'yyyy.MM.dd. HH:mm'
+                }}
+                <span
+                  *ngIf="
+                    dailyPaymentStates[player.walletAddress]
+                      .lastPaidAmount &&
+                    dailyPaymentStates[player.walletAddress]
+                      .lastPaidAmount! > 0
+                  "
+                  class="paid-amount"
+                >
+                  ({{
+                    dailyPaymentStates[player.walletAddress]
+                      .lastPaidAmount
+                  }}
+                  ETH)
+                </span>
+              </p>
+
+              <p
+                *ngIf="
+                  !dailyPaymentStates[player.walletAddress]
+                    ?.lastPaymentTimestamp
+                "
+              >
+                Még nem történt fizetés.
+              </p>
+
+              <p
+                *ngIf="isOverdue(player.walletAddress)"
+                class="warning-message"
+              >
+                Napi fizetés indítás szükséges (14 napnál több telt
+                el)
+              </p>
+            </div>
+
+            <button
+              class="btn btn-primary"
+              (click)="executeDailyPayment(player.walletAddress)"
+            >
+              Napi fizetés indítása
+            </button>
+          </div>
+
+         
+          <div class="action-section release-section">
+            <button class="btn btn-danger">Játékos elküldése</button>
+          </div>
+        </div>
+
+        
+        <div class="expand-indicator" *ngIf="!isPlayerExpanded(player.walletAddress)">
+          <span>▼ Kattints a részletekért</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="teamPlayers.length === 0 && !errorMessage">
+    <p>Nincs még leigazolt játékos a csapatában.</p>
+    <p>
+      Látogasson el a "Játékos keresés" oldalra, hogy ajánlatot tegyen
+      szabadúszó játékosoknak.
+    </p>
+  </div>
+</div>
