@@ -1,1 +1,28 @@
-<p>login.component works!</p>
+<h2>Bejelentkezés</h2>
+
+<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+  <div class="form-group">
+    <label for="walletAddress">MetaMask Cím:</label>
+    <input type="text" id="walletAddress" formControlName="walletAddress">
+    <div *ngIf="loginForm.get('walletAddress')?.invalid && loginForm.get('walletAddress')?.touched" class="error-message">
+      A MetaMask cím kötelező.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Jelszó:</label>
+    <input type="password" id="password" formControlName="password">
+    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+      A jelszó kötelező.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="loginForm.invalid">Bejelentkezés</button>
+
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+  <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
+
+  <p>
+  Még nem regisztrált? <a routerLink="/register">Regisztráció</a>
+</p>
+</form>

@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.21;
+import "./UserManagement.sol";
 
-contract FootballManagement
+contract FootballManagement is UserManagement
 {
-    string public greet = "Hello World!";
+   
 }
