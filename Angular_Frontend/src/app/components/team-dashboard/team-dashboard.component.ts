@@ -12,6 +12,7 @@ import {
 } from '../../services/blockchain/models/enums';
 
 
+
 @Component({
   selector: 'app-team-dashboard',
   standalone: false,
@@ -38,7 +39,7 @@ export class TeamDashboardComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.currentUser = this.sessionService.currentUserValue;
+     this.currentUser = this.sessionService.currentUserValue;
 
     if (!this.currentUser || this.currentUser.userType !== UserType.Team) {
       this.errorMessage = 'Ez az oldal csak csapatok számára érhető el.';
@@ -49,7 +50,7 @@ export class TeamDashboardComponent implements OnInit {
     try {
       await this.blockchainService.getContractReadyPromise();
       await this.loadTeamPlayers();
-
+      await this.loadAllDailyPaymentStates();
     } catch (error: any) {
       console.error('Hiba a csapat játékosainak betöltésekor:', error);
       this.errorMessage = `Nem sikerült betölteni a csapat játékosait: ${
@@ -57,7 +58,17 @@ export class TeamDashboardComponent implements OnInit {
       }`;
     }
   }
-
+async loadAllDailyPaymentStates(): Promise<void> {
+  for (const player of this.teamPlayers) {
+   
+    try {
+      await this.loadDailyPaymentState(player.walletAddress);
+    } catch (error) {
+    }
+  }
+  
+  
+}
   async loadTeamPlayers(): Promise<void> {
     if (this.currentUser && this.currentUser.name) {
       this.teamPlayers = await this.blockchainService.getTeamPlayersDetails(
@@ -179,5 +190,107 @@ expandedPlayerId: string | null = null;
     return this.expandedPlayerId === walletAddress;
   }
 
+
+
+dailyAmounts: { [wallet: string]: number } = {};
+dailyPaymentStates: { [wallet: string]: { amountEth: number; lastPaymentTimestamp: Date | null ;lastPaidAmount?: number;} } = {};
+
+
+async setDailyPayment(playerWallet: string): Promise<void> {
+  const amount = this.dailyAmounts[playerWallet];
+  if (!amount || amount <= 0) {
+    this.errorMessage = 'Érvénytelen összeg (minimum 0.001 ETH).';
+    return;
+  }
+
+  this.isLoading = true;
+  this.errorMessage = '';
+  this.successMessage = '';
+
+  try {
+    
+    const previousState = this.dailyPaymentStates[playerWallet];
+    
+    await this.blockchainService.setWeeklyPayment(
+      playerWallet,
+      amount.toString()
+    );
+    
+    if (previousState && previousState.lastPaymentTimestamp) {
+      this.successMessage = `Napi fizetés összege frissítve: ${amount} ETH. Az utolsó fizetés dátuma megmaradt.`;
+      
+
+      setTimeout(async () => {
+        await this.loadDailyPaymentState(playerWallet);
+        
+        if (!this.dailyPaymentStates[playerWallet]?.lastPaymentTimestamp 
+            && previousState.lastPaymentTimestamp) {
+          this.dailyPaymentStates[playerWallet] = {
+            amountEth: amount,
+            lastPaymentTimestamp: previousState.lastPaymentTimestamp
+          };
+        }
+      }, 1000);
+    } else {
+      this.successMessage = `Napi fizetés sikeresen beállítva: ${amount} ETH`;
+      await this.loadDailyPaymentState(playerWallet);
+    }
+  } catch (error: any) {
+    this.errorMessage = `Hiba történt: ${error.message || error.toString()}`;
+  } finally {
+    this.isLoading = false;
+  }
+}
+
+
+async executeDailyPayment(playerWallet: string): Promise<void> {
+  await this.blockchainService.executeWeeklyPayment(playerWallet);
+  this.successMessage = 'Napi fizetés sikeresen elküldve!';
+  await this.loadDailyPaymentState(playerWallet);
+}
+
+
+async stopDailyPayment(playerWallet: string): Promise<void> {
+  await this.blockchainService.stopWeeklyPayment(playerWallet);
+  await this.loadDailyPaymentState(playerWallet);
+}
+
+
+async loadDailyPaymentState(playerWallet: string): Promise<void> {
+  try {
+   
+    
+    const state = await this.blockchainService.getWeeklyPaymentForPlayer(
+      playerWallet
+    );
+    
+  
+    if (state && state.amountEth && parseFloat(state.amountEth) > 0) {
+      this.dailyPaymentStates[playerWallet] = {
+        amountEth: parseFloat(state.amountEth),
+        lastPaymentTimestamp: state.lastPaymentTimestamp,
+        lastPaidAmount: state.lastPaidAmount 
+          ? parseFloat(state.lastPaidAmount) 
+          : undefined
+      };
+      
+      
+    } else {
+      
+    }
+  } catch (error) {
+    
+  }
+}
+
+
+isOverdue(playerWallet: string): boolean {
+  const state = this.dailyPaymentStates[playerWallet];
+  if (!state || !state.lastPaymentTimestamp) return true;
+  const daysPassed = Math.floor(
+    (new Date().getTime() - state.lastPaymentTimestamp.getTime()) / (1000 * 3600 * 24)
+  );
+  return daysPassed > 14;
+}
 
 }

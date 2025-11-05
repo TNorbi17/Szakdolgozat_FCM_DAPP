@@ -6,10 +6,10 @@ import {UserSession,Transaction,PlayerDetails,TransferOffer,} from '../../servic
 import { UserType, OfferStatus } from '../../services/blockchain/models/enums';
 
 @Component({
-  selector: 'app-team-transactions',
+  selector: 'app-team-tranzactions',
   standalone: false,
-  templateUrl: './team-transactions.component.html',
-  styleUrls: ['./team-transactions.component.css'],
+  templateUrl: './team-tranzactions.component.html',
+  styleUrls: ['./team-tranzactions.component.css'],
 })
 
 export class TeamTranzactionsComponent implements OnInit {
