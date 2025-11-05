@@ -4,7 +4,7 @@ import "./UserManagement.sol";
 import "./QueryManagement.sol";
 
 contract FootballManagement is UserManagement,
-QueryManagement,TransferManagement
+QueryManagement,TransferManagement,RewardPenaltyManagement
 {
    
 }

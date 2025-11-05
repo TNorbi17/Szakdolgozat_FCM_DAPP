@@ -263,5 +263,22 @@ function getTeamOutgoingOffers(address _teamWalletAddress)
 
         return outgoingOffers;
     }
+    function getPlayerBonuses(address _playerWalletAddress)
+        external
+        view
+        override
+        returns (Structs.Bonus[] memory)
+    {
+        return playerBonuses[_playerWalletAddress];
+    }
+
+    function getPlayerPenalties(address _playerWalletAddress)
+        external
+        view
+        override
+        returns (Structs.Penalty[] memory)
+    {
+        return playerPenalties[_playerWalletAddress];
+    }
     
 }
