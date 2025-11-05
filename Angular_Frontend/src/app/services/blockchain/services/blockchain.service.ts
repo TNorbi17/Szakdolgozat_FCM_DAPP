@@ -9,6 +9,7 @@ import {
   Bonus,
   Penalty,
   Transaction,
+  WeeklyPayment
   
 } from '../models';
 import { Web3InitService } from './web3-init.service';
@@ -22,7 +23,7 @@ import { PenaltyService } from './penalty.service';
 import { TeamService } from './team.service';
 import { BonusService } from './bonus.service';
 import { TransactionService } from './transaction.service';
-import {  WeeklyPaymentService } from './daily-payment.service';
+import {  WeeklyPaymentService } from './weekly-payment.service';
 
 
 @Injectable({
@@ -396,6 +397,61 @@ async getPlayerTransferOffers(
         players
       );
     }
+    async setWeeklyPayment(
+    playerWallet: string,
+    amountEth: string
+  ): Promise<any> {
+    if (!this.contract || !this.account || !this.web3) {
+      throw new Error('Contract, account or web3 not loaded');
+    }
+    return this.weeklyPaymentService.setWeeklyPayment(
+      this.contract,
+      this.account,
+      this.web3,
+      playerWallet,
+      amountEth
+    );
+  }
+
+  async executeWeeklyPayment(playerWallet: string): Promise<any> {
+    if (!this.contract || !this.account || !this.web3) {
+      throw new Error('Contract, account or web3 not loaded');
+    }
+
+    const weeklyPayment = await this.getWeeklyPaymentForPlayer(playerWallet);
+
+    return this.weeklyPaymentService.executeWeeklyPayment(
+      this.contract,
+      this.account,
+      this.web3,
+      playerWallet,
+      weeklyPayment
+    );
+  }
+
+  async stopWeeklyPayment(playerWallet: string): Promise<any> {
+    if (!this.contract || !this.account) {
+      throw new Error('Contract or account not loaded');
+    }
+    return this.weeklyPaymentService.stopWeeklyPayment(
+      this.contract,
+      this.account,
+      playerWallet
+    );
+  }
+
+  async getWeeklyPaymentForPlayer(
+    playerWallet: string
+  ): Promise<WeeklyPayment> {
+    if (!this.contract || !this.web3) {
+      throw new Error('Contract or web3 not loaded');
+    }
+    return this.weeklyPaymentService.getWeeklyPaymentForPlayer(
+      this.contract,
+      this.web3,
+      playerWallet
+    );
+  }
   
 }
 

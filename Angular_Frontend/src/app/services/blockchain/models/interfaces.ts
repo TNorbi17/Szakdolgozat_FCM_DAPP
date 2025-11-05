@@ -70,6 +70,18 @@ export interface Penalty {
   timestamp: number;
   paid: boolean;
 }
+
+export interface WeeklyPayment {
+  id: number;
+  teamAddress: string;
+  playerAddress: string;
+  amountEth: string;
+  active: boolean;
+  lastPaymentTimestamp: Date | null;
+  lastPaidAmount?: string;
+
+}
+
 export type Transaction =
   | (Bonus & { type: 'bonus'; playerName: string })
   | (Penalty & { type: 'penalty'; playerName: string });
