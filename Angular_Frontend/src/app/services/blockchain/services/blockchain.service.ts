@@ -11,6 +11,7 @@ import {
 import { Web3InitService } from './web3-init.service';
 import { ContractLoaderService } from './contract-loader.service';
 import { PwdhashService } from './pwdhash.service';
+import { TransferService } from './transfer.service';
 import { SessionService } from './session.service';
 import { RegistrationService } from './registration.service';
 import { PlayerService } from './player.service';
@@ -35,6 +36,7 @@ export class BlockchainService {
     private registrationService: RegistrationService,
     private playerService: PlayerService,
     private teamService: TeamService,
+    private transferService: TransferService,
     private hashpwd: PwdhashService,
   ) {
     this.contractReadyPromise = new Promise((resolve, reject) => {
@@ -207,6 +209,28 @@ export class BlockchainService {
       throw new Error('Contract or account not loaded');
     }
     return this.playerService.refreshExpiredContracts(this.contract, this.account);
+  }
+
+  //Átigazolások
+
+  async createTransferOffer(
+    playerWalletAddress: string,
+    playerName: string,
+    contractExpires: Date,
+    transferFeeInEth: string
+  ): Promise<any> {
+    if (!this.contract || !this.account || !this.web3) {
+      throw new Error('Contract, account or web3 not loaded');
+    }
+    return this.transferService.createTransferOffer(
+      this.contract,
+      this.account,
+      this.web3,
+      playerWalletAddress,
+      playerName,
+      contractExpires,
+      transferFeeInEth
+    );
   }
 
 

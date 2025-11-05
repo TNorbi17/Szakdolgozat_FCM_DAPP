@@ -1,1 +1,140 @@
-<p>player-search.component works!</p>
+<h2>Játékosok keresése</h2>
+
+<div class="filters-container">
+  <div class="form-group">
+    <label for="search-name">Név:</label>
+    <input
+      type="text"
+      id="search-name"
+      placeholder="Név keresése..."
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="applyFilters()"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="search-pos">Poszt:</label>
+    <select
+      id="search-pos"
+      [(ngModel)]="selectedPosition"
+      (ngModelChange)="applyFilters()"
+    >
+      <option value="all">Minden poszt</option>
+      <option [value]="PlayerPositionEnum.Goalkeeper">Kapus</option>
+      <option [value]="PlayerPositionEnum.Defender">Védő</option>
+      <option [value]="PlayerPositionEnum.Midfielder">Középpályás</option>
+      <option [value]="PlayerPositionEnum.Attacker">Támadó</option>
+    </select>
+  </div>
+
+  <div class="form-group age-filter">
+    <label>Életkor:</label>
+    <input
+      type="number"
+      placeholder="Min."
+      [(ngModel)]="minAge"
+      (ngModelChange)="applyFilters()"
+    />
+    <span>-</span>
+    <input
+      type="number"
+      placeholder="Max."
+      [(ngModel)]="maxAge"
+      (ngModelChange)="applyFilters()"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="search-status">Státusz:</label>
+    <select
+      id="search-status"
+      [(ngModel)]="filterByStatus"
+      (ngModelChange)="applyFilters()"
+    >
+      <option value="all">Mindenki</option>
+      <option value="free">Szabadúszó</option>
+      <option value="signed">Már van csapata</option>
+    </select>
+  </div>
+</div>
+
+<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+<div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+
+
+<div *ngIf="filteredPlayers.length > 0">
+  <div class="players-list">
+
+    <div
+      *ngFor="let player of filteredPlayers"
+      class="player-card"
+      [class.free-agent-card]="player.isFreeAgent"
+      [class.signed-card]="!player.isFreeAgent"
+      (click)="onPlayerSelect(player)"
+    >
+      <div class="player-card-header">
+        <strong>{{ player.name }}</strong>
+        <span class="player-status" [ngClass]="{'free': player.isFreeAgent, 'signed': !player.isFreeAgent}">
+          {{ player.isFreeAgent ? 'Szabadúszó' : 'Igazolt' }}
+        </span>
+      </div>
+      <div class="player-card-body">
+        <p><strong>Poszt:</strong> <span>{{ getPlayerPositionText(player.position) }}</span></p>
+        <p><strong>Életkor:</strong> <span>{{ calculateAge(player.dateOfBirth) }} év</span></p>
+        <p><strong>Csapat:</strong> <span>{{ player.teamName }}</span></p>
+        <p><strong>E-mail:</strong> <span>{{ player.email }}</span></p>
+      </div>
+      <div class="player-card-footer" *ngIf="player.isFreeAgent">
+        <button (click)="onPlayerSelect(player); $event.stopPropagation();">Ajánlatot teszek</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" *ngIf="selectedPlayer" (click)="closePlayerDetails()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    
+
+    <button class="close-button" (click)="closePlayerDetails()">&#10005;</button>
+
+    <h3>{{ selectedPlayer.name }} részletei</h3>
+
+    <div class="player-info">
+      <p><strong>Státusz:</strong> 
+        <span [class.free-agent]="selectedPlayer.isFreeAgent" [class.signed]="!selectedPlayer.isFreeAgent">
+          {{ selectedPlayer.isFreeAgent ? 'Szabadúszó' : 'Igazolt' }}
+        </span>
+        <span *ngIf="!selectedPlayer.isFreeAgent"> ({{ selectedPlayer.teamName }})</span>
+      </p>
+      <p><strong>Poszt:</strong> <span>{{ getPlayerPositionText(selectedPlayer.position) }}</span></p>
+      <p><strong>Életkor:</strong> <span>{{ calculateAge(selectedPlayer.dateOfBirth) }} év</span></p>
+      <p><strong>E-mail:</strong> <span>{{ selectedPlayer.email }}</span></p>
+    </div>
+
+    <hr>
+    <h4>Ajánlat létrehozása</h4>
+    
+    <div class="form-group">
+        <label for="transferFee">Átigazolási díj (ETH):</label>
+        <input type="number" id="transferFee" placeholder="pl. 0.5" [(ngModel)]="transferFee">
+    </div>
+
+    <div class="form-group">
+        <label for="contractExpires">Szerződés lejárata:</label>
+        <input type="date" id="contractExpires" [(ngModel)]="contractExpiresDate">
+    </div>
+
+    <button class="offer-button" (click)="makeOffer()">Ajánlatot teszek</button>
+    
+    <p class="info-text" *ngIf="!selectedPlayer.isFreeAgent">
+      Figyelem: Mivel a játékosnak csapata van, az átigazolási díj a játékos jelenlegi csapatát illeti meg.
+    </p>
+  </div>
+</div>
+
+<div *ngIf="allPlayers.length > 0 && filteredPlayers.length === 0">
+  <p>Nincs a keresési feltételeknek megfelelő játékos.</p>
+</div>
+<div *ngIf="allPlayers.length === 0 && !errorMessage">
+  <p>Nincs regisztrált játékos a rendszerben.</p>
+</div>

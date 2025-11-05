@@ -1,6 +1,9 @@
 import {
   PlayerDetails,
+  TransferOffer,
+  OfferStatus
 } from '../models';
+
 export class DataMapper {
   static mapPlayer(playerData: any): PlayerDetails {
     return {
@@ -25,5 +28,32 @@ export class DataMapper {
       return [];
     }
     return playersData.map((player) => this.mapPlayer(player));
+  }
+  static mapTransferOffer(offerData: any): TransferOffer {
+    return {
+      offerId: Number(offerData[0]),
+      teamWalletAddress: offerData[1],
+      teamName: offerData[2],
+      playerWalletAddress: offerData[3],
+      playerName: offerData[4],
+      status: Number(offerData[5]) as OfferStatus,
+      timestamp: new Date(Number(offerData[6]) * 1000),
+      transferFee: offerData[7].toString(),
+      contractExpires: new Date(Number(offerData[8]) * 1000),
+      deciderAddress: offerData[9],
+      currentTeamWalletAddress: offerData[10],
+    };
+  }
+
+  static mapTransferOffers(offersData: any[]): TransferOffer[] {
+    if (!Array.isArray(offersData)) {
+      console.error('Expected array but received:', offersData);
+      return [];
+    }
+    return offersData.map((offer) => this.mapTransferOffer(offer));
+  }
+
+  static dateToTimestamp(date: Date): number {
+    return Math.floor(date.getTime() / 1000);
   }
 }

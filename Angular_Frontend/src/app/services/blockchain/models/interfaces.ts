@@ -1,4 +1,4 @@
-import {PlayerPosition } from './enums';
+import {PlayerPosition,OfferStatus } from './enums';
 export interface PlayerDetails {
   id: number;
   name: string;
@@ -26,4 +26,18 @@ export interface UserSession {
   sessionInfo?: {
     isTemporary: boolean;
   };
+}
+
+export interface TransferOffer {
+  offerId: number;
+  teamWalletAddress: string;
+  teamName: string;
+  playerWalletAddress: string;
+  playerName: string;
+  status: OfferStatus;
+  timestamp: Date;
+  transferFee?: string;
+  contractExpires: Date;
+  deciderAddress: string;
+  currentTeamWalletAddress: string;
 }
