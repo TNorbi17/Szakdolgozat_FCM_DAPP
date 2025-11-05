@@ -6,7 +6,7 @@ import "./Conditions.sol";
 import "./Interfaces/IUserManagement.sol";
 import "./Libraries.sol";
 
-contract UserManagement is BaseStorage, Modifiers, IUserManagement {
+contract UserManagement is BaseStorage, Modifiers, IUserManagement,TransferManagement {
     using PlayerLibrary for Structs.Player;
     using TeamLibrary for Structs.Team;
     function registerTeam(

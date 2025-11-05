@@ -7,6 +7,13 @@ library Enums {
         Player,
         Team
     }
+
+    enum OfferStatus {
+        Pending,
+        Accepted,
+        Rejected
+    }
+
     enum PlayerPosition {
         Goalkeeper,
         Defender,
@@ -46,6 +53,20 @@ library Structs {
         uint256 registrationTimestamp;
         bool isFreeAgent;
         uint256 contractExpires;
+    }
+
+    struct TransferOffer {
+        uint256 offerId;
+        address teamWalletAddress;
+        string teamName;
+        address playerWalletAddress;
+        string playerName;
+        Enums.OfferStatus status;
+        uint256 timestamp;
+        uint256 transferFee;
+        uint256 contractExpires;
+        address deciderAddress;
+        address currentTeamWalletAddress;
     }
  
 

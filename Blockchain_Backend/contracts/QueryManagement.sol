@@ -193,6 +193,53 @@ contract QueryManagement is BaseStorage, IQueryManagement {
         }
         return playerDetails;
     }
+function getPlayerTransferOffers(address _playerWalletAddress)
+        external
+        view
+        override
+        returns (Structs.TransferOffer[] memory)
+    {
+        Structs.TransferOffer[] storage offersForPlayer = playerOffers[
+            _playerWalletAddress
+        ];
 
+        Structs.TransferOffer[]
+            memory freshOffers = new Structs.TransferOffer[](
+                offersForPlayer.length
+            );
+
+        for (uint i = 0; i < offersForPlayer.length; i++) {
+            uint offerId = offersForPlayer[i].offerId;
+            freshOffers[i] = offers[offerId];
+        }
+
+        return freshOffers;
+    }
+
+    function getTeamTransferOffers(address _teamWalletAddress)
+    external
+    view
+    override
+    returns (Structs.TransferOffer[] memory)
+{
+    require(
+        users[_teamWalletAddress].userType == Enums.UserType.Team,
+        "Address is not a team."
+    );
+    
+ 
+    Structs.TransferOffer[] storage offersForTeam = teamOffers[_teamWalletAddress];
+    
+    Structs.TransferOffer[] memory freshOffers = new Structs.TransferOffer[](
+        offersForTeam.length
+    );
+    
+    for (uint i = 0; i < offersForTeam.length; i++) {
+        uint offerId = offersForTeam[i].offerId;
+        freshOffers[i] = offers[offerId];  
+    }
+    
+    return freshOffers;
+}
     
 }
