@@ -4,9 +4,8 @@ import type { AbiItem } from 'web3-utils';
 import { Contract } from 'web3-eth-contract';
 import {
   PlayerDetails,
-  
+  TransferOffer,
   UserType,
-  
 } from '../models';
 import { Web3InitService } from './web3-init.service';
 import { ContractLoaderService } from './contract-loader.service';
@@ -232,7 +231,74 @@ export class BlockchainService {
       transferFeeInEth
     );
   }
+async getPlayerTransferOffers(
+    playerWalletAddress: string
+  ): Promise<TransferOffer[]> {
+    if (!this.contract) throw new Error('Contract not loaded');
+    return this.transferService.getPlayerTransferOffers(
+      this.contract,
+      playerWalletAddress
+    );
+  }
 
+  async acceptTransferOffer(offerId: number): Promise<any> {
+    if (!this.contract || !this.account) {
+      throw new Error('Contract or account not loaded');
+    }
+    return this.transferService.acceptTransferOffer(
+      this.contract,
+      this.account,
+      offerId
+    );
+  }
+
+  async rejectTransferOffer(offerId: number): Promise<any> {
+    if (!this.contract || !this.account) {
+      throw new Error('Contract or account not loaded');
+    }
+    return this.transferService.rejectTransferOffer(
+      this.contract,
+      this.account,
+      offerId
+    );
+  }
+
+  async extendContract(
+    playerName: string,
+    newContractExpires: Date,
+    transferFeeInEth: string
+  ): Promise<any> {
+    if (!this.contract || !this.account || !this.web3) {
+      throw new Error('Contract, account or web3 not loaded');
+    }
+    return this.transferService.extendContract(
+      this.contract,
+      this.account,
+      this.web3,
+      playerName,
+      newContractExpires,
+      transferFeeInEth
+    );
+  }
+
+  async getTeamTransferOffers(
+    teamWalletAddress: string
+  ): Promise<TransferOffer[]> {
+    if (!this.contract) throw new Error('Contract not loaded');
+    return this.transferService.getTeamTransferOffers(
+      this.contract,
+      teamWalletAddress
+    );
+  }
+  async getTeamOutgoingOffers(
+  teamWalletAddress: string
+): Promise<TransferOffer[]> {
+  if (!this.contract) throw new Error('Contract not loaded');
+  return this.transferService.getTeamOutgoingOffers(
+    this.contract,
+    teamWalletAddress
+  );
+}
 
   
 }

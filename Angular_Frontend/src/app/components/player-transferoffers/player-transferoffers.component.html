@@ -1,1 +1,83 @@
-<p>player-transferoffers.component works!</p>
+<h2>Értesítéseim és Tranzakcióim</h2>
+
+<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+<div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+
+<div class="tabs-container">
+  <button
+    (click)="selectTab('pending')"
+    [class.active]="activeTab === 'pending'"
+  >
+    Függőben lévő ajánlatok ({{ pendingOffers.length }})
+  </button>
+  <button
+    (click)="selectTab('accepted')"
+    [class.active]="activeTab === 'accepted'"
+  >
+    Elfogadott ({{ acceptedOffers.length }})
+  </button>
+  <button
+    (click)="selectTab('rejected')"
+    [class.active]="activeTab === 'rejected'"
+  >
+    Elutasított ({{ rejectedOffers.length }})
+  </button>
+</div>
+
+<div *ngIf="isLoading" class="loading-overlay">
+  <p>Tranzakció feldolgozása a blokkláncon... Kérjük, várjon.</p>
+</div>
+
+
+<div class="tab-content">
+
+  <div *ngIf="activeTab === 'pending'">
+    <ul *ngIf="pendingOffers.length > 0; else noPendingOffers">
+      <li *ngFor="let offer of pendingOffers" class="offer-card">
+        <div class="offer-details">
+    <p><strong>Csapat:</strong> <span>{{ offer.teamName }}</span></p>
+    <p><strong>Díj:</strong> <span>{{ formatFeeInEth(offer.transferFee) }} ETH</span></p>
+    <p>
+      <strong>Szerződés lejárata:</strong>
+      <span>{{ offer.contractExpires | date:'yyyy.MM.dd.' }}</span>
+    </p>
+    <p><strong>Dátum:</strong> <span>{{ offer.timestamp | date:'short' }}</span></p>
+  </div>
+        <div class="offer-actions">
+          <button (click)="acceptOffer(offer.offerId)" class="accept-btn" [disabled]="isLoading">Elfogadom</button>
+          <button (click)="rejectOffer(offer.offerId)" class="reject-btn" [disabled]="isLoading">Elutasítom</button>
+        </div>
+      </li>
+    </ul>
+    <ng-template #noPendingOffers><p>Nincsenek függőben lévő ajánlataid.</p></ng-template>
+  </div>
+
+
+  <div *ngIf="activeTab === 'accepted'">
+    <ul *ngIf="acceptedOffers.length > 0; else noAcceptedOffers">
+      <li *ngFor="let offer of acceptedOffers" class="offer-card accepted-card">
+        <div class="offer-details">
+          <p><strong>Csapat:</strong> <span>{{ offer.teamName }}</span></p>
+          <p><strong>Díj:</strong> <span>{{ formatFeeInEth(offer.transferFee) }} ETH</span></p>
+          <p><strong>Szerződés:</strong> <span>{{ offer.contractExpires }} nap</span></p>
+          <p><strong>Dátum:</strong> <span>{{ offer.timestamp | date:'short' }}</span></p>
+        </div>
+      </li>
+    </ul>
+    <ng-template #noAcceptedOffers><p>Nincsenek korábbi elfogadott ajánlataid.</p></ng-template>
+  </div>
+
+  <div *ngIf="activeTab === 'rejected'">
+    <ul *ngIf="rejectedOffers.length > 0; else noRejectedOffers">
+      <li *ngFor="let offer of rejectedOffers" class="offer-card rejected-card">
+        <div class="offer-details">
+          <p><strong>Csapat:</strong> <span>{{ offer.teamName }}</span></p>
+          <p><strong>Díj:</strong> <span>{{ formatFeeInEth(offer.transferFee) }} ETH</span></p>
+          <p><strong>Szerződés:</strong> <span>{{ offer.contractExpires }} nap</span></p>
+          <p><strong>Dátum:</strong> <span>{{ offer.timestamp | date:'short' }}</span></p>
+        </div>
+      </li>
+    </ul>
+    <ng-template #noRejectedOffers><p>Nincsenek korábbi elutasított ajánlataid.</p></ng-template>
+  </div>
+</div>

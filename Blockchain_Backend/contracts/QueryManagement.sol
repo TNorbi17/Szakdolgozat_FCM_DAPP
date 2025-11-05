@@ -241,5 +241,27 @@ function getPlayerTransferOffers(address _playerWalletAddress)
     
     return freshOffers;
 }
+function getTeamOutgoingOffers(address _teamWalletAddress)
+        external
+        view
+        returns (Structs.TransferOffer[] memory)
+    {
+        require(
+            users[_teamWalletAddress].userType == Enums.UserType.Team,
+            "Address is not a team."
+        );
+
+        uint256[] storage offerIds = teamOfferIds[_teamWalletAddress];
+
+        Structs.TransferOffer[] memory outgoingOffers = new Structs.TransferOffer[](
+            offerIds.length
+        );
+
+        for (uint i = 0; i < offerIds.length; i++) {
+            outgoingOffers[i] = offers[offerIds[i]];
+        }
+
+        return outgoingOffers;
+    }
     
 }

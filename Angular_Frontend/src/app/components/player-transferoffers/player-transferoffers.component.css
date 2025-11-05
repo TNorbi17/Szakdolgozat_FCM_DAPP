@@ -1,0 +1,507 @@
+h2 {
+  color: #1a1a2e;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.error-message,
+.success-message {
+  padding: 16px 24px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  animation: slideDown 0.4s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.error-message {
+  color: #fff;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+  border-left: 5px solid #c0392b;
+}
+
+.success-message {
+  color: #fff;
+  background: linear-gradient(135deg, #51cf66, #37b24d);
+  border-left: 5px solid #2d8659;
+}
+
+
+.tabs-container {
+  display: flex;
+  gap: 0;
+  background: rgba(102, 126, 234, 0.05);
+  border-radius: 16px;
+  padding: 8px;
+  margin-bottom: 35px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.tabs-container::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  opacity: 0.3;
+}
+
+.tabs-container button {
+  flex: 1;
+  padding: 16px 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6c757d;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tabs-container button:hover {
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.08);
+  transform: translateY(-2px);
+}
+
+.tabs-container button.active {
+  color: #fff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
+}
+
+.tabs-container button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #667eea;
+}
+
+
+.tab-content {
+  animation: fadeInContent 0.4s ease-out;
+}
+
+@keyframes fadeInContent {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.offer-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  padding: 25px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  border-left: 6px solid #667eea;
+  animation: slideInCard 0.5s ease-out backwards;
+}
+
+.offer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.03), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.offer-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.2);
+}
+
+.offer-card:hover::before {
+  opacity: 1;
+}
+
+@keyframes slideInCard {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+
+.accepted-card {
+  border-left-color: #28a745;
+  background: linear-gradient(135deg, #ffffff 0%, #f0fff4 100%);
+}
+
+.accepted-card::after {
+  content: '✓';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+  opacity: 0.9;
+}
+
+.rejected-card {
+  border-left-color: #dc3545;
+  background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%);
+}
+
+.rejected-card::after {
+  content: '✗';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+  opacity: 0.9;
+}
+
+.offer-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.offer-details p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #495057;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.offer-details p:hover {
+  background: #e9ecef;
+}
+
+.offer-details strong {
+  color: #6c757d;
+  min-width: 160px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.offer-details span {
+  font-weight: 600;
+  color: #2c3e50;
+  flex: 1;
+}
+
+.offer-actions {
+  display: flex;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+.offer-actions button {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.offer-actions button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.offer-actions button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.offer-actions button:hover {
+  transform: translateY(-3px);
+}
+
+.offer-actions button:active {
+  transform: translateY(0);
+}
+
+.offer-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.accept-btn {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+}
+
+.accept-btn:hover {
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.5);
+}
+
+.reject-btn {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+}
+
+.reject-btn:hover {
+  box-shadow: 0 8px 25px rgba(220, 53, 69, 0.5);
+}
+
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.loading-overlay p {
+  background: white;
+  padding: 30px 50px;
+  border-radius: 16px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+.tab-content > p {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 16px;
+  color: #6c757d;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 40px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.tab-content > p::before {
+  content: '📭';
+  display: block;
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 2rem;
+  }
+
+  .tabs-container {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .tabs-container button {
+    padding: 14px 20px;
+    font-size: 0.95rem;
+  }
+
+  .tabs-container button.active::after {
+    display: none;
+  }
+
+  .offer-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .offer-details {
+    width: 100%;
+  }
+
+  .offer-details p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .offer-details strong {
+    min-width: unset;
+  }
+
+  .offer-actions {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .offer-actions button {
+    flex: 1;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+
+  .accepted-card::after,
+  .rejected-card::after {
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+  }
+
+  .tab-content > p::before {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .tabs-container button {
+    padding: 12px 16px;
+    font-size: 0.85rem;
+  }
+
+  .offer-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .loading-overlay p {
+    padding: 25px 30px;
+    font-size: 1rem;
+  }
+}
