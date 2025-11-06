@@ -16,7 +16,7 @@ export class ValidationUtil {
       throw new Error('Web3 not loaded');
     }
   }
-
+  
   static validateAll(contract: any, account: any, web3: any): void {
     this.validateContract(contract);
     this.validateAccount(account);

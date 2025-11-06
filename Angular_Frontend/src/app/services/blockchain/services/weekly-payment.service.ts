@@ -42,38 +42,21 @@ export class WeeklyPaymentService {
         value: valueWei,
       });
 
-      console.log('✅ Call sikeres, most send...');
-
       return await contract.methods['executeWeeklyPayment'](playerWallet).send({
         from: account,
         value: valueWei,
       });
     } catch (error: any) {
       
-
       let errorMessage = 'Ismeretlen hiba történt';
 
       if (error.message) {
         errorMessage = error.message;
       }
 
-      if (error.data && error.data.message) {
-        errorMessage = error.data.message;
-      }
-
-      if (errorMessage.includes('No active payment')) {
-        throw new Error('Nincs aktív heti fizetés beállítva.');
-      } else if (errorMessage.includes('Not your payment')) {
-        throw new Error('Ez nem a te heti fizetésed.');
-      } else if (errorMessage.includes('Already paid in last 7 days')) {
-        throw new Error('Az elmúlt 7 napban már történt fizetés.');
-      } else if (errorMessage.includes('Incorrect ETH amount')) {
-        throw new Error(
-          `Helytelen ETH összeg. Várt: ${weeklyPayment.amountEth} ETH`
-        );
-      } else {
-        throw new Error(`Hiba a heti fizetés végrehajtásakor: ${errorMessage}`);
-      }
+      if (errorMessage.includes('VM Exception while processing transaction: revert')) {
+        alert("Jelenleg nem esedékes a játékos heti fizetésének kezdeményezése! A legutolsó fizetése óta nem telt el egy hét!");
+      } 
     }
   }
 

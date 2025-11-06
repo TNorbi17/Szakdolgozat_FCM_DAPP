@@ -22,6 +22,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { TeamDashboardComponent } from './components/team-dashboard/team-dashboard.component';
 import { TeamTranzactionsComponent } from './components/team-tranzactions/team-tranzactions.component';
 import { HomeComponent } from './components/home/home.component';
+import { PaymentHistoryComponent } from './components/player-payment-history/payment-history.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { HomeComponent } from './components/home/home.component';
     ProfileComponent,
     RegisterComponent,
     TeamDashboardComponent,
-    TeamTranzactionsComponent
+    TeamTranzactionsComponent,
+    PaymentHistoryComponent
   ],
   imports: [
     BrowserModule,MatDatepickerModule,

@@ -21,8 +21,8 @@ abstract contract BaseStorage {
     mapping(address => Structs.Bonus[]) public playerBonuses;
     mapping(address => Structs.Penalty[]) public playerPenalties;
     mapping(uint256 => Structs.Penalty) public penalties;
+    mapping(address => Structs.PaymentHistory[]) public playerPaymentHistory;
 
-    
     mapping(address => Structs.WeeklyPayment) public playerWeeklyPayments;
 
     // ID counters
@@ -32,6 +32,7 @@ abstract contract BaseStorage {
     uint256 internal nextBonusId = 1;
     uint256 internal nextPenaltyId = 1;
     uint256 internal nextWeeklyPaymentId = 1;
+    uint256 internal nextPaymentHistoryId = 1;
 
     // Constants
     string constant FREE_AGENT = unicode"szabadúszó";

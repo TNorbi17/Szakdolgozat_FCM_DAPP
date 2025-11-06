@@ -1,0 +1,111 @@
+<div class="payment-history-container">
+  <h2>Fizetési előzmények</h2>
+  
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  
+  <div *ngIf="isLoading" class="loading-message">
+    <div class="spinner"></div>
+    <p>Fizetési előzmények betöltése...</p>
+  </div>
+  
+  <div *ngIf="!isLoading && !errorMessage">
+
+    <div class="stats-grid">
+      <div class="stat-card total-payments">
+        <div class="stat-content">
+          <h3>{{ totalPayments }}</h3>
+          <p>Összes tranzakció</p>
+        </div>
+      </div>
+      
+      <div class="stat-card total-earned">
+        <div class="stat-content">
+          <h3>{{ totalAmountReceived | number:'1.4-4' }} ETH</h3>
+          <p>Összesen kapott</p>
+        </div>
+      </div>
+      
+      <div class="stat-card average-weekly" *ngIf="weeklyPaymentsOnly.length > 0">
+
+        <div class="stat-content">
+          <h3>{{ averageWeeklyPayment | number:'1.4-4' }} ETH</h3>
+          <p>Átlagos heti fizetés</p>
+        </div>
+      </div>
+      
+      <div class="stat-card last-payment" *ngIf="lastPaymentDate">
+        <div class="stat-content">
+          <h3>{{ formatDate(lastPaymentDate) }}</h3>
+          <p>Utolsó fizetés</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="controls-panel">
+      
+      <div class="sort-controls">
+        <span>Rendezés:</span>
+        <button 
+          class="sort-btn"
+          [class.active]="sortBy === 'date'"
+          (click)="changeSorting('date')"
+        >
+          Dátum {{ sortBy === 'date' ? (sortDirection === 'asc' ? '↑' : '↓') : '' }}
+        </button>
+        <button 
+          class="sort-btn"
+          [class.active]="sortBy === 'amount'"
+          (click)="changeSorting('amount')"
+        >
+          Összeg {{ sortBy === 'amount' ? (sortDirection === 'asc' ? '↑' : '↓') : '' }}
+        </button>
+        <button 
+          class="sort-btn"
+          [class.active]="sortBy === 'team'"
+          (click)="changeSorting('team')"
+        >
+          Csapat {{ sortBy === 'team' ? (sortDirection === 'asc' ? '↑' : '↓') : '' }}
+        </button>
+      </div>
+    </div>
+
+    <div class="payments-list" *ngIf="getDisplayedPayments().length > 0">
+      <div 
+        *ngFor="let payment of getDisplayedPayments(); trackBy: trackByPaymentId"
+        class="payment-card"
+        [class]="'payment-type-' + payment.paymentType"
+      >
+        <div class="payment-header">
+          <div class="payment-type">
+            <span class="type-text">{{ getPaymentTypeText(payment.paymentType) }}</span>
+          </div>
+          <div class="payment-amount">
+            <span class="amount">{{ payment.amountEth | number:'1.4-4' }} ETH</span>
+          </div>
+        </div>
+        
+        <div class="payment-details">
+          <div class="detail-row">
+            <span class="label">Csapat:</span>
+            <span class="value">{{ payment.teamName }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Dátum:</span>
+            <span class="value">{{ formatDate(payment.paymentTimestamp) }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Tranzakció ID:</span>
+            <span class="value transaction-id">#{{ payment.id }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div *ngIf="getDisplayedPayments().length === 0" class="no-payments">
+      <h3>Nincsenek fizetési előzmények</h3>
+      <p *ngIf="showOnlyWeekly">Még nem kapott heti fizetést.</p>
+      <p *ngIf="!showOnlyWeekly">Még nem kapott semmilyen fizetést.</p>
+    </div>
+  </div>
+</div>

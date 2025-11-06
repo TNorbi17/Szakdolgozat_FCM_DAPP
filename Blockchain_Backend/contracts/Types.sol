@@ -98,4 +98,14 @@ library Structs {
         uint256 lastPaidAmount;
         bool active;
     }
+
+    struct PaymentHistory {
+    uint256 id;
+    address teamAddress;
+    string teamName;
+    address playerAddress;
+    uint256 amountWei;
+    uint256 paymentTimestamp;
+    string paymentType;
+}
 }

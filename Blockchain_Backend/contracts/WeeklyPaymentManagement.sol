@@ -77,6 +77,16 @@ contract WeeklyPaymentManagement is
         wp.lastPaidAmount = msg.value;
         payable(wp.playerAddress).transfer(wp.amountWei);
 
+        string memory teamName = users[msg.sender].entityName;
+            playerPaymentHistory[_playerAddress].push(Structs.PaymentHistory({
+                id: nextPaymentHistoryId++,
+                teamAddress: msg.sender,
+                teamName: teamName,
+                playerAddress: _playerAddress,
+                amountWei: wp.amountWei,
+                paymentTimestamp: block.timestamp,
+                paymentType: "weekly"
+            }));
         emit WeeklyPaymentExecuted(
             wp.id,
             msg.sender,

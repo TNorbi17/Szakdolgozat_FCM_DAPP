@@ -88,6 +88,60 @@ export interface WeeklyPayment {
 
 }
 
+export interface PaymentHistory {
+  id: number;
+  teamAddress: string;
+  teamName: string;
+  playerAddress: string;
+  amountWei: string;
+  amountEth: number;
+  paymentTimestamp: Date;
+  paymentType: string;
+}
+
 export type Transaction =
   | (Bonus & { type: 'bonus'; playerName: string })
   | (Penalty & { type: 'penalty'; playerName: string });
+
+
+  export interface PaymentStatistics {
+  total: {
+    count: number;
+    amount: number;
+    average: number;
+  };
+  weekly: {
+    count: number;
+    amount: number;
+    average: number;
+  };
+  bonuses: {
+    count: number;
+    amount: number;
+    average: number;
+  };
+  penaltyRefunds: {
+    count: number;
+    amount: number;
+    average: number;
+  };
+  lastPaymentDate: Date | null;
+  uniqueTeams: string[];
+}
+
+export interface TeamPaymentStatistics {
+  totalPaidOut: number;
+  totalWeeklyPayments: number;
+  totalBonuses: number;
+  totalPenalties: number;
+  playerCount: number;
+  averagePerPlayer: number;
+  paymentsByPlayer: { [playerName: string]: number };
+}
+
+export interface PaymentFilter {
+  paymentType?: string;
+  teamName?: string;
+  dateFrom?: Date;
+  dateTo?: Date;
+}

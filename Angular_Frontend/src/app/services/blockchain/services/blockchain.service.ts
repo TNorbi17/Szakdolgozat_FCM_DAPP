@@ -9,7 +9,8 @@ import {
   Bonus,
   Penalty,
   Transaction,
-  WeeklyPayment
+  WeeklyPayment,
+  PaymentHistory
   
 } from '../models';
 import { Web3InitService } from './web3-init.service';
@@ -483,6 +484,24 @@ async getUnpaidPenaltiesAmount(playerWalletAddress: string): Promise<string> {
     this.web3,
     playerName,
     compensationInEth
+  );
+}
+
+async getPlayerPaymentHistory(playerWalletAddress: string): Promise<PaymentHistory[]> {
+  if (!this.contract || !this.web3) throw new Error('Contract or web3 not loaded');
+  return this.transactionService.getPlayerPaymentHistory(
+    this.contract,
+    this.web3,
+    playerWalletAddress
+  );
+}
+
+async getPlayerWeeklyPaymentsOnly(playerWalletAddress: string): Promise<PaymentHistory[]> {
+  if (!this.contract || !this.web3) throw new Error('Contract or web3 not loaded');
+  return this.transactionService.getPlayerWeeklyPaymentsOnly(
+    this.contract,
+    this.web3,
+    playerWalletAddress
   );
 }
 }

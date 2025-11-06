@@ -9,6 +9,8 @@
     
     <ng-container *ngIf="currentUser">
       <a routerLink="/profile" routerLinkActive="active-link" (click)="closeMenu()">Profil</a>
+       <a routerLink="/pmhistory" routerLinkActive="active-link" (click)="closeMenu()">Fizetések</a>
+    
       
       
       <ng-container *ngIf="currentUser.userType === userTypeEnum.Team">

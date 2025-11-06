@@ -12,6 +12,7 @@ import { PlayerDashboardComponent } from './components/player-dashboard/player-d
 import { TeamTranzactionsComponent } from './components/team-tranzactions/team-tranzactions.component';
 import { authGuard } from './guards/auth-guard';
 import { UserType } from './services/blockchain/models/enums';
+import { PaymentHistoryComponent } from './components/player-payment-history/payment-history.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -57,6 +58,13 @@ const routes: Routes = [
     canActivate: [authGuard],
     data: { userType: UserType.Team } 
   },
+  {
+    path: 'pmhistory',
+    component: PaymentHistoryComponent,
+    canActivate: [authGuard],
+    
+  },
+  
   { path: '**', redirectTo: '' }
 ];
 

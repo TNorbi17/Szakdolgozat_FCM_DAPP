@@ -3,7 +3,9 @@ import {
   TransferOffer,
   Bonus,
   Penalty,
-  OfferStatus
+  OfferStatus,
+  PaymentHistory,
+  PaymentStatistics
 } from '../models';
 
 export class DataMapper {
@@ -117,4 +119,131 @@ export class DataMapper {
   static hasUnpaidPenalties(penalties: Penalty[]): boolean {
     return penalties.some(penalty => !penalty.paid);
   }
+
+  static mapPaymentHistory(paymentData: any, web3?: any): PaymentHistory {
+  
+
+  if (!paymentData || typeof paymentData !== 'object') {
+    throw new Error('Invalid payment data structure - not an object');
+  }
+
+
+  const convertBigInt = (value: any): string => {
+    return typeof value === 'bigint' ? value.toString() : value?.toString() || '0';
+  };
+
+  const convertBigIntToNumber = (value: any): number => {
+    return typeof value === 'bigint' ? Number(value) : Number(value) || 0;
+  };
+
+
+  return {
+    id: convertBigIntToNumber(paymentData[0] || paymentData.id),
+    teamAddress: paymentData[1] || paymentData.teamAddress || '',
+    teamName: paymentData[2] || paymentData.teamName || '',
+    playerAddress: paymentData[3] || paymentData.playerAddress || '',
+    amountWei: convertBigInt(paymentData[4] || paymentData.amount),
+    amountEth: web3 && (paymentData[4] || paymentData.amount) ? 
+      parseFloat(web3.utils.fromWei(convertBigInt(paymentData[4] || paymentData.amount), 'ether')) : 0,
+    paymentTimestamp: paymentData[5] || paymentData.timestamp ? 
+      new Date(convertBigIntToNumber(paymentData[5] || paymentData.timestamp) * 1000) : new Date(),
+    paymentType: paymentData[6] || paymentData.paymentType || 'unknown'
+  };
+}
+
+  static mapPaymentHistories(paymentsData: any[], web3?: any): PaymentHistory[] {
+    if (!Array.isArray(paymentsData)) {
+      console.error('Expected array but received:', paymentsData);
+      return [];
+    }
+
+    const validPayments: PaymentHistory[] = [];
+    
+    paymentsData.forEach((payment, index) => {
+      try {
+        const mappedPayment = this.mapPaymentHistory(payment, web3);
+        validPayments.push(mappedPayment);
+      } catch (error) {
+        console.warn(`Skipping invalid payment at index ${index}:`, error);
+      }
+    });
+
+    return validPayments;
+  }
+
+  
+  static filterPaymentsByType(payments: PaymentHistory[], type: string): PaymentHistory[] {
+    return payments.filter(payment => payment.paymentType === type);
+  }
+
+  static getWeeklyPaymentsOnly(payments: PaymentHistory[]): PaymentHistory[] {
+    return this.filterPaymentsByType(payments, 'weekly');
+  }
+
+  static getPaymentsByTeam(payments: PaymentHistory[], teamName: string): PaymentHistory[] {
+    return payments.filter(payment => payment.teamName === teamName);
+  }
+
+  static getPaymentsInDateRange(
+    payments: PaymentHistory[], 
+    startDate: Date, 
+    endDate: Date
+  ): PaymentHistory[] {
+    return payments.filter(payment => {
+      const paymentDate = payment.paymentTimestamp;
+      return paymentDate >= startDate && paymentDate <= endDate;
+    });
+  }
+
+ 
+  static calculateTotalEarnings(payments: PaymentHistory[]): number {
+    return payments.reduce((total, payment) => total + payment.amountEth, 0);
+  }
+
+  static calculateAveragePayment(payments: PaymentHistory[]): number {
+    if (payments.length === 0) return 0;
+    return this.calculateTotalEarnings(payments) / payments.length;
+  }
+
+  static getLastPaymentDate(payments: PaymentHistory[]): Date | null {
+    if (payments.length === 0) return null;
+    
+    const sortedPayments = [...payments].sort(
+      (a, b) => b.paymentTimestamp.getTime() - a.paymentTimestamp.getTime()
+    );
+    
+    return sortedPayments[0].paymentTimestamp;
+  }
+
+
+  static sortPayments(
+    payments: PaymentHistory[], 
+    sortBy: 'date' | 'amount' | 'team' | 'type', 
+    direction: 'asc' | 'desc' = 'desc'
+  ): PaymentHistory[] {
+    const sorted = [...payments].sort((a, b) => {
+      let comparison = 0;
+      
+      switch (sortBy) {
+        case 'date':
+          comparison = a.paymentTimestamp.getTime() - b.paymentTimestamp.getTime();
+          break;
+        case 'amount':
+          comparison = a.amountEth - b.amountEth;
+          break;
+        case 'team':
+          comparison = a.teamName.localeCompare(b.teamName);
+          break;
+        case 'type':
+          comparison = a.paymentType.localeCompare(b.paymentType);
+          break;
+      }
+      
+      return direction === 'asc' ? comparison : -comparison;
+    });
+    
+    return sorted;
+  }
+
+ 
 }

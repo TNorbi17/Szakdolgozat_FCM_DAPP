@@ -97,4 +97,15 @@ function getUnpaidPenaltiesAmount(address _playerWalletAddress)
     external
     view
     returns (uint256);
+
+
+function getPlayerPaymentHistory(address _playerWalletAddress)
+    external
+    view
+    returns (Structs.PaymentHistory[] memory);
+
+function getPlayerWeeklyPaymentsOnly(address _playerWalletAddress)
+    external
+    view
+    returns (Structs.PaymentHistory[] memory);
 }

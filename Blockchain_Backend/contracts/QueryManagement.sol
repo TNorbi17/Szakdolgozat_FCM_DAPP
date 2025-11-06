@@ -332,4 +332,46 @@ function hasUnpaidPenalties(address _playerWalletAddress)
         
         return totalAmount;
     }
+
+
+    function getPlayerPaymentHistory(address _playerWalletAddress)
+        external
+        view
+        override
+        returns (Structs.PaymentHistory[] memory)
+    {
+        return playerPaymentHistory[_playerWalletAddress];
+    }
+
+    function getPlayerWeeklyPaymentsOnly(address _playerWalletAddress)
+        external
+        view
+        override
+        returns (Structs.PaymentHistory[] memory)
+    {
+        Structs.PaymentHistory[] storage allPayments = playerPaymentHistory[_playerWalletAddress];
+        
+        
+        uint256 weeklyCount = 0;
+        for (uint256 i = 0; i < allPayments.length; i++) {
+            if (keccak256(abi.encodePacked(allPayments[i].paymentType)) == 
+                keccak256(abi.encodePacked("weekly"))) {
+                weeklyCount++;
+            }
+        }
+        
+
+        Structs.PaymentHistory[] memory weeklyPayments = new Structs.PaymentHistory[](weeklyCount);
+        uint256 currentIndex = 0;
+        
+        for (uint256 i = 0; i < allPayments.length; i++) {
+            if (keccak256(abi.encodePacked(allPayments[i].paymentType)) == 
+                keccak256(abi.encodePacked("weekly"))) {
+                weeklyPayments[currentIndex] = allPayments[i];
+                currentIndex++;
+            }
+        }
+        
+        return weeklyPayments;
+    }
 }
