@@ -40,4 +40,5 @@ interface ITransferManagement {
     function rejectTransferOffer(uint256 _offerId) external;
 
     function releasePlayer(string memory _playerName) external payable;
+    function releasePlayerByTeam(string memory _playerName) external payable;
 }

@@ -469,7 +469,22 @@ async getUnpaidPenaltiesAmount(playerWalletAddress: string): Promise<string> {
   if (!this.contract || !this.web3) throw new Error('Contract or web3 not loaded');
   return this.penaltyService.getUnpaidPenaltiesAmount(this.contract, this.web3, playerWalletAddress);
 }
-  
+  async releasePlayerByTeam(
+  playerName: string, 
+  compensationInEth: string
+): Promise<any> {
+  await this.getContractReadyPromise();
+  if (!this.contract || !this.account || !this.web3) {
+    throw new Error('Contract, account or web3 not loaded');
+  }
+  return this.playerService.releasePlayerByTeam(
+    this.contract,
+    this.account,
+    this.web3,
+    playerName,
+    compensationInEth
+  );
+}
 }
 
 export { Web3InitService, SessionService };

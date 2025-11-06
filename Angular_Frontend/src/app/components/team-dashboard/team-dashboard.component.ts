@@ -293,4 +293,52 @@ isOverdue(playerWallet: string): boolean {
   return daysPassed > 14;
 }
 
+
+releaseAmounts: { [wallet: string]: number } = {};
+showReleaseForm: { [wallet: string]: boolean } = {};
+
+toggleReleaseForm(playerWallet: string): void {
+  this.showReleaseForm[playerWallet] = !this.showReleaseForm[playerWallet];
+}
+
+async releasePlayerByTeam(playerWallet: string): Promise<void> {
+  const player = this.teamPlayers.find(p => p.walletAddress === playerWallet);
+  if (!player) {
+    this.errorMessage = 'Játékos nem található.';
+    return;
+  }
+
+  const amount = this.releaseAmounts[playerWallet];
+  if (!amount || amount <= 0) {
+    this.errorMessage = 'Érvénytelen kártérítési összeg (minimum 0.001 ETH).';
+    return;
+  }
+
+  const confirmed = confirm(
+    `Biztosan el szeretné küldeni ${player.name} játékost? ` +
+    `Kártérítésként ${amount} ETH kerül átutalásra a játékosnak.`
+  );
+
+  if (!confirmed) return;
+
+  this.isLoading = true;
+  this.errorMessage = '';
+  this.successMessage = '';
+
+  try {
+    await this.blockchainService.releasePlayerByTeam(player.name, amount.toString());
+    this.successMessage = `${player.name} sikeresen elküldve! ${amount} ETH kártérítés elküldve.`;
+
+    await this.loadTeamPlayers();
+    
+    delete this.releaseAmounts[playerWallet];
+    delete this.showReleaseForm[playerWallet];
+    this.isLoading = false;
+    
+  } catch (error: any) {
+    this.errorMessage = `Hiba a játékos elküldésekor: ${error.message || error.toString()}`;
+  } finally {
+    this.isLoading = false;
+  }
+}
 }

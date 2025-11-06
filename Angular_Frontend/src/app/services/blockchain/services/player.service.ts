@@ -117,6 +117,29 @@ async refreshExpiredContracts(
       });
   });
 }
-
+  async releasePlayerByTeam(
+  contract: Contract<AbiItem[]>,
+  account: string,
+  web3: Web3,
+  playerName: string,
+  compensationInEth: string
+): Promise<any> {
+  ValidationUtil.validateAll(contract, account, web3);
+  
+  const compensationInWei = web3.utils.toWei(compensationInEth, 'ether');
+  
+  return new Promise((resolve, reject) => {
+    contract.methods['releasePlayerByTeam'](playerName)
+      .send({ from: account, value: compensationInWei })
+      .on('receipt', (receipt: any) => {
+        console.log('Player released by team:', receipt);
+        resolve(receipt);
+      })
+      .on('error', (error: any) => {
+        console.error('Release failed:', error);
+        reject(error);
+      });
+  });
+}
 
 }

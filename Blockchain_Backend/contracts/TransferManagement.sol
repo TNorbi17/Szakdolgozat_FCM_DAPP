@@ -233,4 +233,40 @@ contract TransferManagement is
             }
         }
     }
+
+    function releasePlayerByTeam(string memory _playerName) 
+    external 
+    payable 
+    override 
+    onlyTeam 
+{
+    require(msg.value > 0, "Compensation must be > 0.");
+    
+    Structs.Player storage player = playersByName[_playerName];
+    require(bytes(player.name).length != 0, "Player not found.");
+    require(!player.isFreeAgent, "Player is already a free agent.");
+    
+    Structs.Team storage currentTeam = teamsByName[users[msg.sender].entityName];
+    require(bytes(currentTeam.name).length != 0, "Team not found.");
+    require(
+        keccak256(abi.encodePacked(player.teamName)) == 
+        keccak256(abi.encodePacked(currentTeam.name)), 
+        "Player is not in your team."
+    );
+    
+    payable(player.walletAddress).transfer(msg.value);
+    
+    string memory oldTeamName = player.teamName;
+    address oldTeamAddr = currentTeam.walletAddress;
+    
+    player.makePlayerFreeAgent();
+    currentTeam.removePlayerFromTeam(player.walletAddress);
+    
+    emit PlayerReleased(
+        player.walletAddress,
+        player.name,
+        oldTeamAddr,
+        oldTeamName
+    );
+}
 }
