@@ -53,6 +53,22 @@
   </div>
 
   <div class="contract-status-section" *ngIf="userDetails.userType === userTypeEnum.Player">
+    
+    <!-- Kifizetetlen büntetések figyelmeztető blokk -->
+    <div *ngIf="userDetails.hasUnpaidPenalties" class="unpaid-penalties-warning">
+      <h1>FIGYELEM!</h1>
+      <hr>
+      <h3>Kifizetetlen büntetések</h3>
+      <p class="warning-text">
+        <strong>{{ userDetails.unpaidPenaltiesCount }}</strong> darab kifizetetlen büntetésed van, 
+        összesen <strong>{{ userDetails.unpaidPenaltiesAmount }} ETH</strong> értékben.
+      </p>
+      <p class="info-text">
+        A klub elhagyásához először ki kell fizetned az összes büntetést.
+        <a routerLink="/tranz" class="penalty-link">Büntetések kezelése</a>
+      </p>
+    </div>
+
     <div class="update-status-action">
       <p *ngIf="!isLoading && (!userDetails.isFreeAgent || (userDetails.contractExpires && userDetails.contractExpires < today))" class="info-text">
         Ha a szerződésed lejár, automatiksan értesítünk téged. Ekkor egy tranzakciót kapsz aminek az elfogadásával szabadúszóvá válhatsz!
@@ -60,19 +76,45 @@
     </div>
 
     <div class="release-contract-action" *ngIf="userDetails.userType === userTypeEnum.Player && !userDetails.isFreeAgent">
-        <hr> 
-        <h4>Szerződés felbontása</h4>
+      <hr> 
+      <h3>Szerződés felbontása</h3>
+      
+      <div *ngIf="userDetails.hasUnpaidPenalties" class="penalty-block-warning">
+        <p class="error-message">
+          A szerződés felbontása nem lehetséges kifizetetlen büntetések miatt.
+        </p>
+        <p class="info-text">
+          Először fizess ki minden büntetést, majd próbáld újra.
+        </p>
+      </div>
+      
+      <div *ngIf="!userDetails.hasUnpaidPenalties" class="release-form">
         <div class="form-group">
           <label for="releaseFee">Felmondási díj (ETH):</label>
-          <input type="number" id="releaseFee" placeholder="pl. 0.1" [(ngModel)]="releaseFee">
+          <input 
+            type="number" 
+            id="releaseFee" 
+            placeholder="pl. 0.1" 
+            [(ngModel)]="releaseFee"
+            step="0.001"
+            min="0.001"
+          >
         </div>
-        <button class="release-button" (click)="releasePlayer()" [disabled]="isLoading || !releaseFee || releaseFee <= 0">
+        <button 
+          class="release-button" 
+          (click)="releasePlayer()" 
+          [disabled]="isLoading || !releaseFee || releaseFee <= 0"
+        >
           Szerződés felbontása
         </button>
         <p class="info-text">
           A szerződés felbontásával szabadúszóvá válsz. Ez a művelet a megadott díjat a jelenlegi csapatodnak utalja.
         </p>
       </div>
+      
+      
+    </div>
+  </div>
 </div>
 
 <div *ngIf="!currentUser">

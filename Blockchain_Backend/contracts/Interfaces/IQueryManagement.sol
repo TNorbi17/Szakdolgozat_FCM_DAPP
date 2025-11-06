@@ -81,4 +81,20 @@ interface IQueryManagement {
         external
         view
         returns (Structs.TransferOffer[] memory);
+    
+
+function hasUnpaidPenalties(address _playerWalletAddress)
+    external
+    view
+    returns (bool);
+
+function getUnpaidPenaltiesCount(address _playerWalletAddress)
+    external
+    view
+    returns (uint256);
+
+function getUnpaidPenaltiesAmount(address _playerWalletAddress)
+    external
+    view
+    returns (uint256);
 }

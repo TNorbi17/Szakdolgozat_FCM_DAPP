@@ -100,4 +100,21 @@ export class DataMapper {
     }
     return penaltiesData.map((penalty) => this.mapPenalty(penalty));
   }
+
+  static getUnpaidPenalties(penalties: Penalty[]): Penalty[] {
+    return penalties.filter(penalty => !penalty.paid);
+  }
+
+  static calculateUnpaidAmount(penalties: Penalty[]): string {
+    const unpaidPenalties = this.getUnpaidPenalties(penalties);
+    const totalAmount = unpaidPenalties.reduce((sum, penalty) => {
+      return sum + parseFloat(penalty.amount);
+    }, 0);
+    
+    return totalAmount.toString();
+  }
+
+  static hasUnpaidPenalties(penalties: Penalty[]): boolean {
+    return penalties.some(penalty => !penalty.paid);
+  }
 }

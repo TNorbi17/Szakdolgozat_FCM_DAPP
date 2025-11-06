@@ -10,6 +10,9 @@ export interface PlayerDetails {
   registrationTimestamp: Date;
   isFreeAgent: boolean;
   contractExpires: Date;
+  hasUnpaidPenalties?: boolean;
+  unpaidPenaltiesCount?: number;
+  unpaidPenaltiesAmount?: string;
 }
 export interface UserSession {
   walletAddress: string;
@@ -23,6 +26,9 @@ export interface UserSession {
   dateOfBirth?: Date;
   isFreeAgent?: boolean;
   contractExpires?: Date;
+  hasUnpaidPenalties?: boolean;
+  unpaidPenaltiesCount?: number;
+  unpaidPenaltiesAmount?: string;
   sessionInfo?: {
     isTemporary: boolean;
   };

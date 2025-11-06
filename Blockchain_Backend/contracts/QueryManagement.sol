@@ -280,4 +280,56 @@ function getTeamOutgoingOffers(address _teamWalletAddress)
     {
         return playerPenalties[_playerWalletAddress];
     }
+function hasUnpaidPenalties(address _playerWalletAddress)
+        external
+        view
+        override
+        returns (bool)
+    {
+        Structs.Penalty[] storage penalties = playerPenalties[_playerWalletAddress];
+        
+        for (uint256 i = 0; i < penalties.length; i++) {
+            if (!penalties[i].paid) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    function getUnpaidPenaltiesCount(address _playerWalletAddress)
+        external
+        view
+        override
+        returns (uint256)
+    {
+        Structs.Penalty[] storage penalties = playerPenalties[_playerWalletAddress];
+        uint256 unpaidCount = 0;
+        
+        for (uint256 i = 0; i < penalties.length; i++) {
+            if (!penalties[i].paid) {
+                unpaidCount++;
+            }
+        }
+        
+        return unpaidCount;
+    }
+
+    function getUnpaidPenaltiesAmount(address _playerWalletAddress)
+        external
+        view
+        override
+        returns (uint256)
+    {
+        Structs.Penalty[] storage penalties = playerPenalties[_playerWalletAddress];
+        uint256 totalAmount = 0;
+        
+        for (uint256 i = 0; i < penalties.length; i++) {
+            if (!penalties[i].paid) {
+                totalAmount += penalties[i].amount;
+            }
+        }
+        
+        return totalAmount;
+    }
 }

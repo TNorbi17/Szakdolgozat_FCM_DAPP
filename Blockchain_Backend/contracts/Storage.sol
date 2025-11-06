@@ -35,4 +35,20 @@ abstract contract BaseStorage {
 
     // Constants
     string constant FREE_AGENT = unicode"szabadúszó";
+
+    function _hasUnpaidPenalties(address _playerWalletAddress)
+        internal
+        view
+        returns (bool)
+    {
+        Structs.Penalty[] storage penalties = playerPenalties[_playerWalletAddress];
+        
+        for (uint256 i = 0; i < penalties.length; i++) {
+            if (!penalties[i].paid) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }

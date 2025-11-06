@@ -100,6 +100,7 @@ currentUser: UserSession | null = null;
         'Ajánlat sikeresen elfogadva! A profilod frissítve lett.';
       await this.updatePlayerSession(); 
       await this.loadTransferOffers(); 
+      this.isLoading = false;
     } catch (error: any) {
       this.isLoading = false;
       console.error('Hiba az ajánlat elfogadásakor:', error);
@@ -159,6 +160,7 @@ currentUser: UserSession | null = null;
       await this.blockchainService.rejectTransferOffer(offerId);
       this.successMessage = 'Ajánlat sikeresen elutasítva!';
       await this.loadTransferOffers();
+      this.isLoading = false;
     } catch (error: any) {
       this.isLoading = false;
       console.error('Hiba az ajánlat elutasításakor:', error);

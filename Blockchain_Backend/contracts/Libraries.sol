@@ -81,6 +81,8 @@ library PlayerLibrary {
             return true;
         }
         return false;
+
+        
     }
 
     function makePlayerFreeAgent(Structs.Player storage _player) internal {
@@ -97,5 +99,21 @@ library PlayerLibrary {
         _player.teamName = _teamName;
         _player.isFreeAgent = false;
         _player.contractExpires = _contractExpires;
+    }
+
+
+    function canReleaseFromTeam(
+        Structs.Player storage player,
+        mapping(address => Structs.Penalty[]) storage playerPenalties
+    ) internal view returns (bool) {
+        Structs.Penalty[] storage penalties = playerPenalties[player.walletAddress];
+        
+        for (uint256 i = 0; i < penalties.length; i++) {
+            if (!penalties[i].paid) {
+                return false;
+            }
+        }
+        
+        return true;
     }
 }

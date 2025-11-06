@@ -71,4 +71,74 @@ export class PenaltyService {
       value: weiAmount,
     });
   }
+
+  async hasUnpaidPenalties(
+    contract: Contract<AbiItem[]>,
+    playerWalletAddress: string
+  ): Promise<boolean> {
+    ValidationUtil.validateContract(contract); // CSAK contract ellenőrzés
+
+    try {
+      const result: unknown = await contract.methods[
+        'hasUnpaidPenalties'
+      ](playerWalletAddress).call();
+      
+      return Boolean(result);
+    } catch (error: any) {
+      console.error('Error checking unpaid penalties:', error);
+      throw new Error('Nem sikerült ellenőrizni a kifizetetlen büntetéseket.');
+    }
+  }
+
+  async getUnpaidPenaltiesCount(
+    contract: Contract<AbiItem[]>,
+    playerWalletAddress: string
+  ): Promise<number> {
+    ValidationUtil.validateContract(contract); // CSAK contract ellenőrzés
+
+    try {
+      const result: unknown = await contract.methods[
+        'getUnpaidPenaltiesCount'
+      ](playerWalletAddress).call();
+      
+      return Number(result);
+    } catch (error: any) {
+      console.error('Error getting unpaid penalties count:', error);
+      throw new Error('Nem sikerült lekérdezni a kifizetetlen büntetések számát.');
+    }
+  }
+
+  async getUnpaidPenaltiesAmount(
+    contract: Contract<AbiItem[]>,
+    web3: Web3,
+    playerWalletAddress: string
+  ): Promise<string> {
+    ValidationUtil.validateContract(contract); // CSAK contract ellenőrzés
+    ValidationUtil.validateWeb3(web3); // CSAK web3 ellenőrzés
+
+    try {
+      const result: unknown = await contract.methods[
+        'getUnpaidPenaltiesAmount'
+      ](playerWalletAddress).call();
+      
+      return web3.utils.fromWei(result as string, 'ether');
+    } catch (error: any) {
+      console.error('Error getting unpaid penalties amount:', error);
+      throw new Error('Nem sikerült lekérdezni a kifizetetlen büntetések összegét.');
+    }
+  }
+
+  // Segédfunkció a kifizetetlen büntetések lekérdezésére
+  async getUnpaidPenalties(
+    contract: Contract<AbiItem[]>,
+    playerWalletAddress: string
+  ): Promise<Penalty[]> {
+    ValidationUtil.validateContract(contract);
+
+    const allPenalties = await this.getPlayerPenalties(contract, playerWalletAddress);
+    return allPenalties.filter(penalty => !penalty.paid);
+  }
+
+
+
 }

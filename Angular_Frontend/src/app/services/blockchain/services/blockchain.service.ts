@@ -452,6 +452,23 @@ async getPlayerTransferOffers(
       playerWallet
     );
   }
+
+  // A BlockchainService-ben hozzáadni:
+
+async hasUnpaidPenalties(playerWalletAddress: string): Promise<boolean> {
+  if (!this.contract) throw new Error('Contract not loaded');
+  return this.penaltyService.hasUnpaidPenalties(this.contract, playerWalletAddress);
+}
+
+async getUnpaidPenaltiesCount(playerWalletAddress: string): Promise<number> {
+  if (!this.contract) throw new Error('Contract not loaded');
+  return this.penaltyService.getUnpaidPenaltiesCount(this.contract, playerWalletAddress);
+}
+
+async getUnpaidPenaltiesAmount(playerWalletAddress: string): Promise<string> {
+  if (!this.contract || !this.web3) throw new Error('Contract or web3 not loaded');
+  return this.penaltyService.getUnpaidPenaltiesAmount(this.contract, this.web3, playerWalletAddress);
+}
   
 }
 

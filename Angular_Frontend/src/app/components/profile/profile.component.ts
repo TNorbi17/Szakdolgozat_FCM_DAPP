@@ -7,24 +7,6 @@ import {
 import { UserType, PlayerPosition } from '../../services/blockchain/models/enums';import { interval, Subscription } from 'rxjs';
 
 
-
-// Interface a profiloldal adatainak pontosabb leírására
-interface ProfileDetails {
-  walletAddress: string;
-  userType: number;
-  email: string;
-  passwordHash: string;
-  name: string;
-  registrationTimestamp: Date;
-  // Opcionális, típus-specifikus mezők
-  foundationYear?: number;
-  position?: PlayerPosition;
-  teamName?: string;
-  dateOfBirth?: Date;
-  contractExpires?: Date; // VÁLTOZÁS: Hozzáadjuk a szerződés lejáratát
-  isFreeAgent?: boolean;
-}
-
 @Component({
   selector: 'app-profile',
   standalone: false,
@@ -33,7 +15,7 @@ interface ProfileDetails {
 })
 export class ProfileComponent implements OnInit {
   currentUser: UserSession | null = null;
-  userDetails: ProfileDetails | null = null;
+  userDetails: UserSession | null = null;
   errorMessage: string = '';
   userTypeEnum = UserType; 
   isLoading: boolean = false;
@@ -78,23 +60,21 @@ export class ProfileComponent implements OnInit {
       const timestampBigInt = BigInt(String(userData[5]));
       const timestampMilliseconds = Number(timestampBigInt * 1000n);
 
+      // UserSession objektum létrehozása
       this.userDetails = {
         walletAddress: userData[0],
         userType: Number(userData[1]),
         email: userData[2],
-        passwordHash: userData[3],
-        name: userData[4],
+        name: userData[4], // A passwordHash-t kihagyjuk
         registrationTimestamp: new Date(timestampMilliseconds),
       };
 
-      if (this.userDetails.userType === this.userTypeEnum.Team)
-      {
+      if (this.userDetails.userType === this.userTypeEnum.Team) {
         const teamData = await this.blockchainService.getTeamByName(
           this.userDetails.name
         );
         this.userDetails.foundationYear = Number(teamData[2]);
-      } else if (this.userDetails.userType === this.userTypeEnum.Player)
-      {
+      } else if (this.userDetails.userType === this.userTypeEnum.Player) {
         const playerData = await this.blockchainService.getPlayerByName(
           this.userDetails.name
         );
@@ -104,15 +84,37 @@ export class ProfileComponent implements OnInit {
         this.userDetails.contractExpires = playerData.contractExpires; 
         this.userDetails.isFreeAgent = playerData.isFreeAgent;
 
+        // ÚJ: Büntetések ellenőrzése
+        try {
+          this.userDetails.hasUnpaidPenalties = await this.blockchainService.hasUnpaidPenalties(
+            this.userDetails.walletAddress
+          );
+          
+          if (this.userDetails.hasUnpaidPenalties) {
+            this.userDetails.unpaidPenaltiesCount = await this.blockchainService.getUnpaidPenaltiesCount(
+              this.userDetails.walletAddress
+            );
+            this.userDetails.unpaidPenaltiesAmount = await this.blockchainService.getUnpaidPenaltiesAmount(
+              this.userDetails.walletAddress
+            );
+          } else {
+            this.userDetails.unpaidPenaltiesCount = 0;
+            this.userDetails.unpaidPenaltiesAmount = '0';
+          }
+        } catch (penaltyError) {
+          console.warn('Nem sikerült betölteni a büntetési adatokat:', penaltyError);
+          // Alapértelmezett értékek beállítása, ha nem sikerül a betöltés
+          this.userDetails.hasUnpaidPenalties = false;
+          this.userDetails.unpaidPenaltiesCount = 0;
+          this.userDetails.unpaidPenaltiesAmount = '0';
+        }
       }
-
       
     } catch (error: any) {
-      
       this.errorMessage =
         'Nem sikerült betölteni a profil adatokat. Próbálja újra később.';
     } finally {
-        this.isLoading = false;
+      this.isLoading = false;
     }
   }
 

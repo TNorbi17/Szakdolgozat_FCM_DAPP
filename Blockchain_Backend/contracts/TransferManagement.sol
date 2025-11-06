@@ -183,6 +183,10 @@ contract TransferManagement is
             player.contractExpires > 0,
             "No active contract to release."
         );
+         require(
+        PlayerLibrary.canReleaseFromTeam(player, playerPenalties),
+        "Cannot release with unpaid penalties."
+    );
 
         Structs.Team storage currentTeam = teamsByName[player.teamName];
         require(bytes(currentTeam.name).length != 0, "Team not found.");
