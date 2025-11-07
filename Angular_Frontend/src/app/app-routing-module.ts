@@ -62,6 +62,7 @@ const routes: Routes = [
     path: 'pmhistory',
     component: PaymentHistoryComponent,
     canActivate: [authGuard],
+    data: { userType: UserType.Player }
     
   },
   

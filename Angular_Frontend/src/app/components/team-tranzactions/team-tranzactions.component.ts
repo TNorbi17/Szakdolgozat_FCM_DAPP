@@ -272,21 +272,19 @@ export class TeamTranzactionsComponent implements OnInit {
       this.isProcessingOffer = true;
       this.errorMessage = '';
       this.successMessage = '';
-
-      // Optimista UI frissítés - azonnal frissítjük a felületet
       const originalStatus = offer.status;
-      offer.status = OfferStatus.Accepted; // Használd az enum értéket
+      offer.status = OfferStatus.Accepted;
 
       try {
         await this.blockchainService.acceptTransferOffer(offer.offerId);
 
         this.successMessage = 'Ajánlat sikeresen elfogadva!';
 
-        // Várjunk 5 másodpercet, majd frissítsük a valós állapotot a blokkláncból
+        
         setTimeout(async () => {
           try {
             await this.loadAllOffers();
-            await this.loadTransactions(); // Frissítsd a tranzakciókat is
+            await this.loadTransactions();
             console.log('[Accept] Ajánlatok és tranzakciók frissítve');
           } catch (error) {
             console.error('[Accept] Hiba a frissítés közben:', error);
@@ -294,7 +292,7 @@ export class TeamTranzactionsComponent implements OnInit {
         }, 5000);
       } catch (error: any) {
         
-        // Visszaállítjuk az eredeti állapotot hiba esetén
+      
         offer.status = originalStatus;
         this.errorMessage = `Hiba: ${error.message || 'Ismeretlen hiba'}`;
       } finally {
@@ -348,7 +346,7 @@ export class TeamTranzactionsComponent implements OnInit {
 
       
 
-      // Szűrés státusz szerint
+
       this.pendingTeamOffers = allTeamOffers.filter(
         (offer) => offer.status === OfferStatus.Pending
       );
@@ -369,7 +367,6 @@ export class TeamTranzactionsComponent implements OnInit {
     }
   }
 
-  /****************************Transzfer****************************/
 
   activeOfferTab: 'pending' | 'accepted' | 'rejected' = 'pending';
 
@@ -410,10 +407,6 @@ export class TeamTranzactionsComponent implements OnInit {
         : this.rejectedOutgoingOffers.length;
     }
 
-
-
-
-//UI - megjelenés
   get activeTabLabel(): string {
     switch (this.activeOfferTab) {
       case 'pending':
@@ -427,19 +420,6 @@ export class TeamTranzactionsComponent implements OnInit {
     }
   }
 
-
-  get activeTabIcon(): string {
-    switch (this.activeOfferTab) {
-      case 'pending':
-        return '⏳';
-      case 'accepted':
-        return '✅';
-      case 'rejected':
-        return '❌';
-      default:
-        return '';
-    }
-  }
 
 
 }

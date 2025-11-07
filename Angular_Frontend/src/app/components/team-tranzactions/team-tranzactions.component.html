@@ -1,5 +1,5 @@
 <div class="team-transactions-container">
-  <h2>{{ currentUser?.name }} tranzakciói</h2>
+  <h1>{{ currentUser?.name }} tranzakciói</h1>
 
   <div *ngIf="errorMessage" class="error-message">
     <span class="icon"></span>
@@ -152,7 +152,7 @@
   
 <div class="offers-section">
   <div class="section-main-header">
-    <h2>Átigazolási Ajánlatok</h2>
+    <h1>Átigazolási Ajánlatok</h1>
   </div>
 
 
@@ -163,7 +163,7 @@
       (click)="switchOfferDirection('incoming')"
       [disabled]="isLoadingOffers"
     >
-      <span class="direction-icon">levelicon</span>
+
       <span class="direction-label">Beérkező</span>
       <span class="direction-count">
         {{ pendingTeamOffers.length + acceptedTeamOffers.length + rejectedTeamOffers.length }}
@@ -176,7 +176,7 @@
       (click)="switchOfferDirection('outgoing')"
       [disabled]="isLoadingOffers"
     >
-      <span class="direction-icon">levelicon</span>
+
       <span class="direction-label">Kimenő</span>
       <span class="direction-count">
         {{ pendingOutgoingOffers.length + acceptedOutgoingOffers.length + rejectedOutgoingOffers.length }}
@@ -192,7 +192,7 @@
       (click)="switchOfferTab('pending')"
       [disabled]="isLoadingOffers"
     >
-      <span class="tab-icon">homokoraicon</span>
+      
       <span class="tab-label">Függőben</span>
       <span class="tab-count pending-count">{{ totalPendingOffers }}</span>
     </button>
@@ -203,7 +203,7 @@
       (click)="switchOfferTab('accepted')"
       [disabled]="isLoadingOffers"
     >
-      <span class="tab-icon">pipaicon</span>
+
       <span class="tab-label">Elfogadva</span>
       <span class="tab-count accepted-count">{{ totalAcceptedOffers }}</span>
     </button>
@@ -214,8 +214,7 @@
       (click)="switchOfferTab('rejected')"
       [disabled]="isLoadingOffers"
     >
-      <span class="tab-icon">xicon</span>
-      <span class="tab-label">Elutasítva</span>
+  <span class="tab-label">Elutasítva</span>
       <span class="tab-count rejected-count">{{ totalRejectedOffers }}</span>
     </button>
   </div>
@@ -251,7 +250,7 @@
               rejected: activeOfferTab === 'rejected'
             }"
           >
-            {{ activeTabIcon }} {{ activeTabLabel }}
+             {{ activeTabLabel }}
           </span>
         </div>
         <div class="amount">{{ formatEth(offer.transferFee) }} ETH</div>
@@ -260,7 +259,6 @@
      
       <div class="card-body">
         <div class="info-row">
-          <span class="info-icon">icon</span>
           <div class="info-content">
             <ng-container *ngIf="offerDirection === 'incoming'; else outgoing">
                <span class="info-label">
@@ -353,9 +351,7 @@
 
 
     <div *ngIf="activeOffers.length === 0" class="empty-state">
-      <div class="empty-icon">
-        {{ activeTabIcon }}
-      </div>
+      
       <p class="empty-title">
         Nincs {{ offerDirection === 'incoming' ? 'beérkező' : 'kimenő' }} {{ activeTabLabel.toLowerCase() }} ajánlat
       </p>
