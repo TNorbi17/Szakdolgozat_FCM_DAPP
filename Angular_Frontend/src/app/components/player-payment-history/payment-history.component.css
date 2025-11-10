@@ -1,25 +1,19 @@
-
-
 .payment-history-container {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   max-width: 1400px;
   margin: 40px auto;
   padding: 30px 40px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  background: #98B4D4;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px #00000020;
 }
 
 h2 {
   color: #2c3e50;
   text-align: center;
-  margin-bottom: 2rem;
-  font-size: 2.5rem;
+  margin-bottom: 30px;
+  font-size: 40px;
   font-weight: 700;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
 }
-
-
 
 .stats-grid {
   display: grid;
@@ -29,55 +23,49 @@ h2 {
 }
 
 .stat-card {
-  background: #ffffff;
-  border-radius: 12px;
+background: white;
+  border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 15px #00000015;
   display: flex;
   align-items: center;
   gap: 15px;
-  transition: transform 0.3s ease;
-}
-
-.stat-card:hover {
-  transform: translateY(-5px);
 }
 
 .stat-icon {
-  font-size: 2.5rem;
+  font-size: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 60px;
   height: 60px;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .stat-content h3 {
   margin: 0 0 5px 0;
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: 700;
   color: #2c3e50;
 }
 
 .stat-content p {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 14px;
   color: #7f8c8d;
 }
 
-.total-payments .stat-icon { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); }
-.total-earned .stat-icon { background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); }
-.average-weekly .stat-icon { background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); }
-.last-payment .stat-icon { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); }
-
+.total-payments .stat-icon { background: #3498db; }
+.total-earned .stat-icon { background: #2ecc71; }
+.average-weekly .stat-icon { background: #f39c12; }
+.last-payment .stat-icon { background: #9b59b6; }
 
 .controls-panel {
-  background: #ffffff;
-  border-radius: 12px;
+  background: white;
+  border-radius: 10px;
   padding: 25px;
   margin-bottom: 30px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 15px #00000015;
 }
 
 .filter-section,
@@ -89,7 +77,7 @@ h2 {
 .sort-section h4 {
   margin: 0 0 15px 0;
   color: #2c3e50;
-  font-size: 1.2rem;
+  font-size: 19px;
   font-weight: 600;
 }
 
@@ -109,7 +97,7 @@ h2 {
 .filter-group label {
   font-weight: 600;
   color: #2c3e50;
-  font-size: 0.9rem;
+  font-size: 14px;
 }
 
 .filter-select,
@@ -117,8 +105,7 @@ h2 {
   padding: 10px 12px;
   border: 2px solid #ecf0f1;
   border-radius: 8px;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
+  font-size: 15px;
   font-family: inherit;
   min-width: 150px;
 }
@@ -127,9 +114,7 @@ h2 {
 .filter-input:focus {
   outline: none;
   border-color: #3498db;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
-
 
 .sort-controls {
   display: flex;
@@ -141,12 +126,11 @@ h2 {
   padding: 10px 20px;
   border: 2px solid #ecf0f1;
   border-radius: 8px;
-  background: #ffffff;
+  background: white;
   color: #7f8c8d;
   cursor: pointer;
-  transition: all 0.3s ease;
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 14px;
 }
 
 .sort-btn:hover {
@@ -156,7 +140,7 @@ h2 {
 
 .sort-btn.active {
   background: #3498db;
-  color: #ffffff;
+  color: white;
   border-color: #3498db;
 }
 
@@ -164,7 +148,6 @@ h2 {
   display: flex;
   justify-content: flex-end;
 }
-
 
 .results-info {
   background: #e8f4fd;
@@ -176,7 +159,6 @@ h2 {
   font-weight: 500;
 }
 
-
 .payments-list {
   display: flex;
   flex-direction: column;
@@ -184,17 +166,11 @@ h2 {
 }
 
 .payment-card {
-  background: #ffffff;
-  border-radius: 12px;
+  background: white;
+  border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px #00000015;
   border-left: 4px solid #3498db;
-}
-
-.payment-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
 .payment-type-weekly { border-left-color: #2ecc71; }
@@ -217,17 +193,17 @@ h2 {
 }
 
 .type-icon {
-  font-size: 1.5rem;
+  font-size: 24px;
 }
 
 .type-text {
   font-weight: 600;
   color: #2c3e50;
-  font-size: 1.1rem;
+  font-size: 18px;
 }
 
 .payment-amount .amount {
-  font-size: 1.3rem;
+  font-size: 21px;
   font-weight: 700;
   color: #2ecc71;
 }
@@ -248,7 +224,7 @@ h2 {
 .detail-row .label {
   color: #7f8c8d;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 14px;
 }
 
 .detail-row .value {
@@ -258,9 +234,8 @@ h2 {
 
 .transaction-id {
   font-family: 'Courier New', monospace;
-  font-size: 0.9rem;
+  font-size: 14px;
 }
-
 
 .no-results,
 .no-payments {
@@ -271,54 +246,41 @@ h2 {
 
 .no-results-icon,
 .no-payments-icon {
-  font-size: 4rem;
+  font-size: 64px;
   margin-bottom: 20px;
 }
 
 .no-results h3,
 .no-payments h3 {
-  font-size: 1.5rem;
+  font-size: 24px;
   margin-bottom: 10px;
   color: #34495e;
 }
 
 .no-results p,
 .no-payments p {
-  font-size: 1rem;
+  font-size: 16px;
   margin-bottom: 20px;
 }
-
-
 
 .btn {
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
-  font-size: 0.95rem;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #3498db, #2980b9);
+  background: #3498db;
   color: white;
 }
 
 .btn-secondary {
-  background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+  background: #95a5a6;
   color: white;
 }
-
-
 
 .loading-message {
   text-align: center;
@@ -383,7 +345,7 @@ h2 {
   }
   
   h2 {
-    font-size: 2rem;
+    font-size: 32px;
   }
   
   .filter-select,

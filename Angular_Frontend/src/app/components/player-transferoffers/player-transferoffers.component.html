@@ -49,7 +49,7 @@
         </div>
       </li>
     </ul>
-    <ng-template #noPendingOffers><p>Nincsenek függőben lévő ajánlataid.</p></ng-template>
+    <ng-template  #noPendingOffers><p class="empty">Nincsenek függőben lévő ajánlataid.</p></ng-template>
   </div>
 
 
@@ -64,7 +64,7 @@
         </div>
       </li>
     </ul>
-    <ng-template #noAcceptedOffers><p>Nincsenek korábbi elfogadott ajánlataid.</p></ng-template>
+    <ng-template #noAcceptedOffers><p p class="empty">Nincsenek korábbi elfogadott ajánlataid.</p></ng-template>
   </div>
 
   <div *ngIf="activeTab === 'rejected'">
@@ -78,6 +78,6 @@
         </div>
       </li>
     </ul>
-    <ng-template #noRejectedOffers><p>Nincsenek korábbi elutasított ajánlataid.</p></ng-template>
+    <ng-template #noRejectedOffers><p p class="empty">Nincsenek korábbi elutasított ajánlataid.</p></ng-template>
   </div>
 </div>
