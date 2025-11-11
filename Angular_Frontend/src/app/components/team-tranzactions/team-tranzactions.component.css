@@ -208,7 +208,7 @@
 
 .summary-item.balance {
   border-left-color: blue;
-  background: lightblue;
+  background: white;
 }
 
 .summary-label {
@@ -220,7 +220,7 @@
 .summary-value {
   font-size: 30px;
   font-weight: bold;
-  color: darkblue;
+  color: black;
 }
 
 
@@ -277,7 +277,6 @@
   gap: 8px;
 }
 
-/* Info sorok */
 .info-row {
   display: flex;
   align-items: flex-start;
@@ -602,7 +601,7 @@
 }
 
 .totals-summary h3 {
-  color: darkblue;
+  color: #872346;
   font-size: 30px;
   margin: 0 0 20px 0;
   border: none;

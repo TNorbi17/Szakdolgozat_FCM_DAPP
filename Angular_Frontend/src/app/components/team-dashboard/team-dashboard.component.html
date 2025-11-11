@@ -121,7 +121,7 @@
 
           
           <div class="action-section daily-payment-section">
-            <h4>📅 Napi fizetés beállítása</h4>
+            <h4>Heti fizetés beállítása</h4>
             <div class="input-group">
               <input
                 type="number"
@@ -193,7 +193,7 @@
                 *ngIf="isOverdue(player.walletAddress)"
                 class="warning-message"
               >
-                Napi fizetés indítás szükséges (14 napnál több telt
+                Heti fizetés indítás szükséges (7 napnál több telt
                 el)
               </p>
             </div>
@@ -208,7 +208,7 @@
 
          
          <div class="action-section release-section">
-  <h4>⚠️ Játékos elküldése</h4>
+  <h4>Játékos elküldése</h4>
   
   <div *ngIf="!showReleaseForm[player.walletAddress]">
     <button 
@@ -226,7 +226,7 @@
   
   <div *ngIf="showReleaseForm[player.walletAddress]" class="release-form">
     <div class="warning-box">
-      <p>⚠️ <strong>Figyelmeztetés!</strong></p>
+      <p><strong>Figyelmeztetés!</strong></p>
       <p>A játékos elküldése esetén kártérítést kell fizetnie.</p>
       <p *ngIf="player.contractExpires && player.contractExpires > today">
         A szerződés még <strong>{{ (player.contractExpires.getTime() - today.getTime()) / (1000 * 60 * 60 * 24) | number:'1.0-0' }} napig</strong> érvényes.
