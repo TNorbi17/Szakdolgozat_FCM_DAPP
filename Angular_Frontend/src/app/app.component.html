@@ -5,7 +5,7 @@
     </button>
   <div class="nav-left" [class.open]="isMenuOpen">
     <a routerLink="/home" routerLinkActive="active-link" (click)="closeMenu()">Kezdőlap</a>
-    <a routerLink="/app-faq" routerLinkActive="active-link" (click)="closeMenu()">FAQ</a>
+    <a routerLink="/app-faq" routerLinkActive="active-link" (click)="closeMenu()">GYIK</a>
     <ng-container *ngIf="currentUser">
       <a routerLink="/profile" routerLinkActive="active-link" (click)="closeMenu()">Profil</a>  
       <ng-container *ngIf="currentUser.userType === userTypeEnum.Team">

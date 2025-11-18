@@ -69,19 +69,12 @@ export class AppComponent implements OnInit, OnDestroy {
       (user) => {
         this.currentUser = user;
         this.updateMenuState();
-        this.handleUnauthenticatedUser(user);
+       
       }
     );
   }
 
-  private handleUnauthenticatedUser(user: UserSession | null): void {
-    const publicRoutes = ['/login', '/register'];
-    const isPublicRoute = publicRoutes.includes(this.router.url);
-
-    if (!user && !isPublicRoute) {
-      this.router.navigate(['/login']);
-    }
-  }
+  
 
   private updateMenuState(): void {
     if (!this.isMobileView()) {
